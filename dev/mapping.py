@@ -27,6 +27,7 @@ COMPANY_YEAR_PDF_MAPPING = {
     },
     "Tongaat": {
         2021: ["2021ESG.pdf"],
+        2020: ["2021ESG.pdf"]
     },
     "Uct": {
         2021: ["UCT_Carbon_Footprint_Report_2020-2021.pdf", "afs2021.pdf"],
