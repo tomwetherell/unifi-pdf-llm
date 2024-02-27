@@ -26,7 +26,28 @@ AMKEY_TO_UNIT_PATH = "/home/tomw/unifi-pdf-llm/data/AMKEY_unit_conversion.csv"
 
 client = OpenAI()
 
-VALIDATE_PROMPT_TEMPLATE ="""
+RETRIEVE_VALUE_PROMPT_TEMPLATE = """
+Use the following pieces of context to answer the question at the end.
+The answer must be a value from the context.
+The context may be text or a markdown table.
+Just retrieve the answer from the context. Please don't do any unit conversion.
+If you don't know the answer, please return 'null' for the answer and unit.
+Do not return any words other than 'Answer' and 'Unit' in the answer.
+Please return the answer in the format of a python dictionary / JSON object:
+{{"Answer": <number or null>, "Unit": <unit or null>}}
+Please always use double quotes for the keys and values.
+If the requested value is not present in the context, please return 'null' for the answer and unit.
+
+Context:
+
+{context}
+
+Question: {question} {append}
+
+Answer:
+"""
+
+VALIDATE_RESPONSE_PROMPT_TEMPLATE ="""
 Consider the following markdown tables:
 
 {context}
@@ -180,19 +201,12 @@ class ModularRAG:
             The value associated with the AMKEY for the given year.
         """
         logger.debug(f"Retrieving AMKEY: {amkey}")
-
         metric = self.retrieve_metric_description(amkey)
         logger.debug(f"Retrieving metric: {metric}")
-
         context_documents = self.retriever.retrieve(metric)
-
         append = self._retrieve_additional_appended_instructions(amkey)
-
         question = f"What was the {metric} in the year {year}?"
-        prompt = self._create_generation_prompt(question, context_documents, append)
-
-        answer = self.generation_llm(prompt)[0]
-        logger.debug(f"Generated answer: {answer}")
+        answer = self.retrieve_value(question, append, context_documents)
 
         try:
             value, unit = self.parse_answer(answer)
@@ -231,6 +245,50 @@ class ModularRAG:
 
         return value, unvalidated_value
 
+    def retrieve_value(self, question: str, append: str, docs: list[Document]) -> str:
+        """
+        Return the value associated with a question from the context documents.
+
+        Parameters
+        ----------
+        question : str
+            The question to retrieve the value for.
+
+        append : str
+            Additional instructions to append to the query.
+
+        docs : list[Document]
+            The context documents to retrieve the value from.
+
+        Returns
+        -------
+        answer : str
+            The answer to the question.
+        """
+        context = "\n\n".join([doc.content for doc in docs])
+
+        prompt = RETRIEVE_VALUE_PROMPT_TEMPLATE.format(
+            context=context, question=question, append=append
+        )
+
+        logger.debug(f"Retrieval prompt:\n{prompt}")
+
+        answer = client.chat.completions.create(
+            model="gpt-3.5-turbo",
+            messages=[
+                {"role": "system", "content": "You are an expert at reading markdown tables. Provide the answer in json format with the keys 'Answer' and 'Unit'."},
+                {"role": "user", "content": prompt},
+            ],
+            response_format={"type": "json_object"},
+            max_tokens=200,
+            temperature=0.01,
+            seed=0,
+        ).choices[0].message.content
+
+        logger.debug(f"Retrieval response: {answer}")
+
+        return answer
+
     def validate_response(self, question: str, answer: float, docs: list[Document]) -> str:
         """
         Returns 'yes' or 'no' to validate the response from the generation LLM.
@@ -253,7 +311,7 @@ class ModularRAG:
         """
         context = "\n\n".join([doc.content for doc in docs])
 
-        prompt = VALIDATE_PROMPT_TEMPLATE.format(
+        prompt = VALIDATE_RESPONSE_PROMPT_TEMPLATE.format(
             context=context, answer=answer, question=question
         )
 
@@ -324,50 +382,6 @@ class ModularRAG:
 
         return append
 
-    def _create_generation_prompt(
-            self,
-            question: str,
-            docs: list[Document],
-            append: str
-        )-> str:
-        """
-        Create a prompt for the generation LLM.
-
-        Parameters
-        ----------
-        question : str
-            The question to answer.
-
-        docs : list[Document]
-            The documents to provide context for the queries.
-
-        append : str
-            Additional instructions to append to the query.
-
-        Returns
-        -------
-        prompt : str
-            The prompt for the generation LLM.
-        """
-        context = "\n\n".join([doc.content for doc in docs])
-
-        prompt = f"""
-        Use the following pieces of context to answer the question at the end.
-        The answer must be a value from the context.
-        The context may be text or a markdown table.
-        Just retrieve the answer from the context. Please don't do any unit conversion.
-        If you don't know the answer, please return 'null' for the answer and unit.
-        Do not return any words other than 'Answer' and 'Unit' in the answer.
-        Please return the answer in the format of a python dictionary / JSON object:
-        {{"Answer": <number or null>, "Unit": <unit or null>}}
-        Please always use double quotes for the keys and values.
-        If the requested value is not present in the context, please return 'null' for the answer and unit.
-
-        \nContext:\n{context} \n\n Question: {question} {append}\n\n Answer:
-        """
-
-        return prompt
-
     def create_unit_conversion_prompt(self, value: int, unit: str, target_unit: str) -> str:
         prompt=f"""
         You are an expert unit converter. You are aware of how to convert
@@ -390,26 +404,6 @@ class ModularRAG:
                    Please convert this answer to follow the python dictionary / JSON object format:
                    {{"Answer": <number or null>, "Unit": <unit or null>'}}
                    \n\n Answer:"""
-
-        return prompt
-
-    def create_relevant_context_prompt(
-            self,
-            metric: str,
-            year: int,
-            docs: list[Document],
-    ) -> str:
-        query = f"What was the {metric} in the year {year}?"
-        context = "\n\n".join([doc.content for doc in docs])
-
-        prompt = f"""
-        You are an expert in determining whether there is sufficient information in a given context to answer a specific question.
-        Is there sufficient information in the following context to answer the specific question: '{query}'?
-
-        Context:\n{context}
-
-        Think cleary and think step by step. Please return 'Yes' or 'No' as your answer. Answer:
-        """
 
         return prompt
 
