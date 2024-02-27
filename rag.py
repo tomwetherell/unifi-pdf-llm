@@ -2,13 +2,15 @@
 
 import os
 import json
+import re
 
 import pandas as pd
+from openai import OpenAI
 from haystack import Document
 from haystack.nodes import EmbeddingRetriever, PromptNode
 from haystack.document_stores import InMemoryDocumentStore
-from loguru import logger
 
+from loguru import logger
 
 OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY")
 
@@ -20,6 +22,23 @@ AMKEY_TO_SYNONYM_PATH = "/home/tomw/unifi-pdf-llm/data/ActivityMetricsSynonyms.c
 
 AMKEY_TO_UNIT_PATH = "/home/tomw/unifi-pdf-llm/data/AMKEY_unit_conversion.csv"
 """Path to csv file mapping AMKEY to required unit."""
+
+
+client = OpenAI()
+
+VALIDATE_PROMPT_TEMPLATE ="""
+Consider the following markdown tables:
+
+{context}
+
+Are you sure that '{answer}' is the correct answer to the question: "{question}"?
+
+It is possible that the answer is not explicitly stated in the context.
+
+Think step by step. Please conclude your answer with a 'yes' or 'no'.
+
+Answer:
+"""
 
 
 class ModularRAG:
@@ -166,14 +185,11 @@ class ModularRAG:
         logger.debug(f"Retrieving metric: {metric}")
 
         context_documents = self.retriever.retrieve(metric)
-        context_str = "\n\n".join([doc.content for doc in context_documents])
-        logger.debug(f"Retrieved context documents:\n\n {context_str}\n")
 
         append = self._retrieve_additional_appended_instructions(amkey)
-        logger.debug(f"Appending: {append}")
 
-        prompt = self._create_generation_prompt(metric, year, context_documents, append)
-        # logger.debug(f"Generation prompt: \n{prompt}")
+        question = f"What was the {metric} in the year {year}?"
+        prompt = self._create_generation_prompt(question, context_documents, append)
 
         answer = self.generation_llm(prompt)[0]
         logger.debug(f"Generated answer: {answer}")
@@ -192,34 +208,100 @@ class ModularRAG:
 
         logger.debug(f"Parsed answer: {value}, {unit}")
 
-        if value is not None:
-            # Confirm that the context was sufficient to answer the question.
-            relevant_context_prompt = self.create_relevant_context_prompt(metric, year, context_documents)
-            relevant_context_answer = self.confirm_relevant_context_llm(relevant_context_prompt)[0]
-            # Strip '.' and whitespace from the answer.
-            relevant_context_answer = relevant_context_answer.replace(".", "").strip()
-            logger.debug(f"Relevant context answer: {relevant_context_answer}")
-            if relevant_context_answer.lower() != "yes":
-                value = -1
-            else:
-                # Double check
-                # TODO: Consider rephrasing this. Could give the previous prompt (with answer),
-                # and ask 'Are you sure the context is not sufficient to answer the question?'
-                relevant_context_answer = self.confirm_relevant_context_llm(relevant_context_prompt)[0]
-                logger.debug(f"DOUBLE CHECK Relevant context answer: {relevant_context_answer}")
-                if relevant_context_answer.lower() != "yes":
-                    value = -1
+        # Validation
+        # TODO: Consider validating the non-cleaned answer (for example, Level1 instead of 1.0)
+        # The validator is returning 'no' for quite a few valid answers. Often, it wrongly states
+        # that the value is provided for the other years, but not for the year in question.
+        unvalidated_value = value
+        if isinstance(value, float):
+            logger.debug(f"Validating answer: {value}")
+            valid_response = self.validate_response(question, value, context_documents)
+            logger.debug(f"Valid response: {valid_response}")
+            if valid_response == "no":
+                value, unit = None, None
 
         required_unit = self.retrieve_unit(amkey)
         logger.debug(f"Required unit: {required_unit}")
 
-        if required_unit is not None and value is not None and value != -1:
+        if required_unit is not None and value is not None:
             if unit != required_unit:
                 unit_conversion_prompt = self.create_unit_conversion_prompt(value, unit, required_unit)
                 value = self.unit_conversion_llm(unit_conversion_prompt)[0]
                 logger.debug(f"Unit converted value: {value}")
 
-        return value
+        return value, unvalidated_value
+
+    def validate_response(self, question: str, answer: float, docs: list[Document]) -> str:
+        """
+        Returns 'yes' or 'no' to validate the response from the generation LLM.
+
+        Parameters
+        ----------
+        question : str
+            The question provided to the generation LLM.
+
+        answer : float
+            The answer provided by the generation LLM.
+
+        docs : list[Document]
+            The context documents provided to the generation LLM.
+
+        Returns
+        -------
+        conclusion : str
+            Whether the answer is valid or not. Either 'yes' or 'no'.
+        """
+        context = "\n\n".join([doc.content for doc in docs])
+
+        prompt = VALIDATE_PROMPT_TEMPLATE.format(
+            context=context, answer=answer, question=question
+        )
+
+        logger.debug(f"Validation prompt:\n{prompt}")
+
+        response = client.chat.completions.create(
+            model="gpt-3.5-turbo",
+            messages=[
+                {"role": "system", "content": "You are an expert at reading markdown tables"},
+                {"role": "user", "content": prompt},
+            ],
+            temperature=0.01,
+            seed=0,
+        ).choices[0].message.content
+
+        conclusion = self._extract_conclusion(response)
+
+        logger.debug(f"Validation response: {response}")
+
+        return conclusion
+
+    def _extract_conclusion(self, response: str) -> str | None:
+        """
+        Extract 'yes' or 'no' conclusion from the response.
+
+        Parameters
+        ----------
+        response : str
+            The response from the model. This is expected to end with a 'yes' or 'no'
+            conclusion.
+
+        Returns
+        -------
+        conclusion : str | None
+            The conclusion from the answer - either 'yes' or 'no'. If the conclusion
+            is not found, None is returned.
+        """
+        conclusion = None
+
+        # First, check if the answer ends with a 'yes' or 'no'
+        conclusion = response.split()[-1].lower()
+
+        if conclusion not in ['yes', 'no']:
+            # Use regex to extract the conclusion
+            match = re.search(r'\b(yes|no)\b', response, re.IGNORECASE)
+            if match: conclusion = match.group(0).lower()
+
+        return conclusion
 
     def _retrieve_additional_appended_instructions(self, amkey: int) -> str:
         """
@@ -244,8 +326,7 @@ class ModularRAG:
 
     def _create_generation_prompt(
             self,
-            metric: str,
-            year: int,
+            question: str,
             docs: list[Document],
             append: str
         )-> str:
@@ -254,11 +335,8 @@ class ModularRAG:
 
         Parameters
         ----------
-        metric : str
-            The metric to retrieve.
-
-        year : int
-            The year to retrieve the metric for.
+        question : str
+            The question to answer.
 
         docs : list[Document]
             The documents to provide context for the queries.
@@ -271,8 +349,6 @@ class ModularRAG:
         prompt : str
             The prompt for the generation LLM.
         """
-        query = f"What was the {metric} in the year {year}?"
-
         context = "\n\n".join([doc.content for doc in docs])
 
         prompt = f"""
@@ -287,7 +363,7 @@ class ModularRAG:
         Please always use double quotes for the keys and values.
         If the requested value is not present in the context, please return 'null' for the answer and unit.
 
-        \nContext:\n{context} \n\n Question: {query} {append}\n\n Answer:
+        \nContext:\n{context} \n\n Question: {question} {append}\n\n Answer:
         """
 
         return prompt
