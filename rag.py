@@ -42,7 +42,7 @@ Question: {question} {append}
 Answer:
 """
 
-VALIDATE_RESPONSE_PROMPT_TEMPLATE ="""
+VALIDATE_RESPONSE_PROMPT_TEMPLATE = """
 Consider the following markdown tables:
 
 {context}
@@ -53,6 +53,22 @@ Please consider each table and each row individually.
 It is possible that the answer is not explicitly stated in the context.
 
 Think step by step. Please conclude your answer with a 'yes' or 'no'.
+
+Answer:
+"""
+
+UNIT_CONVERSION_PROMPT_TEMPLATE = """
+You are an expert unit converter.
+You are aware of how to convert between different units within the same system of measurement.
+For example, 1236 million = 1236 * 1 million = 1236 * 1000000 = 1236000000.
+For example, to convert from Rm to R, you would multiply by 1000000. This is because 1 Rm = 1000000 R.
+Do not do any unit conversion if it is not necessary. That is, if the
+unit is already in the required unit, do not convert it.
+For example, 'What is 242353 Rands in rand? Answer: 242353' is the correct answer.
+Please return a single number as your answer. Do not elaborate or give
+any context.
+
+What is {value} {unit} in {target_unit}?
 
 Answer:
 """
