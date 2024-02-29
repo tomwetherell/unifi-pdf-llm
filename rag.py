@@ -49,8 +49,8 @@ Consider the following markdown tables:
 
 Are you sure that '{answer}' is the correct answer to the question: "{question}"?
 
-Please consider each table and each row individually. Be careful to consider the year in question, and
-not to incorrectly state that the value is provided for the other years, but not for the year in question (unless this is the case).
+Please consider each table individually. Only pay attention to the row corresponding to the
+year in questin. Be careful not to incorrectly state that the value is provided for the other years, but not for the year in question (unless this is the case).
 It is possible that the answer is not explicitly stated in the context.
 
 Think step by step. Please conclude your answer with a 'yes' or 'no'.
@@ -384,14 +384,18 @@ class ModularRAG:
         response = client.chat.completions.create(
             model="gpt-3.5-turbo",
             messages=[
-                {"role": "system", "content": "You are an expert unit converter"},
+                {"role": "system", "content": "You are an expert unit converter.  Provide the answer in json format with the key 'Answer'."},
                 {"role": "user", "content": prompt},
             ],
+            response_format={"type": "json_object"},
+            max_tokens=100,
             temperature=0.01,
             seed=0,
         ).choices[0].message.content
 
-        converted_value = float(response)
+        response = json.loads(response)
+
+        converted_value = float(response["Answer"])
 
         logger.debug(f"Unit conversion response: {response}")
 
