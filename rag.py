@@ -49,7 +49,8 @@ Consider the following markdown tables:
 
 Are you sure that '{answer}' is the correct answer to the question: "{question}"?
 
-Please consider each table and each row individually.
+Please consider each table and each row individually. Be careful to consider the year in question, and
+not to incorrectly state that the value is provided for the other years, but not for the year in question (unless this is the case).
 It is possible that the answer is not explicitly stated in the context.
 
 Think step by step. Please conclude your answer with a 'yes' or 'no'.
@@ -58,7 +59,6 @@ Answer:
 """
 
 UNIT_CONVERSION_PROMPT_TEMPLATE = """
-You are an expert unit converter.
 You are aware of how to convert between different units within the same system of measurement.
 For example, 1236 million = 1236 * 1 million = 1236 * 1000000 = 1236000000.
 For example, to convert from Rm to R, you would multiply by 1000000. This is because 1 Rm = 1000000 R.
@@ -122,7 +122,6 @@ class ModularRAG:
 
         self._initialise_document_store()
         self._initialise_retriever(top_k)
-        self.initialise_unit_conversion_llm()  # TODO: Remove this and use OpenAI API directly, or could the conversion be hardcoded?
         self._initialise_mappings(
             amkey_to_metric_path, amkey_to_synonym_path, amkey_to_unit_path
         )
@@ -154,14 +153,6 @@ class ModularRAG:
             top_k=top_k
         )
         self.document_store.update_embeddings(retriever=self.retriever)
-
-    def initialise_unit_conversion_llm(self):
-        logger.info("Initialising unit conversion LLM")
-        self.unit_conversion_llm = PromptNode(
-            model_name_or_path="gpt-3.5-turbo",
-            api_key=OPENAI_API_KEY,
-            model_kwargs={"temperature": 0}
-        )
 
     def _initialise_mappings(
             self,
@@ -242,9 +233,7 @@ class ModularRAG:
 
         if value is not None and required_unit is not None:
             if unit != required_unit:
-                unit_conversion_prompt = self.create_unit_conversion_prompt(value, unit, required_unit)
-                value = self.unit_conversion_llm(unit_conversion_prompt)[0]
-                logger.debug(f"Unit converted value: {value}")
+                value = self.convert_unit(value, unit, required_unit)
 
         return value, unvalidated_value
 
@@ -364,6 +353,50 @@ class ModularRAG:
 
         return conclusion
 
+    def convert_unit(self, value: float, unit: str, target_unit: str) -> float:
+        """
+        Returns the value converted to the target unit.
+
+        TODO: Consider whether this could be replaced with a hard-coded approach.
+
+        Parameters
+        ----------
+        value : float
+            The value to convert.
+
+        unit : str
+            The unit of the value.
+
+        target_unit : str
+            The unit to convert the value to.
+
+        Returns
+        -------
+        converted_value : float
+            The value converted to the target unit.
+        """
+        prompt = UNIT_CONVERSION_PROMPT_TEMPLATE.format(
+            value=value, unit=unit, target_unit=target_unit
+        )
+
+        logger.debug(f"Unit conversion prompt:\n{prompt}")
+
+        response = client.chat.completions.create(
+            model="gpt-3.5-turbo",
+            messages=[
+                {"role": "system", "content": "You are an expert unit converter"},
+                {"role": "user", "content": prompt},
+            ],
+            temperature=0.01,
+            seed=0,
+        ).choices[0].message.content
+
+        converted_value = float(response)
+
+        logger.debug(f"Unit conversion response: {response}")
+
+        return converted_value
+
     def _retrieve_additional_appended_instructions(self, amkey: int) -> str:
         """
         Return additional instructions to append to the query.
@@ -384,23 +417,6 @@ class ModularRAG:
             append = ""
 
         return append
-
-    def create_unit_conversion_prompt(self, value: int, unit: str, target_unit: str) -> str:
-        prompt=f"""
-        You are an expert unit converter. You are aware of how to convert
-        between different units within the same system of measurement.
-        For example, 1236 million = 1236 * 1 million = 1236 * 1000000 = 1236000000.
-        For example, to convert from Rm to R, you would multiply by 1000000. This is because
-        1 Rm = 1000000 R.
-        Do not do any unit conversion if it is not necessary. That is, if the
-        unit is already in the required unit, do not convert it.
-        For example, 'What is 242353 Rands in rand? Answer: 242353' is the correct answer.
-        Please return a single number as your answer. Do not elaborate or give
-        any context.\n\n
-
-        What is {value} {unit} in {target_unit}? \n\n Answer:"""
-
-        return prompt
 
     def parse_answer(self, answer: str) -> tuple[float | None, str | None]:
         """
