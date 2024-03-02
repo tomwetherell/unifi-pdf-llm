@@ -37,7 +37,7 @@ Context:
 
 {context}
 
-Question: {question} {append}
+Question: {question}
 
 Answer:
 """
@@ -57,6 +57,8 @@ Think step by step. Please conclude your answer with a 'yes' or 'no'.
 
 Answer:
 """
+# TODO: The validator often returns 'no' if the value is in one of the tables, but not the others.
+# Modify prompt so it understands that it's fine if the value is only in one of the tables.
 
 UNIT_CONVERSION_PROMPT_TEMPLATE = """
 You are aware of how to convert between different units within the same system of measurement.
@@ -203,9 +205,9 @@ class ModularRAG:
         metric = self.retrieve_metric_description(amkey)
         logger.debug(f"Retrieving metric: {metric}")
         context_documents = self.retriever.retrieve(metric)
-        append = self._retrieve_additional_appended_instructions(amkey)
-        question = f"What was the {metric} in the year {year}?"
-        answer = self.retrieve_value(question, append, context_documents)
+        additional = self._retrieve_additional_appended_instructions(amkey)
+        question = f"What was the {metric} in the year {year}? {additional}"
+        answer = self.retrieve_value(question, context_documents)
 
         try:
             value, unit = self.parse_answer(answer)
@@ -237,7 +239,7 @@ class ModularRAG:
 
         return value, unvalidated_value
 
-    def retrieve_value(self, question: str, append: str, docs: list[Document]) -> str:
+    def retrieve_value(self, question: str, docs: list[Document]) -> str:
         """
         Return the value associated with a question from the context documents.
 
@@ -245,9 +247,6 @@ class ModularRAG:
         ----------
         question : str
             The question to retrieve the value for.
-
-        append : str
-            Additional instructions to append to the query.
 
         docs : list[Document]
             The context documents to retrieve the value from.
@@ -260,7 +259,7 @@ class ModularRAG:
         context = "\n\n".join([doc.content for doc in docs])
 
         prompt = RETRIEVE_VALUE_PROMPT_TEMPLATE.format(
-            context=context, question=question, append=append
+            context=context, question=question
         )
 
         logger.debug(f"Retrieval prompt:\n{prompt}")
@@ -412,15 +411,15 @@ class ModularRAG:
 
         Returns
         -------
-        append : str
+        additional : str
             Additional instructions to append to the query.
         """
         if amkey in [47, 48, 49]:
-            append = "Do not include the word 'Level' in the answer."
+            additional = "Do not include the word 'Level' in the answer."
         else:
-            append = ""
+            additional = ""
 
-        return append
+        return additional
 
     def parse_answer(self, answer: str) -> tuple[float | None, str | None]:
         """
