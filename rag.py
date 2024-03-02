@@ -7,7 +7,7 @@ import re
 import pandas as pd
 from openai import OpenAI
 from haystack import Document
-from haystack.nodes import EmbeddingRetriever, PromptNode
+from haystack.nodes import EmbeddingRetriever
 from haystack.document_stores import InMemoryDocumentStore
 
 from loguru import logger
@@ -348,8 +348,8 @@ class ModularRAG:
 
         if conclusion not in ['yes', 'no']:
             # Use regex to extract the conclusion
-            match = re.search(r'\b(yes|no)\b', response, re.IGNORECASE)
-            if match: conclusion = match.group(0).lower()
+            matches = re.findall(r'\b(yes|no)\b', response, re.IGNORECASE)
+            if matches: conclusion = matches[-1].lower()
 
         return conclusion
 
