@@ -1,0 +1,19 @@
+[build-system]
+requires = ["flit_core >=3.2,<4"]
+build-backend = "flit_core.buildapi"
+
+[project]
+name = "esg_retriever"
+authors = [{name = "Tom Wetherell"}]
+dynamic = ["version", "description"]
+
+dependencies = [
+  "pandas",
+  "farm-haystack[all-gpu]",
+  "openai",
+  "loguru",
+  "tabulate"
+]
+
+[project.urls]
+Home = "https://github.com/tomwetherell/unifi-pdf-llm"
