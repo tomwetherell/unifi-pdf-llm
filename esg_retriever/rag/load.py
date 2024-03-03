@@ -7,16 +7,12 @@ from haystack import Document
 from haystack.nodes import AzureConverter
 from loguru import logger
 
-from dev.mapping import COMPANY_YEAR_PDF_MAPPING
+from esg_retriever.dev.mapping import COMPANY_YEAR_PDF_MAPPING
 
 AZURE_CONVERTER_KEY = os.environ.get("AZURE_CONVERTER_KEY")
 
-
-AZURE_CONVERTER_DIR = "/home/tomw/unifi-pdf-llm/data/azureconverter_outputs"
+AZURE_CONVERTER_DIR = "/home/tomw/unifi-pdf-llm/esg_retriever/data/parsed_pdfs"
 """Path to directory with json outputs from AzureConverter."""
-
-TRAIN_CSV_PATH = "/home/tomw/unifi-pdf-llm/data/Train.csv"
-"""Path to the Train.csv file."""
 
 
 def load_documents(company: str, year: int) -> list[Document]:

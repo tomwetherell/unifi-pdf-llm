@@ -14,13 +14,13 @@ from loguru import logger
 
 OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY")
 
-AMKEY_TO_METRIC_PATH = "/home/tomw/unifi-pdf-llm/data/AMKEY_GoldenStandard.csv"
+AMKEY_TO_METRIC_PATH = "/home/tomw/unifi-pdf-llm/esg_retriever/data/AMKEY_GoldenStandard.csv"
 """Path to csv file mapping AMKEY to metric description."""
 
-AMKEY_TO_SYNONYM_PATH = "/home/tomw/unifi-pdf-llm/data/ActivityMetricsSynonyms.csv"
+AMKEY_TO_SYNONYM_PATH = "/home/tomw/unifi-pdf-llm/esg_retriever/data/ActivityMetricsSynonyms.csv"
 """Path to csv file mapping AMKEY to company metric description."""
 
-AMKEY_TO_UNIT_PATH = "/home/tomw/unifi-pdf-llm/data/AMKEY_unit_conversion.csv"
+AMKEY_TO_UNIT_PATH = "/home/tomw/unifi-pdf-llm/esg_retriever/data/AMKEY_unit_conversion.csv"
 """Path to csv file mapping AMKEY to required unit."""
 
 
