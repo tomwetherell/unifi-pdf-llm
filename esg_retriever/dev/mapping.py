@@ -2,8 +2,12 @@
 
 COMPANY_YEAR_PDF_MAPPING = {
     "Absa": {
-        2022: ["2022-Absa-Group-limited-Environmental-Social-and-Governance-Data-sheet.pdf"],
-        2021: ["2022-Absa-Group-limited-Environmental-Social-and-Governance-Data-sheet.pdf"],
+        2022: [
+            "2022-Absa-Group-limited-Environmental-Social-and-Governance-Data-sheet.pdf"
+        ],
+        2021: [
+            "2022-Absa-Group-limited-Environmental-Social-and-Governance-Data-sheet.pdf"
+        ],
     },
     "Clicks": {
         2022: ["Clicks-Sustainability-Report-2022.pdf"],
@@ -16,7 +20,10 @@ COMPANY_YEAR_PDF_MAPPING = {
         2023: ["ESG-spreads.pdf"],
     },
     "Oceana": {
-        2022: ["Oceana_ESG_Databook_FY2022.pdf", "Oceana_Group_Sustainability_Report_2022.pdf"],
+        2022: [
+            "Oceana_ESG_Databook_FY2022.pdf",
+            "Oceana_Group_Sustainability_Report_2022.pdf",
+        ],
     },
     "Picknpay": {
         2023: ["picknpay-esg-report-spreads-2023.pdf"],
@@ -32,11 +39,11 @@ COMPANY_YEAR_PDF_MAPPING = {
     },
     "Tongaat": {
         2021: ["2021ESG_removed_sup_table.pdf"],
-        2020: ["2021ESG_removed_sup_table.pdf"]
+        2020: ["2021ESG_removed_sup_table.pdf"],
     },
     "Uct": {
         2021: ["UCT_Carbon_Footprint_Report_2020-2021.pdf", "afs2021.pdf"],
-    }
+    },
 }
 """
 Mapping from company and year to the corresponding annual report pdf file name(s).

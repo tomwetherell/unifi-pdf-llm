@@ -19,13 +19,19 @@ from esg_retriever.rag.prompts import (
 
 OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY")
 
-AMKEY_TO_METRIC_PATH = "/home/tomw/unifi-pdf-llm/esg_retriever/data/AMKEY_GoldenStandard.csv"
+AMKEY_TO_METRIC_PATH = (
+    "/home/tomw/unifi-pdf-llm/esg_retriever/data/AMKEY_GoldenStandard.csv"
+)
 """Path to csv file mapping AMKEY to metric description."""
 
-AMKEY_TO_SYNONYM_PATH = "/home/tomw/unifi-pdf-llm/esg_retriever/data/ActivityMetricsSynonyms.csv"
+AMKEY_TO_SYNONYM_PATH = (
+    "/home/tomw/unifi-pdf-llm/esg_retriever/data/ActivityMetricsSynonyms.csv"
+)
 """Path to csv file mapping AMKEY to company metric description."""
 
-AMKEY_TO_UNIT_PATH = "/home/tomw/unifi-pdf-llm/esg_retriever/data/AMKEY_unit_conversion.csv"
+AMKEY_TO_UNIT_PATH = (
+    "/home/tomw/unifi-pdf-llm/esg_retriever/data/AMKEY_unit_conversion.csv"
+)
 """Path to csv file mapping AMKEY to required unit."""
 
 client = OpenAI()
@@ -33,15 +39,16 @@ client = OpenAI()
 
 class ModularRAG:
     """Class implementing a modular retrieval augmented generation pipeline."""
+
     def __init__(
-            self,
-            docs: list[Document],
-            company: str,
-            top_k: int=3,
-            amkey_to_metric_path: str=AMKEY_TO_METRIC_PATH,
-            amkey_to_synonym_path: str=AMKEY_TO_SYNONYM_PATH,
-            amkey_to_unit_path : str=AMKEY_TO_UNIT_PATH,
-        ):
+        self,
+        docs: list[Document],
+        company: str,
+        top_k: int = 3,
+        amkey_to_metric_path: str = AMKEY_TO_METRIC_PATH,
+        amkey_to_synonym_path: str = AMKEY_TO_SYNONYM_PATH,
+        amkey_to_unit_path: str = AMKEY_TO_UNIT_PATH,
+    ):
         """
         Initalise the components of the query pipeline.
 
@@ -106,16 +113,16 @@ class ModularRAG:
         self.retriever = EmbeddingRetriever(
             embedding_model="sentence-transformers/all-MiniLM-L6-v2",
             document_store=self.document_store,
-            top_k=top_k
+            top_k=top_k,
         )
         self.document_store.update_embeddings(retriever=self.retriever)
 
     def _initialise_mappings(
-            self,
-            amkey_to_metric_path: str,
-            amkey_to_synonym_path: str,
-            amkey_to_unit_path: str,
-        ):
+        self,
+        amkey_to_metric_path: str,
+        amkey_to_synonym_path: str,
+        amkey_to_unit_path: str,
+    ):
         """
         Initialise mapping dataframes.
 
@@ -219,23 +226,32 @@ class ModularRAG:
         logger.debug(f"Retrieval prompt:\n{prompt}")
 
         # TODO: Test using `top_p` parameter. Not recommended to set both `temperature` and `top_p`.
-        answer = client.chat.completions.create(
-            model="gpt-3.5-turbo",
-            messages=[
-                {"role": "system", "content": "You are an expert at reading markdown tables. Provide the answer in json format with the keys 'Answer' and 'Unit'."},
-                {"role": "user", "content": prompt},
-            ],
-            response_format={"type": "json_object"},
-            max_tokens=200,
-            temperature=0.01,
-            seed=0,
-        ).choices[0].message.content
+        answer = (
+            client.chat.completions.create(
+                model="gpt-3.5-turbo",
+                messages=[
+                    {
+                        "role": "system",
+                        "content": "You are an expert at reading markdown tables. Provide the answer in json format with the keys 'Answer' and 'Unit'.",
+                    },
+                    {"role": "user", "content": prompt},
+                ],
+                response_format={"type": "json_object"},
+                max_tokens=200,
+                temperature=0.01,
+                seed=0,
+            )
+            .choices[0]
+            .message.content
+        )
 
         logger.debug(f"Retrieval response: {answer}")
 
         return answer
 
-    def validate_response(self, question: str, answer: float, docs: list[Document]) -> str:
+    def validate_response(
+        self, question: str, answer: float, docs: list[Document]
+    ) -> str:
         """
         Returns 'yes' or 'no' to validate the response from the generation LLM.
 
@@ -263,15 +279,22 @@ class ModularRAG:
 
         logger.debug(f"Validation prompt:\n{prompt}")
 
-        response = client.chat.completions.create(
-            model="gpt-3.5-turbo",
-            messages=[
-                {"role": "system", "content": "You are an expert at reading markdown tables"},
-                {"role": "user", "content": prompt},
-            ],
-            temperature=0.01,
-            seed=0,
-        ).choices[0].message.content
+        response = (
+            client.chat.completions.create(
+                model="gpt-3.5-turbo",
+                messages=[
+                    {
+                        "role": "system",
+                        "content": "You are an expert at reading markdown tables",
+                    },
+                    {"role": "user", "content": prompt},
+                ],
+                temperature=0.01,
+                seed=0,
+            )
+            .choices[0]
+            .message.content
+        )
 
         conclusion = self._extract_conclusion(response)
 
@@ -300,10 +323,11 @@ class ModularRAG:
         # First, check if the answer ends with a 'yes' or 'no'
         conclusion = response.split()[-1].lower()
 
-        if conclusion not in ['yes', 'no']:
+        if conclusion not in ["yes", "no"]:
             # Use regex to extract the conclusion
-            matches = re.findall(r'\b(yes|no)\b', response, re.IGNORECASE)
-            if matches: conclusion = matches[-1].lower()
+            matches = re.findall(r"\b(yes|no)\b", response, re.IGNORECASE)
+            if matches:
+                conclusion = matches[-1].lower()
 
         return conclusion
 
@@ -335,17 +359,24 @@ class ModularRAG:
 
         logger.debug(f"Unit conversion prompt:\n{prompt}")
 
-        response = client.chat.completions.create(
-            model="gpt-3.5-turbo",
-            messages=[
-                {"role": "system", "content": "You are an expert unit converter.  Provide the answer in json format with the key 'Answer'."},
-                {"role": "user", "content": prompt},
-            ],
-            response_format={"type": "json_object"},
-            max_tokens=100,
-            temperature=0.01,
-            seed=0,
-        ).choices[0].message.content
+        response = (
+            client.chat.completions.create(
+                model="gpt-3.5-turbo",
+                messages=[
+                    {
+                        "role": "system",
+                        "content": "You are an expert unit converter.  Provide the answer in json format with the key 'Answer'.",
+                    },
+                    {"role": "user", "content": prompt},
+                ],
+                response_format={"type": "json_object"},
+                max_tokens=100,
+                temperature=0.01,
+                seed=0,
+            )
+            .choices[0]
+            .message.content
+        )
 
         response = json.loads(response)
 
@@ -412,7 +443,8 @@ class ModularRAG:
         else:
             value = float(value)
 
-        if unit == "null": unit = None
+        if unit == "null":
+            unit = None
 
         return value, unit
 
@@ -486,9 +518,9 @@ class ModularRAG:
             If the AMKEY is invalid.
         """
         try:
-            metric = self.amkey_to_metric_df[
-                self.amkey_to_metric_df["AMKEY"] == amkey
-            ]["ActivityMetric"].item()
+            metric = self.amkey_to_metric_df[self.amkey_to_metric_df["AMKEY"] == amkey][
+                "ActivityMetric"
+            ].item()
         except Exception:
             raise ValueError(f"Invalid AMKEY {amkey}")
 
@@ -509,12 +541,13 @@ class ModularRAG:
             The required unit for the metric, if specified. Otherwise, None.
         """
         try:
-            unit = self.amkey_to_unit_df[
-                self.amkey_to_unit_df["AMKEY"] == amkey
-            ]["Unit"].item()
+            unit = self.amkey_to_unit_df[self.amkey_to_unit_df["AMKEY"] == amkey][
+                "Unit"
+            ].item()
         except KeyError:
             unit = None
 
-        if pd.isna(unit): unit = None
+        if pd.isna(unit):
+            unit = None
 
         return unit

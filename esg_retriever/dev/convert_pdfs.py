@@ -28,7 +28,7 @@ def parse_pdf():
         endpoint="https://azureconverter.cognitiveservices.azure.com/",
         credential_key=AZURE_CONVERTER_KEY,
         model_id="prebuilt-layout",  # Was "prebuilt-document"
-        save_json=True
+        save_json=True,
     )
 
     for pdf_path in Path(PDF_SOURCE_PATH).rglob("*.pdf"):
@@ -53,6 +53,7 @@ def parse_pdf():
             logger.error(f"Failed to move {pdf_path} to {output_path}: {exc}")
 
     logger.info("Finished")
+
 
 if __name__ == "__main__":
     parse_pdf()

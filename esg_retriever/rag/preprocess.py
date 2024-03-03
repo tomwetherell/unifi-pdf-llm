@@ -6,10 +6,8 @@ from haystack.nodes import PreProcessor
 
 
 def preprocess_documents(
-        docs: list[Document],
-        window_size: int=5,
-        discard_text: bool=True
-    ) -> list[Document]:
+    docs: list[Document], window_size: int = 5, discard_text: bool = True
+) -> list[Document]:
     """
     Preprocess the documents.
 
@@ -43,7 +41,7 @@ def preprocess_documents(
         split_length=50,
         split_respect_sentence_boundary=True,
         split_overlap=0,
-        max_chars_check=10_000
+        max_chars_check=10_000,
     )
 
     for doc in docs:
@@ -63,7 +61,7 @@ def preprocess_documents(
     return preprocessed_docs
 
 
-def clean_table_column_names(df: pd.DataFrame, replace: str=' - ') -> pd.DataFrame:
+def clean_table_column_names(df: pd.DataFrame, replace: str = " - ") -> pd.DataFrame:
     """
     Return a DataFrame with newlines removed from column headers.
 
@@ -80,7 +78,7 @@ def clean_table_column_names(df: pd.DataFrame, replace: str=' - ') -> pd.DataFra
     df : pd.Dataframe
         The dataframe with newlines removed from column headers.
     """
-    df.columns = df.columns.str.replace('\n', replace)
+    df.columns = df.columns.str.replace("\n", replace)
     return df
 
 
@@ -102,7 +100,9 @@ def clean_table_values(df: pd.DataFrame) -> pd.DataFrame:
     """
     for col in df.columns:
         df[col] = df[col].apply(
-            lambda x: str(x).replace(',', '.').replace(' ', '') if _is_number(str(x)) else x
+            lambda x: str(x).replace(",", ".").replace(" ", "")
+            if _is_number(str(x))
+            else x
         )
     return df
 
@@ -121,11 +121,11 @@ def _is_number(string: str) -> bool:
     is_number : bool
         True if the string is a number, False otherwise.
     """
-    is_number = string.replace('.','').replace(',', '').replace(' ', '').isdigit()
+    is_number = string.replace(".", "").replace(",", "").replace(" ", "").isdigit()
     return is_number
 
 
-def slice_table_document(doc: Document, window_size: int=5) -> list[Document]:
+def slice_table_document(doc: Document, window_size: int = 5) -> list[Document]:
     """
     Return a list of documents, each containing a table with `window_size` rows.
 
@@ -183,7 +183,7 @@ def _sliding_window(df: pd.DataFrame, window_size: int) -> list[pd.DataFrame]:
     tables : list[pandas.DataFrame]
         A list of DataFrames, each containing a window of the original DataFrame.
     """
-    tables = [df.iloc[i:i+window_size] for i in range(len(df) - window_size + 1)]
+    tables = [df.iloc[i : i + window_size] for i in range(len(df) - window_size + 1)]
 
     return tables
 
@@ -217,10 +217,12 @@ def _convert_table_to_markdown(doc: Document) -> None:
         If `doc.content_type` is not "table".
     """
     if doc.content_type != "table":
-        raise ValueError(f"Document content_type must be 'table', not '{doc.content_type}'")
+        raise ValueError(
+            f"Document content_type must be 'table', not '{doc.content_type}'"
+        )
 
     table = doc.content
-    markdown_table = table.to_markdown(index=False, tablefmt="github", intfmt='')
+    markdown_table = table.to_markdown(index=False, tablefmt="github", intfmt="")
 
     doc.content = markdown_table
     doc.content_type = "text"
