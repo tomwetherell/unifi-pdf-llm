@@ -264,6 +264,7 @@ class ModularRAG:
 
         logger.debug(f"Retrieval prompt:\n{prompt}")
 
+        # TODO: Test using `top_p` parameter. Not recommended to set both `temperature` and `top_p`.
         answer = client.chat.completions.create(
             model="gpt-3.5-turbo",
             messages=[
