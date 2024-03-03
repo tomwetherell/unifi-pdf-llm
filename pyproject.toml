@@ -12,7 +12,8 @@ dependencies = [
   "farm-haystack[all-gpu]",
   "openai",
   "loguru",
-  "tabulate"
+  "tabulate",
+  "pre-commit"
 ]
 
 [project.urls]
