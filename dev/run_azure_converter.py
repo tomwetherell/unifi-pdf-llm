@@ -1,4 +1,4 @@
-"""Script to use AzureConverter to convert all source pdfs to json."""
+"""Script to convert all source pdfs to json using AzureConverter."""
 
 import os
 
@@ -18,7 +18,7 @@ OUTPUT_PATH = "/home/tomw/unifi-pdf-llm/data/azureconverter_outputs"
 """Directory to save the json outputs from AzureConverter."""
 
 
-def main():
+def parse_pdf():
     """
     Convert all pdfs in the source directory to json using AzureConverter.
 
@@ -55,4 +55,4 @@ def main():
     logger.info("Finished")
 
 if __name__ == "__main__":
-    main()
+    parse_pdf()
