@@ -1,4 +1,6 @@
-"""Validate the performance of the end-to-end RAG system."""
+"""Script to validate the performance of the end-to-end RAG system."""
+
+import os
 
 import pandas as pd
 from loguru import logger
@@ -7,6 +9,9 @@ from esg_retriever.rag.load import load_documents
 from esg_retriever.rag.preprocess import preprocess_documents
 from esg_retriever.rag.rag import ModularRAG
 
+
+VALIDATION_LOGS_PATH = "/home/tomw/unifi-pdf-llm/esg_retriever/validation_results"
+"""Path to the directory where the validation logs are saved."""
 
 TRAIN_CSV_PATH = "/home/tomw/unifi-pdf-llm/esg_retriever/data/Train.csv"
 """Path to the Train.csv file."""
@@ -26,6 +31,69 @@ RAG system on.
 """
 
 
+def run_validation():
+    """Run the validation tests."""
+    validation_results = pd.DataFrame(columns=["Company", "Year", "Validation Type", "Accuracy w/ Validation", "Accuracy w/o Validation"])
+
+    for company, year in VALIDATION_COMPANY_YEAR_PAIRS:
+        log_filename = f"{VALIDATION_LOGS_PATH}/{company}_{year}.log"
+
+        if os.path.exists(log_filename):
+            os.remove(log_filename)
+
+        logger.remove()
+        logger.add(log_filename, level="DEBUG")
+
+        for validation_type in ["retrieval", "nan"]:
+            logger.info(f"\nValidation type:  {validation_type}\n")
+
+            accuracy_w_validation, accuracy_wo_validation, results_df = validate_retrieval(
+                company, year, type=validation_type, num=50, window_size=2, discard_text=True
+            )
+
+            validation_results = pd.concat(
+                [
+                    validation_results,
+                    pd.DataFrame(
+                        {
+                            "Company": [company],
+                            "Year": [year],
+                            "Validation Type": [validation_type],
+                            "Accuracy w/ Validation": [accuracy_w_validation],
+                            "Accuracy w/o Validation": [accuracy_wo_validation],
+                        }
+                    ),
+                ],
+                ignore_index=True,
+            )
+
+            results_df_markdown = results_df.to_markdown(index=False, tablefmt="github", intfmt="")
+            logger.info(f"Results:\n\n{results_df_markdown}\n")
+
+    validation_log_filename = f"{VALIDATION_LOGS_PATH}/validation_results.log"
+
+    if os.path.exists(validation_log_filename):
+        os.remove(validation_log_filename)
+
+    logger.remove()
+    logger.add(validation_log_filename, level="INFO")
+
+    # Reorder validation results, so that rows corresponding to retrieval_type = "retrieval" come first
+    validation_results = validation_results.sort_values(by="Validation Type", ascending=False)
+    validation_results_markdown = validation_results.to_markdown(index=False, tablefmt="github", intfmt="")
+
+    logger.info(f"Validation results:\n{validation_results_markdown}")
+
+    retrieval_accuracy_w_validation = validation_results[validation_results["Validation Type"] == "retrieval"]["Accuracy w/ Validation"].mean()
+    retrieval_accuracy_wo_validation = validation_results[validation_results["Validation Type"] == "retrieval"]["Accuracy w/o Validation"].mean()
+    nan_accuracy_w_validation = validation_results[validation_results["Validation Type"] == "nan"]["Accuracy w/ Validation"].mean()
+    nan_accuracy_wo_validation = validation_results[validation_results["Validation Type"] == "nan"]["Accuracy w/o Validation"].mean()
+
+    logger.info(f"Average accuracy w/ validation (retrieval): {retrieval_accuracy_w_validation}")
+    logger.info(f"Average accuracy w/o validation (retrieval): {retrieval_accuracy_wo_validation}")
+    logger.info(f"Average accuracy w/ validation (nan): {nan_accuracy_w_validation}")
+    logger.info(f"Average accuracy w/o validation (nan): {nan_accuracy_wo_validation}")
+
 def validate_retrieval(
     company: str,
     year: int,
@@ -33,9 +101,9 @@ def validate_retrieval(
     num: int=50,
     window_size: int=1,
     discard_text: bool=True
-) -> tuple[pd.DataFrame, float]:
+) -> tuple[float, float]:
     """
-    Returns a DataFrame with the results of the retrieval validation.
+    Returns the accuracy of the RAG system with and without the validation step.
 
     TODO: The accuracy with validation also includes unit conversion. Which means
     with type 'retrieval', the accuracy with validation can actually be higher than
@@ -56,6 +124,9 @@ def validate_retrieval(
         in the documents (i.e. testing the ability to return 'None' when the value is
         not present).
 
+    num : int
+        The number of rows to validate.
+
     window_size : int
         The size of the sliding window to use when slicing tables.
 
@@ -65,11 +136,11 @@ def validate_retrieval(
 
     Returns
     -------
-    results_df : pd.DataFrame
-        The results of the retrieval validation.
+    accuracy_w_validation : float
+        The accuracy of the RAG system with the validation step.
 
-    accuracy : float
-        The accuracy of the retrieval validation.
+    accuracy_wo_validation : float
+        The accuracy of the RAG system without the validation step.
 
     Raises
     ------
@@ -98,6 +169,7 @@ def validate_retrieval(
     else:
         raise ValueError(f"Invalid validation type: {type}")
 
+    # TODO: Should this be a random (with set seed) sample?
     train_df = train_df.head(n=num)
 
     # Load and preprocess the documents
@@ -150,8 +222,8 @@ def validate_retrieval(
 
     logger.info(f"Accuracy w/o validation: {accurcy_wo_validation}")
 
-    return results_df, accuracy_w_validation, accurcy_wo_validation
+    return accuracy_w_validation, accurcy_wo_validation, results_df
 
 
 if __name__ == "__main__":
-    pass
+    run_validation()

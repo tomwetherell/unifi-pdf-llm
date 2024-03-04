@@ -9,6 +9,7 @@ from openai import OpenAI
 from haystack import Document
 from haystack.nodes import EmbeddingRetriever
 from haystack.document_stores import InMemoryDocumentStore
+from dotenv import load_dotenv
 from loguru import logger
 
 from esg_retriever.rag.prompts import (
@@ -17,7 +18,6 @@ from esg_retriever.rag.prompts import (
     UNIT_CONVERSION_PROMPT_TEMPLATE,
 )
 
-OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY")
 
 AMKEY_TO_METRIC_PATH = (
     "/home/tomw/unifi-pdf-llm/esg_retriever/data/AMKEY_GoldenStandard.csv"
@@ -33,8 +33,14 @@ AMKEY_TO_UNIT_PATH = (
     "/home/tomw/unifi-pdf-llm/esg_retriever/data/AMKEY_unit_conversion.csv"
 )
 """Path to csv file mapping AMKEY to required unit."""
+# TODO: Centralise paths
 
-client = OpenAI()
+
+load_dotenv()
+
+client = OpenAI(
+    api_key=os.environ.get("OPENAI_API_KEY"),
+)
 
 
 class ModularRAG:

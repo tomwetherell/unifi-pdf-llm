@@ -5,9 +5,13 @@ from pathlib import Path
 
 from haystack import Document
 from haystack.nodes import AzureConverter
+from dotenv import load_dotenv
 from loguru import logger
 
 from esg_retriever.dev.mapping import COMPANY_YEAR_PDF_MAPPING
+
+
+load_dotenv()
 
 AZURE_CONVERTER_KEY = os.environ.get("AZURE_CONVERTER_KEY")
 

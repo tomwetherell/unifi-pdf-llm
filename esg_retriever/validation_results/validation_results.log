@@ -1,0 +1,21 @@
+2024-03-04 21:53:47.189 | INFO     | __main__:run_validation:85 - Validation results:
+| Company   |   Year | Validation Type   |   Accuracy w/ Validation |   Accuracy w/o Validation |
+|-----------|--------|-------------------|--------------------------|---------------------------|
+| Absa      |   2021 | retrieval         |                 0.416667 |                  0.520833 |
+| Distell   |   2021 | retrieval         |                 0.477273 |                  0.727273 |
+| Picknpay  |   2021 | retrieval         |                 0.315789 |                  0.526316 |
+| Sasol     |   2021 | retrieval         |                 0.2      |                  0.244444 |
+| Ssw       |   2021 | retrieval         |                 0.12     |                  0.08     |
+| Tongaat   |   2021 | retrieval         |                 0.86     |                  0.96     |
+| Uct       |   2021 | retrieval         |                 0        |                  0        |
+| Absa      |   2021 | nan               |                 0.82     |                  0.46     |
+| Distell   |   2021 | nan               |                 0.92     |                  0.58     |
+| Picknpay  |   2021 | nan               |                 0.86     |                  0.62     |
+| Sasol     |   2021 | nan               |                 0.9      |                  0.6      |
+| Ssw       |   2021 | nan               |                 0.86     |                  0.76     |
+| Tongaat   |   2021 | nan               |                 0.92     |                  0.72     |
+| Uct       |   2021 | nan               |                 0.86     |                  0.5      |
+2024-03-04 21:53:47.190 | INFO     | __main__:run_validation:92 - Average accuracy w/ validation (retrieval): 0.34138983823194347
+2024-03-04 21:53:47.190 | INFO     | __main__:run_validation:93 - Average accuracy w/o validation (retrieval): 0.4369808992177413
+2024-03-04 21:53:47.191 | INFO     | __main__:run_validation:94 - Average accuracy w/ validation (nan): 0.8771428571428572
+2024-03-04 21:53:47.191 | INFO     | __main__:run_validation:95 - Average accuracy w/o validation (nan): 0.6057142857142858

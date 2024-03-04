@@ -13,7 +13,9 @@ dependencies = [
   "openai",
   "loguru",
   "tabulate",
-  "pre-commit"
+  "ruff",
+  "pre-commit",
+  "python-dotenv",
 ]
 
 [project.urls]
