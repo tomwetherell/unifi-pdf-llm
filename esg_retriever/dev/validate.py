@@ -1,4 +1,9 @@
-"""Script to validate the performance of the end-to-end RAG system."""
+"""
+Script to validate the performance of the end-to-end RAG system.
+
+TODO: Argparse, allow user to specify the company and year to validate. By default,
+run the full validation (as is currently the case).
+"""
 
 import os
 
@@ -33,7 +38,7 @@ RAG system on.
 
 def run_validation():
     """Run the validation tests."""
-    validation_results = pd.DataFrame(columns=["Company", "Year", "Validation Type", "Accuracy w/ Validation", "Accuracy w/o Validation"])
+    validation_results = pd.DataFrame(columns=["Company", "Year", "Validation Type", "Accuracy w/ Validation", "Accuracy w/o Validation", "Num"])
 
     for company, year in VALIDATION_COMPANY_YEAR_PAIRS:
         log_filename = f"{VALIDATION_LOGS_PATH}/{company}_{year}.log"
@@ -51,6 +56,8 @@ def run_validation():
                 company, year, type=validation_type, num=50, window_size=2, discard_text=True
             )
 
+            number_of_preds = len(results_df)
+
             validation_results = pd.concat(
                 [
                     validation_results,
@@ -61,6 +68,7 @@ def run_validation():
                             "Validation Type": [validation_type],
                             "Accuracy w/ Validation": [accuracy_w_validation],
                             "Accuracy w/o Validation": [accuracy_wo_validation],
+                            "Num": [number_of_preds],
                         }
                     ),
                 ],
@@ -84,10 +92,10 @@ def run_validation():
 
     logger.info(f"Validation results:\n{validation_results_markdown}")
 
-    retrieval_accuracy_w_validation = validation_results[validation_results["Validation Type"] == "retrieval"]["Accuracy w/ Validation"].mean()
-    retrieval_accuracy_wo_validation = validation_results[validation_results["Validation Type"] == "retrieval"]["Accuracy w/o Validation"].mean()
-    nan_accuracy_w_validation = validation_results[validation_results["Validation Type"] == "nan"]["Accuracy w/ Validation"].mean()
-    nan_accuracy_wo_validation = validation_results[validation_results["Validation Type"] == "nan"]["Accuracy w/o Validation"].mean()
+    retrieval_accuracy_w_validation = (validation_results[validation_results["Validation Type"] == "retrieval"]["Accuracy w/ Validation"] * validation_results[validation_results["Validation Type"] == "retrieval"]["Num"]).sum() / validation_results[validation_results["Validation Type"] == "retrieval"]["Num"].sum()
+    retrieval_accuracy_wo_validation = (validation_results[validation_results["Validation Type"] == "retrieval"]["Accuracy w/o Validation"] * validation_results[validation_results["Validation Type"] == "retrieval"]["Num"]).sum() / validation_results[validation_results["Validation Type"] == "retrieval"]["Num"].sum()
+    nan_accuracy_w_validation = (validation_results[validation_results["Validation Type"] == "nan"]["Accuracy w/ Validation"] * validation_results[validation_results["Validation Type"] == "nan"]["Num"]).sum() / validation_results[validation_results["Validation Type"] == "nan"]["Num"].sum()
+    nan_accuracy_wo_validation = (validation_results[validation_results["Validation Type"] == "nan"]["Accuracy w/o Validation"] * validation_results[validation_results["Validation Type"] == "nan"]["Num"]).sum() / validation_results[validation_results["Validation Type"] == "nan"]["Num"].sum()
 
     logger.info(f"Average accuracy w/ validation (retrieval): {retrieval_accuracy_w_validation}")
     logger.info(f"Average accuracy w/o validation (retrieval): {retrieval_accuracy_wo_validation}")
