@@ -98,26 +98,26 @@ class ModularRAG:
     def _initialise_document_store(self):
         # TODO: Try using other document stores (e.g. FAISS).
         logger.info("Initialising document store")
-        self.document_store = InMemoryDocumentStore(embedding_dim=384)
+        # Embedding dimension of the document store must match the dimension of the
+        # retriever's embedding model.
+        self.document_store = InMemoryDocumentStore(embedding_dim=768)
         self.document_store.delete_documents()
         self.document_store.write_documents(self.docs)
 
     def _initialise_retriever(self, top_k: int):
         """
-        Initialise the retriever.
+        Initialise the (dense) retriever.
 
         Parameters
         ----------
         top_k : int
             The number of documents to retrieve for each query.
         """
-        # TODO: I'm not sure which OpenAI embedding models are available. Is it possible
-        # to use their newest embedding models in Haystack v1?
         # TODO: Look into other (non-OpenAI) embedding models that can be used with
         # Haystack v1.
-        logger.info("Initialising retriever")
+        logger.info("Initialising retriever (using all-mpnet-base-v2 model)")
         self.retriever = EmbeddingRetriever(
-            embedding_model="sentence-transformers/all-MiniLM-L6-v2",
+            embedding_model="sentence-transformers/all-mpnet-base-v2",
             document_store=self.document_store,
             top_k=top_k,
         )
