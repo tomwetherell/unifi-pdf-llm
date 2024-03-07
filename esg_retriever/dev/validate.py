@@ -6,6 +6,7 @@ run the full validation (as is currently the case).
 """
 
 import os
+import sys
 
 import pandas as pd
 from loguru import logger
@@ -36,18 +37,26 @@ RAG system on.
 """
 
 
+# TODO: Add a function to simplify the logging setup.
 def run_validation():
     """Run the validation tests."""
+    validation_results_log_fn = f"{VALIDATION_LOGS_PATH}/validation_results.log"
+
     validation_results = pd.DataFrame(columns=["Company", "Year", "Validation Type", "Accuracy w/ Validation", "Accuracy w/o Validation", "Num"])
 
     for company, year in VALIDATION_COMPANY_YEAR_PAIRS:
-        log_filename = f"{VALIDATION_LOGS_PATH}/{company}_{year}.log"
+        logger.remove()
+        logger.add(validation_results_log_fn, level="INFO")
+        logger.add(sys.stdout, level="INFO")
+        logger.info(f"\n\nValidating company: {company}, year: {year}\n")
 
-        if os.path.exists(log_filename):
-            os.remove(log_filename)
+        company_debug_log_fn = f"{VALIDATION_LOGS_PATH}/{company}_{year}.log"
+
+        if os.path.exists(company_debug_log_fn):
+            os.remove(company_debug_log_fn)
 
         logger.remove()
-        logger.add(log_filename, level="DEBUG")
+        logger.add(company_debug_log_fn, level="DEBUG")
 
         for validation_type in ["retrieval", "nan"]:
             logger.info(f"\nValidation type:  {validation_type}\n")
@@ -78,13 +87,11 @@ def run_validation():
             results_df_markdown = results_df.to_markdown(index=False, tablefmt="github", intfmt="")
             logger.info(f"Results:\n\n{results_df_markdown}\n")
 
-    validation_log_filename = f"{VALIDATION_LOGS_PATH}/validation_results.log"
-
-    if os.path.exists(validation_log_filename):
-        os.remove(validation_log_filename)
+    if os.path.exists(validation_results_log_fn):
+        os.remove(validation_results_log_fn)
 
     logger.remove()
-    logger.add(validation_log_filename, level="INFO")
+    logger.add(validation_results_log_fn, level="INFO")
 
     # Reorder validation results, so that rows corresponding to retrieval_type = "retrieval" come first
     validation_results = validation_results.sort_values(by="Validation Type", ascending=False)
