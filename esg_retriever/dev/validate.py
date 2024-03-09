@@ -46,15 +46,21 @@ def parse_args():
         "--companies",
         type=str,
         nargs='+',
-        default="all",
+        default=["all"],
         help="The companies to validate. If 'all', validate all companies.",
+    )
+    parser.add_argument(
+        "--num",
+        type=int,
+        default=50,
+        help="The number metrics to retrieve.",
     )
     args = parser.parse_args()
     return args
 
 
 # TODO: Add a function to simplify the logging setup.
-def run_validation(companies: list[str]):
+def run_validation(companies: list[str], num: int = 50):
     """
     Validate the performance of the end-to-end RAG system.
 
@@ -62,6 +68,9 @@ def run_validation(companies: list[str]):
     ----------
     companies : list[str]
         The companies to validate.
+
+    num : int
+        The number of metrics to retrieve.
     """
     validation_results = pd.DataFrame(
         columns=[
@@ -78,7 +87,7 @@ def run_validation(companies: list[str]):
         # Log to company-specific log file
         logger.remove()
         logger.add(sys.stdout, level="INFO")
-        logger.info(f"nValidating company: {company}, year: {VALIDATION_YEAR}")
+        logger.info(f"Validating company: {company}, year: {VALIDATION_YEAR}")
 
         company_debug_log_fn = f"{VALIDATION_LOGS_PATH}/{company}_{VALIDATION_YEAR}.log"
 
@@ -96,7 +105,7 @@ def run_validation(companies: list[str]):
                     company,
                     VALIDATION_YEAR,
                     type=validation_type,
-                    num=50,
+                    num=num,
                     window_size=2,
                     discard_text=True,
                 )
@@ -338,8 +347,9 @@ def validate_retrieval(
 if __name__ == "__main__":
     args = parse_args()
 
+    num = args.num
     companies = args.companies
     if companies == ["all"]:
         companies = ALL_COMPANIES
 
-    run_validation(companies)
+    run_validation(companies, num)
