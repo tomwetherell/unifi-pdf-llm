@@ -13,6 +13,7 @@ from dotenv import load_dotenv
 from loguru import logger
 
 from esg_retriever.rag.prompts import (
+    FILTER_CONTEXT_PROMPT_TEMPLATE,
     RETRIEVE_VALUE_PROMPT_TEMPLATE,
     VALIDATE_RESPONSE_PROMPT_TEMPLATE,
     UNIT_CONVERSION_PROMPT_TEMPLATE,
@@ -148,7 +149,7 @@ class ModularRAG:
         self.amkey_to_synonym_df = pd.read_csv(amkey_to_synonym_path)
         self.amkey_to_unit_df = pd.read_csv(amkey_to_unit_path)
 
-    def query(self, amkey: int, year: int):
+    def query(self, amkey: int, year: int) -> tuple[float | None, float | None]:
         """
         Return the value associated with an AMKEY for a given year.
 
@@ -164,17 +165,29 @@ class ModularRAG:
 
         Returns
         -------
-        value : int
-            The value associated with the AMKEY for the given year.
+        value : float | None
+            The value associated with the AMKEY for the given year. If the value
+            cannot be retrieved, None is returned.
+
+        unvalidated_value : float | None
+            The value associated with the AMKEY for the given year, before validation.
+            If the value cannot be retrieved, None is returned.
         """
-        # Retrieval
+        # Retrieving relevant context documents
         logger.debug(f"Retrieving AMKEY: {amkey}")
         metric = self.retrieve_metric_description(amkey)
         logger.debug(f"Retrieving metric: {metric}")
         context_documents = self.retriever.retrieve(metric)
         additional = self._retrieve_additional_appended_instructions(amkey)
         question = f"What was the {metric} in the year {year}? {additional}"
-        answer = self.retrieve_value(question, context_documents)
+        relevant_context_documents = self.filter_context_documents(context_documents, question)
+
+        if not relevant_context_documents:
+            logger.info("No relevant context documents found")
+            return None, None
+
+        # Generation
+        answer = self.retrieve_value(question, relevant_context_documents)
 
         try:
             value, unit = self.parse_answer(answer)
@@ -191,7 +204,7 @@ class ModularRAG:
         unvalidated_value = value
         if value is not None:
             logger.debug(f"Validating answer: {value}")
-            valid_response = self.validate_response(question, value, context_documents)
+            valid_response = self.validate_response(question, value, relevant_context_documents)
             logger.debug(f"Valid response: {valid_response}")
             if valid_response == "no":
                 value, unit = None, None
@@ -254,6 +267,62 @@ class ModularRAG:
         logger.debug(f"Retrieval response: {answer}")
 
         return answer
+
+
+    def filter_context_documents(
+        self, docs: list[Document], question: str
+    ) -> list[Document]:
+        """
+        Return the documents that are relevant to the question.
+
+        Parameters
+        ----------
+        docs : list[Document]
+            The context documents to filter.
+
+        question : str
+            The question to filter the context documents by.
+
+        Returns
+        -------
+        relevant_docs : list[Document]
+            The context documents that are relevant to the question.
+        """
+        relevant_docs = []
+
+        for doc in docs:
+            prompt = FILTER_CONTEXT_PROMPT_TEMPLATE.format(
+                question=question, context=doc.content
+            )
+
+            logger.debug(f"Filtering context prompt:\n{prompt}")
+
+            response = (
+                client.chat.completions.create(
+                    model="gpt-3.5-turbo",
+                    messages=[
+                        {
+                            "role": "system",
+                            "content": "You are an expert at reading markdown tables",
+                        },
+                        {"role": "user", "content": prompt},
+                    ],
+                    temperature=0.01,
+                    seed=0,
+                )
+                .choices[0]
+                .message.content
+            )
+            logger.debug(f"Filtering context response: {response}")
+
+            conclusion = self._extract_conclusion(response)
+            logger.debug(f"Filtering context conclusion: {conclusion}")
+
+            if conclusion == "yes":
+                relevant_docs.append(doc)
+
+        return relevant_docs
+
 
     def validate_response(
         self, question: str, answer: float, docs: list[Document]

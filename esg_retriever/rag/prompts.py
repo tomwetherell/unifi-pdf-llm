@@ -1,5 +1,17 @@
 """Module containing prompts for the LLMs used in the RAG system."""
 
+FILTER_CONTEXT_PROMPT_TEMPLATE = """
+Can the answer to the question: "{question}" be found in the following markdown table:
+
+{context}
+
+Think step by step, and explain your reasoning. Please conclude your answer with a 'yes' or 'no'.
+
+Answer:
+"""
+# TODO: Add 'It is possible that the answer is not explicitly stated in the context.'
+
+
 RETRIEVE_VALUE_PROMPT_TEMPLATE = """
 Use the following markdown tables to as context to answer the question at the end.
 The answer must be a value retrieved directly from the context. Please don't do any unit conversion.
