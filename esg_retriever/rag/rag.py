@@ -100,7 +100,7 @@ class ModularRAG:
         logger.info("Initialising document store")
         # Embedding dimension of the document store must match the dimension of the
         # retriever's embedding model.
-        self.document_store = InMemoryDocumentStore(embedding_dim=768)
+        self.document_store = InMemoryDocumentStore(embedding_dim=768, similarity="cosine")
         self.document_store.delete_documents()
         self.document_store.write_documents(self.docs)
 

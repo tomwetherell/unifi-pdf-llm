@@ -78,7 +78,7 @@ def run_validation(companies: list[str]):
         # Log to company-specific log file
         logger.remove()
         logger.add(sys.stdout, level="INFO")
-        logger.info(f"\n\nValidating company: {company}, year: {VALIDATION_YEAR}\n")
+        logger.info(f"nValidating company: {company}, year: {VALIDATION_YEAR}")
 
         company_debug_log_fn = f"{VALIDATION_LOGS_PATH}/{company}_{VALIDATION_YEAR}.log"
 
@@ -339,7 +339,7 @@ if __name__ == "__main__":
     args = parse_args()
 
     companies = args.companies
-    if companies == "all":
+    if companies == ["all"]:
         companies = ALL_COMPANIES
 
     run_validation(companies)
