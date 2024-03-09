@@ -1,21 +1,21 @@
-2024-03-09 16:18:52.056 | INFO     | __main__:run_validation:158 - Validation results:
+2024-03-09 18:57:23.981 | INFO     | __main__:run_validation:158 - Validation results:
 | Company   |   Year | Validation Type   |   Accuracy w/ Validation |   Accuracy w/o Validation |   Num |
 |-----------|--------|-------------------|--------------------------|---------------------------|-------|
-| Absa      |   2021 | retrieval         |                 0.4375   |                  0.520833 |    48 |
-| Distell   |   2021 | retrieval         |                 0.545455 |                  0.727273 |    44 |
-| Picknpay  |   2021 | retrieval         |                 0.526316 |                  0.631579 |    38 |
-| Sasol     |   2021 | retrieval         |                 0.244444 |                  0.244444 |    45 |
-| Ssw       |   2021 | retrieval         |                 0.08     |                  0.1      |    50 |
-| Tongaat   |   2021 | retrieval         |                 0.78     |                  0.88     |    50 |
+| Absa      |   2021 | retrieval         |                 0.333333 |                  0.333333 |    48 |
+| Distell   |   2021 | retrieval         |                 0.340909 |                  0.409091 |    44 |
+| Picknpay  |   2021 | retrieval         |                 0.263158 |                  0.368421 |    38 |
+| Sasol     |   2021 | retrieval         |                 0.111111 |                  0.111111 |    45 |
+| Ssw       |   2021 | retrieval         |                 0.04     |                  0.06     |    50 |
+| Tongaat   |   2021 | retrieval         |                 0.66     |                  0.72     |    50 |
 | Uct       |   2021 | retrieval         |                 0        |                  0        |    13 |
-| Absa      |   2021 | nan               |                 0.8      |                  0.72     |    50 |
-| Distell   |   2021 | nan               |                 1        |                  0.86     |    50 |
-| Picknpay  |   2021 | nan               |                 0.98     |                  0.94     |    50 |
-| Sasol     |   2021 | nan               |                 0.92     |                  0.86     |    50 |
-| Ssw       |   2021 | nan               |                 0.82     |                  0.7      |    50 |
-| Tongaat   |   2021 | nan               |                 0.94     |                  0.86     |    50 |
-| Uct       |   2021 | nan               |                 0.94     |                  0.84     |    50 |
-2024-03-09 16:18:52.058 | INFO     | __main__:run_validation:197 - Average accuracy w/ validation (retrieval): 0.4131944444444444
-2024-03-09 16:18:52.058 | INFO     | __main__:run_validation:200 - Average accuracy w/o validation (retrieval): 0.4895833333333333
-2024-03-09 16:18:52.058 | INFO     | __main__:run_validation:203 - Average accuracy w/ validation (nan): 0.9142857142857143
-2024-03-09 16:18:52.059 | INFO     | __main__:run_validation:204 - Average accuracy w/o validation (nan): 0.8257142857142857
+| Absa      |   2021 | nan               |                 0.92     |                  0.9      |    50 |
+| Distell   |   2021 | nan               |                 1        |                  1        |    50 |
+| Picknpay  |   2021 | nan               |                 1        |                  1        |    50 |
+| Sasol     |   2021 | nan               |                 1        |                  1        |    50 |
+| Ssw       |   2021 | nan               |                 0.96     |                  0.96     |    50 |
+| Tongaat   |   2021 | nan               |                 1        |                  1        |    50 |
+| Uct       |   2021 | nan               |                 0.98     |                  0.98     |    50 |
+2024-03-09 18:57:23.984 | INFO     | __main__:run_validation:197 - Average accuracy w/ validation (retrieval): 0.28125
+2024-03-09 18:57:23.984 | INFO     | __main__:run_validation:200 - Average accuracy w/o validation (retrieval): 0.3194444444444444
+2024-03-09 18:57:23.984 | INFO     | __main__:run_validation:203 - Average accuracy w/ validation (nan): 0.98
+2024-03-09 18:57:23.984 | INFO     | __main__:run_validation:204 - Average accuracy w/o validation (nan): 0.9771428571428571

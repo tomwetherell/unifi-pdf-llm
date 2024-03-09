@@ -303,7 +303,7 @@ class ModularRAG:
                     messages=[
                         {
                             "role": "system",
-                            "content": "You are an expert at reading markdown tables",
+                            "content": "You are an expert at reading markdown tables. It is possible that the answer is not explicitly stated in the context. Be analytical and skeptical.",
                         },
                         {"role": "user", "content": prompt},
                     ],

@@ -1,15 +1,20 @@
 """Module containing prompts for the LLMs used in the RAG system."""
 
 FILTER_CONTEXT_PROMPT_TEMPLATE = """
-Can the answer to the question: "{question}" be found in the following markdown table:
+Can the answer to the specific question: "{question}" be found in the following markdown table:
 
 {context}
 
-Think step by step, and explain your reasoning. Please conclude your answer with a 'yes' or 'no'.
+It is possible that the answer is not explicitly stated in the context.
+The answer, if it exists, should be specific to the question - not just a value related to the question.
+No calculations will be required to answer the question - the answer, if it exists, will be directly retrievable from the context.
+If the answer is not directly retrievable from the context, your conclusion should be 'no'.
+Think step by step, and explain your reasoning.
+Please conclude your answer with a 'yes' or 'no'.
+Before concluding 'yes', please double-check that the answer to the EXACT question is directly available in the context.
 
 Answer:
 """
-# TODO: Add 'It is possible that the answer is not explicitly stated in the context.'
 
 
 RETRIEVE_VALUE_PROMPT_TEMPLATE = """
