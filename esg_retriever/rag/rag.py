@@ -14,6 +14,9 @@ from loguru import logger
 
 from esg_retriever.rag.prompts import (
     FILTER_CONTEXT_PROMPT_TEMPLATE,
+    FILTER_CONTEXT_EXAMPLE_CONTEXT,
+    FILTER_CONTEXT_EXAMPLE_QUESTION,
+    FILTER_CONTEXT_EXAMPLE_ANSWER,
     RETRIEVE_VALUE_PROMPT_TEMPLATE,
     VALIDATE_RESPONSE_PROMPT_TEMPLATE,
     UNIT_CONVERSION_PROMPT_TEMPLATE,
@@ -177,6 +180,7 @@ class ModularRAG:
         logger.debug(f"Retrieving AMKEY: {amkey}")
         metric = self.retrieve_metric_description(amkey)
         logger.debug(f"Retrieving metric: {metric}")
+        # TODO: Consider using both a dense and a sparse retriever.
         context_documents = self.retriever.retrieve(metric)
         additional = self._retrieve_additional_appended_instructions(amkey)
         question = f"What was the {metric} in the year {year}? {additional}"
@@ -291,6 +295,10 @@ class ModularRAG:
         relevant_docs = []
 
         for doc in docs:
+            example_prompt = FILTER_CONTEXT_PROMPT_TEMPLATE.format(
+                question=FILTER_CONTEXT_EXAMPLE_QUESTION, context=FILTER_CONTEXT_EXAMPLE_CONTEXT
+            )
+
             prompt = FILTER_CONTEXT_PROMPT_TEMPLATE.format(
                 question=question, context=doc.content
             )
@@ -303,8 +311,10 @@ class ModularRAG:
                     messages=[
                         {
                             "role": "system",
-                            "content": "You are an expert at reading markdown tables. It is possible that the answer is not explicitly stated in the context. Be analytical and skeptical.",
+                            "content": "You are an expert at reading markdown tables. It is possible that the answer is not explicitly stated in the context. Please be analytical and skeptical.",
                         },
+                        {"role": "user", "content": example_prompt},
+                        {"role": "assistant", "content": FILTER_CONTEXT_EXAMPLE_ANSWER},
                         {"role": "user", "content": prompt},
                     ],
                     temperature=0.01,
