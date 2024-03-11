@@ -38,8 +38,8 @@ COMPANY_YEAR_PDF_MAPPING = {
         2021: ["ssw-IR22.pdf"],
     },
     "Tongaat": {
-        2021: ["2021ESG_removed_sup_table.pdf"],
-        2020: ["2021ESG_removed_sup_table.pdf"],
+        2021: ["2021ESG.pdf"],
+        2020: ["2021ESG.pdf"],
     },
     "Uct": {
         2021: ["UCT_Carbon_Footprint_Report_2020-2021.pdf", "afs2021.pdf"],

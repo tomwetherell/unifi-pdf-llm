@@ -185,7 +185,7 @@ def validate_retrieval(
     year: int,
     type: str = "retrieval",
     num: int = 50,
-    window_size: int = 1,
+    window_size: int = 2,
     discard_text: bool = True,
 ) -> tuple[float, float]:
     """
