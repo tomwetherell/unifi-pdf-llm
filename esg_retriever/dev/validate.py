@@ -46,7 +46,7 @@ def parse_args():
         "--companies",
         type=str,
         nargs='+',
-        default=["all"],
+        default=ALL_COMPANIES,
         help="The companies to validate. If 'all', validate all companies.",
     )
     parser.add_argument(
@@ -100,7 +100,7 @@ def run_validation(companies: list[str], num: int = 50):
         for validation_type in ["retrieval", "nan"]:
             logger.info(f"Validation type:  {validation_type}\n")
 
-            accuracy_w_validation, accuracy_wo_validation, results_df = (
+            accuracy, results_df = (
                 validate_retrieval(
                     company,
                     VALIDATION_YEAR,
@@ -121,8 +121,7 @@ def run_validation(companies: list[str], num: int = 50):
                             "Company": [company],
                             "Year": [VALIDATION_YEAR],
                             "Validation Type": [validation_type],
-                            "Accuracy w/ Validation": [accuracy_w_validation],
-                            "Accuracy w/o Validation": [accuracy_wo_validation],
+                            "Accuracy": [accuracy],
                             "Num": [number_of_preds],
                         }
                     ),
@@ -134,8 +133,6 @@ def run_validation(companies: list[str], num: int = 50):
                 index=False, tablefmt="github", intfmt=""
             )
             logger.info(f"Results:\n\n{results_df_markdown}\n")
-            logger.info(f"Accuracy w/ validation: {accuracy_w_validation}")
-            logger.info(f"Accuracy w/o validation: {accuracy_wo_validation}")
 
     # If all companies have been validated, update the validation results log
     if companies == ALL_COMPANIES:
@@ -157,9 +154,9 @@ def run_validation(companies: list[str], num: int = 50):
 
         logger.info(f"Validation results:\n{validation_results_markdown}")
 
-        retrieval_accuracy_w_validation = (
+        retrieval_accuracy = (
             validation_results[validation_results["Validation Type"] == "retrieval"][
-                "Accuracy w/ Validation"
+                "Accuracy"
             ]
             * validation_results[validation_results["Validation Type"] == "retrieval"][
                 "Num"
@@ -167,27 +164,10 @@ def run_validation(companies: list[str], num: int = 50):
         ).sum() / validation_results[validation_results["Validation Type"] == "retrieval"][
             "Num"
         ].sum()
-        retrieval_accuracy_wo_validation = (
-            validation_results[validation_results["Validation Type"] == "retrieval"][
-                "Accuracy w/o Validation"
-            ]
-            * validation_results[validation_results["Validation Type"] == "retrieval"][
-                "Num"
-            ]
-        ).sum() / validation_results[validation_results["Validation Type"] == "retrieval"][
-            "Num"
-        ].sum()
-        nan_accuracy_w_validation = (
+
+        nan_accuracy = (
             validation_results[validation_results["Validation Type"] == "nan"][
-                "Accuracy w/ Validation"
-            ]
-            * validation_results[validation_results["Validation Type"] == "nan"]["Num"]
-        ).sum() / validation_results[validation_results["Validation Type"] == "nan"][
-            "Num"
-        ].sum()
-        nan_accuracy_wo_validation = (
-            validation_results[validation_results["Validation Type"] == "nan"][
-                "Accuracy w/o Validation"
+                "Accuracy"
             ]
             * validation_results[validation_results["Validation Type"] == "nan"]["Num"]
         ).sum() / validation_results[validation_results["Validation Type"] == "nan"][
@@ -195,13 +175,9 @@ def run_validation(companies: list[str], num: int = 50):
         ].sum()
 
         logger.info(
-            f"Average accuracy w/ validation (retrieval): {retrieval_accuracy_w_validation}"
+            f"Average accuracy (retrieval): {retrieval_accuracy}"
         )
-        logger.info(
-            f"Average accuracy w/o validation (retrieval): {retrieval_accuracy_wo_validation}"
-        )
-        logger.info(f"Average accuracy w/ validation (nan): {nan_accuracy_w_validation}")
-        logger.info(f"Average accuracy w/o validation (nan): {nan_accuracy_wo_validation}")
+        logger.info(f"Average accuracy (nan): {nan_accuracy}")
 
 
 def validate_retrieval(
@@ -213,11 +189,7 @@ def validate_retrieval(
     discard_text: bool = True,
 ) -> tuple[float, float]:
     """
-    Returns the accuracy of the RAG system with and without the validation step.
-
-    TODO: The accuracy with validation also includes unit conversion. Which means
-    with type 'retrieval', the accuracy with validation can actually be higher than
-    the accuracy without validation (shouldn't happen).
+    Returns the accuracy of the RAG system.
 
     Parameters
     ----------
@@ -246,11 +218,13 @@ def validate_retrieval(
 
     Returns
     -------
-    accuracy_w_validation : float
-        The accuracy of the RAG system with the validation step.
+    accuracy : float
+        The accuracy of the RAG system.
 
-    accuracy_wo_validation : float
-        The accuracy of the RAG system without the validation step.
+    results_df : pd.DataFrame
+        The results of the validation test for the given company and year. Contains
+        the following columns: "ID", "Metric", f"{year}_Value", f"{year}_Generated",
+        "Correct".
 
     Raises
     ------
@@ -304,9 +278,8 @@ def validate_retrieval(
         metric = query_pipeline.retrieve_metric_description(amkey)
         results_df.at[idx, "Metric"] = metric
 
-        value, unvalidated_value = query_pipeline.query(amkey, year)
+        value = query_pipeline.query(amkey, year)
         results_df.at[idx, f"{year}_Generated"] = value
-        results_df.at[idx, f"{year}_Gen_Unvalidated"] = unvalidated_value
 
     results_df[f"{year}_Value"] = results_df[f"{year}_Value"].astype(float)
     results_df[f"{year}_Generated"] = results_df[f"{year}_Generated"].astype(float)
@@ -323,33 +296,20 @@ def validate_retrieval(
             "ID",
             "Metric",
             f"{year}_Value",
-            f"{year}_Gen_Unvalidated",
             f"{year}_Generated",
             "Correct",
         ]
     ]
 
-    accuracy_w_validation = results_df["Correct"].sum() / len(results_df)
+    accuracy = results_df["Correct"].sum() / len(results_df)
 
-    logger.info(f"Accuracy w/ validation: {accuracy_w_validation}")
+    logger.info(f"Accuracy: {accuracy}")
 
-    accurcy_wo_validation = results_df.apply(
-        lambda row: (row[f"{year}_Gen_Unvalidated"] == row[f"{year}_Value"])
-        or (pd.isna(row[f"{year}_Gen_Unvalidated"]) and pd.isna(row[f"{year}_Value"])),
-        axis=1,
-    ).sum() / len(results_df)
-
-    logger.info(f"Accuracy w/o validation: {accurcy_wo_validation}")
-
-    return accuracy_w_validation, accurcy_wo_validation, results_df
+    return accuracy, results_df
 
 
 if __name__ == "__main__":
     args = parse_args()
-
     num = args.num
     companies = args.companies
-    if companies == ["all"]:
-        companies = ALL_COMPANIES
-
     run_validation(companies, num)
