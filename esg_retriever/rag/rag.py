@@ -72,6 +72,7 @@ class ModularRAG:
         top_k : int
             The number of documents to retrieve for each query.
 
+        # TODO: Do these need to be provided as arguments? I don't think so.
         amkey_to_metric_path : str
             Path to a csv file mapping AMKEY to metric.
 

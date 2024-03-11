@@ -1,4 +1,5 @@
 """Module containing functions to load parsed pdfs."""
+# TODO: Create load_and_preprocess_documents function
 
 import os
 from pathlib import Path
