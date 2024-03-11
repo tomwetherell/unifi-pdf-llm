@@ -53,27 +53,6 @@ Question: {question}
 Answer:
 """
 
-# -------------------------- Validating Response --------------------------
-
-VALIDATE_RESPONSE_PROMPT_TEMPLATE = """
-Consider the following markdown tables:
-
-{context}
-
-Are you sure that '{answer}' is the correct answer to the question: "{question}"?
-
-Please consider each table individually. Only pay attention to the row corresponding to the
-year in questin. Be careful not to incorrectly state that the value is provided for the other years, but not for the year in question (unless this is the case).
-It is possible that the answer is not explicitly stated in the context.
-
-Think step by step. Please conclude your answer with a 'yes' or 'no'.
-
-Answer:
-"""
-# TODO: The validator often returns 'no' if the value is in one of the tables, but not the others.
-# Modify prompt so the LLM understands that it's fine if the value is only in one of the tables.
-# TODO: Consider whether validation is necessary now that we filter the context.
-
 # -------------------------- Unit Conversion --------------------------
 
 UNIT_CONVERSION_PROMPT_TEMPLATE = """
