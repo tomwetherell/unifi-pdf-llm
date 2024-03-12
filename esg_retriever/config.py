@@ -1,4 +1,27 @@
-"""Mapping from company and year to the corresponding report file name."""
+"""Module containing path and file configurations for the ESG report data."""
+
+from pathlib import Path
+
+
+# -------------------------- Paths  --------------------------
+
+REPO_ROOT = Path(__file__).resolve().parent.parent
+"""Root directory of the repository."""
+
+DATA_DIR = REPO_ROOT / "data"
+"""Root directory of the data."""
+
+PDF_REPORTS_DIR = DATA_DIR / "reports"
+"""Directory containing the company annual report pdf files."""
+
+MISC_DATA_DIR = DATA_DIR / "misc"
+"""Directory containing miscellaneous data files."""
+
+JSON_REPORTS_DIR = REPO_ROOT / "azure_ai_doc_intelligence" / "outputs"
+"""Directory containing the json outputs from Azure AI Document Intelligence."""
+
+
+# -------------------------- ESG Report File Configuration  --------------------------
 
 COMPANY_YEAR_PDF_MAPPING = {
     "Absa": {
@@ -51,3 +74,6 @@ Mapping from company and year to the corresponding annual report pdf file name(s
 The annual report corresponding to a company and year contains the environmental,
 social, and governance (ESG) data for that year.
 """
+
+COMPANIES = list(COMPANY_YEAR_PDF_MAPPING.keys())
+"""List of companies with annual report pdf files."""

@@ -5,21 +5,16 @@ import os
 
 from pathlib import Path
 from loguru import logger
-
 from haystack.nodes import AzureConverter
+
+from esg_retriever.config import PDF_REPORTS_DIR, JSON_REPORTS_DIR
 
 
 AZURE_CONVERTER_KEY = os.environ.get("AZURE_CONVERTER_KEY")
 """Azure API key for the AzureConverter."""
 
-PDF_SOURCE_PATH = "/home/tomw/unifi-pdf-llm/data/sources"
-"""Directory containing the source pdfs."""
 
-OUTPUT_PATH = "/home/tomw/unifi-pdf-llm/data/azureconverter_outputs"
-"""Directory to save the json outputs from AzureConverter."""
-
-
-def parse_pdf():
+def convert_all_pdfs():
     """
     Convert all pdfs in the source directory to json using AzureConverter.
 
@@ -32,9 +27,9 @@ def parse_pdf():
         save_json=True,
     )
 
-    for pdf_path in Path(PDF_SOURCE_PATH).rglob("*.pdf"):
+    for pdf_path in Path(PDF_REPORTS_DIR).rglob("*.pdf"):
         # Check if the output file already exists
-        output_path = Path(OUTPUT_PATH) / (pdf_path.stem + ".json")
+        output_path = Path(JSON_REPORTS_DIR) / (pdf_path.stem + ".json")
         if output_path.exists():
             logger.info(f"Skipping {pdf_path} as output already exists")
             continue
@@ -57,4 +52,4 @@ def parse_pdf():
 
 
 if __name__ == "__main__":
-    parse_pdf()
+    convert_all_pdfs()

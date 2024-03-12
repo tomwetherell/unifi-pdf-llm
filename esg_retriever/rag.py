@@ -3,6 +3,7 @@
 import os
 import json
 import re
+from pathlib import Path
 
 import pandas as pd
 from openai import OpenAI
@@ -20,25 +21,20 @@ from esg_retriever.prompts import (
     RETRIEVE_VALUE_PROMPT_TEMPLATE,
     UNIT_CONVERSION_PROMPT_TEMPLATE,
 )
+from esg_retriever.config import MISC_DATA_DIR
 
 
-AMKEY_TO_METRIC_PATH = (
-    "/home/tomw/unifi-pdf-llm/esg_retriever/data/AMKEY_GoldenStandard.csv"
-)
+AMKEY_TO_METRIC_PATH = MISC_DATA_DIR / Path("AMKEY_GoldenStandard.csv")
 """Path to csv file mapping AMKEY to metric description."""
 
-AMKEY_TO_SYNONYM_PATH = (
-    "/home/tomw/unifi-pdf-llm/esg_retriever/data/ActivityMetricsSynonyms.csv"
-)
+AMKEY_TO_SYNONYM_PATH = MISC_DATA_DIR / Path("ActivityMetricsSynonyms.csv")
 """Path to csv file mapping AMKEY to company metric description."""
 
-AMKEY_TO_UNIT_PATH = (
-    "/home/tomw/unifi-pdf-llm/esg_retriever/data/AMKEY_unit_conversion.csv"
-)
+AMKEY_TO_UNIT_PATH = MISC_DATA_DIR / Path("AMKEY_unit_conversion.csv")
 """Path to csv file mapping AMKEY to required unit."""
-# TODO: Centralise paths, e.g. in a paths.py config file.
 
 
+# Initalise the OpenAI client
 load_dotenv()
 
 client = OpenAI(
