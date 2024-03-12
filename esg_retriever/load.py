@@ -9,15 +9,12 @@ from haystack.nodes import AzureConverter
 from dotenv import load_dotenv
 from loguru import logger
 
-from esg_retriever.dev.mapping import COMPANY_YEAR_PDF_MAPPING
+from esg_retriever.config import JSON_REPORTS_DIR, COMPANY_YEAR_PDF_MAPPING
 
 
 load_dotenv()
 
 AZURE_CONVERTER_KEY = os.environ.get("AZURE_CONVERTER_KEY")
-
-AZURE_CONVERTER_DIR = "/home/tomw/unifi-pdf-llm/esg_retriever/data/parsed_pdfs"
-"""Path to directory with json outputs from AzureConverter."""
 
 
 def load_documents(company: str, year: int) -> list[Document]:
@@ -59,7 +56,7 @@ def load_documents(company: str, year: int) -> list[Document]:
 
     for file_name in file_name_list:
         file_name = file_name.replace(".pdf", ".json")
-        file_path = Path(AZURE_CONVERTER_DIR) / file_name
+        file_path = Path(JSON_REPORTS_DIR) / file_name
         logger.info(f"Loading documents from {file_path}")
         docs = converter.convert_azure_json(file_path=file_path)
         company_docs.extend(docs)

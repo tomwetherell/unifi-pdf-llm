@@ -1,28 +1,25 @@
-"""
-Script to validate the performance of the end-to-end RAG system.
-
-TODO: Argparse, allow user to specify the company and year to validate. By default,
-run the full validation (as is currently the case).
-"""
+"""Script to validate the performance of the end-to-end RAG system."""
 
 import os
 import sys
 import argparse
 import warnings
+from pathlib import Path
 warnings.filterwarnings("ignore", category=UserWarning, module="transformers")
 
 import pandas as pd
 from loguru import logger
 
-from esg_retriever.rag.load import load_documents
-from esg_retriever.rag.preprocess import preprocess_documents
-from esg_retriever.rag.rag import ModularRAG
+from esg_retriever.load import load_documents
+from esg_retriever.preprocess import preprocess_documents
+from esg_retriever.rag import ModularRAG
+from esg_retriever.config import MISC_DATA_DIR
 
 
-VALIDATION_LOGS_PATH = "/home/tomw/unifi-pdf-llm/esg_retriever/validation_results"
+VALIDATION_LOGS_PATH = Path(__file__).resolve().parent / "results"
 """Path to the directory where the validation logs are saved."""
 
-TRAIN_CSV_PATH = "/home/tomw/unifi-pdf-llm/esg_retriever/data/Train.csv"
+TRAIN_CSV_PATH = Path(MISC_DATA_DIR) / "Train.csv"
 """Path to the Train.csv file."""
 
 ALL_COMPANIES = [
@@ -35,6 +32,7 @@ ALL_COMPANIES = [
     "Uct",
 ]
 """List of companies to validate."""
+# TODO: This should be centralised.
 
 VALIDATION_YEAR = 2021
 """The year to use for validation."""

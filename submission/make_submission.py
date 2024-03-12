@@ -1,18 +1,17 @@
 """Script to make submission for competition."""
 
+from pathlib import Path
+
 import pandas as pd
 
-from esg_retriever.dev.mapping import COMPANY_YEAR_PDF_MAPPING
-from esg_retriever.rag.load import load_documents
-from esg_retriever.rag.preprocess import preprocess_documents
-from esg_retriever.rag.rag import ModularRAG
+from esg_retriever.load import load_documents
+from esg_retriever.preprocess import preprocess_documents
+from esg_retriever.rag import ModularRAG
+from esg_retriever.config import MISC_DATA_DIR, COMPANY_YEAR_PDF_MAPPING, COMPANIES
 
 
-SUBMISSION_TEMPLATE_PATH = "/home/tomw/unifi-pdf-llm/esg_retriever/data/SampleSubmission.csv"
+SUBMISSION_TEMPLATE_PATH = MISC_DATA_DIR / Path("SampleSubmission.csv")
 """Path to the sample submission template."""
-
-COMPANIES = list(COMPANY_YEAR_PDF_MAPPING.keys())
-"""List of companies included in the submission."""
 
 
 def make_submission():
@@ -66,7 +65,6 @@ def _extract_company(amkey_company_id: str) -> str:
     """
     company = amkey_company_id.split("_")[-1]
     return company
-
 
 
 if __name__ == "__main__":
