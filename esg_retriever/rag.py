@@ -12,7 +12,7 @@ from haystack.document_stores import InMemoryDocumentStore
 from dotenv import load_dotenv
 from loguru import logger
 
-from esg_retriever.rag.prompts import (
+from esg_retriever.prompts import (
     FILTER_CONTEXT_PROMPT_TEMPLATE,
     FILTER_CONTEXT_EXAMPLE_CONTEXT,
     FILTER_CONTEXT_EXAMPLE_QUESTION,

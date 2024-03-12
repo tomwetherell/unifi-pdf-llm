@@ -1,4 +1,5 @@
 """Script to convert all source pdfs to json using AzureConverter."""
+# TODO: This should call function in convert_report.py
 
 import os
 

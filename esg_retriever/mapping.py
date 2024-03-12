@@ -1,4 +1,4 @@
-"""Mapping from company and year to the corresponding pdf file name."""
+"""Mapping from company and year to the corresponding report file name."""
 
 COMPANY_YEAR_PDF_MAPPING = {
     "Absa": {
@@ -47,4 +47,7 @@ COMPANY_YEAR_PDF_MAPPING = {
 }
 """
 Mapping from company and year to the corresponding annual report pdf file name(s).
+
+The annual report corresponding to a company and year contains the environmental,
+social, and governance (ESG) data for that year.
 """

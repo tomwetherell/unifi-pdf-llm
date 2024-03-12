@@ -9,7 +9,7 @@ from haystack.nodes import AzureConverter
 from dotenv import load_dotenv
 from loguru import logger
 
-from esg_retriever.dev.mapping import COMPANY_YEAR_PDF_MAPPING
+from esg_retriever.mapping import COMPANY_YEAR_PDF_MAPPING
 
 
 load_dotenv()
