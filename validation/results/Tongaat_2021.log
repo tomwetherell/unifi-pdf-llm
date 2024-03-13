@@ -1,14 +1,14 @@
-2024-03-13 21:27:34.243 | INFO     | __main__:run_validation:100 - Validation type:  retrieval
+2024-03-13 22:14:59.157 | INFO     | __main__:run_validation:99 - Validation type:  retrieval
 
-2024-03-13 21:27:34.250 | INFO     | esg_retriever.load:load_documents:60 - Loading documents from /home/tomw/unifi-pdf-llm/azure_ai_doc_intelligence/outputs/2021ESG.json
-2024-03-13 21:27:37.685 | DEBUG    | __main__:validate_retrieval:264 - Number of documents: 797
-2024-03-13 21:27:37.685 | INFO     | esg_retriever.rag:_initialise_document_store:524 - Initialising document store
-2024-03-13 21:27:37.690 | INFO     | esg_retriever.rag:_initialise_retriever:542 - Initialising retriever (using all-mpnet-base-v2 model)
-2024-03-13 21:27:45.337 | INFO     | esg_retriever.rag:_initialise_mappings:558 - Initialising mappings
-2024-03-13 21:27:45.340 | INFO     | esg_retriever.rag:_initiaise_openai_clients:567 - Initialising OpenAI clients
-2024-03-13 21:27:45.371 | INFO     | esg_retriever.rag:query:100 - Retrieving AMKEY: 12
-2024-03-13 21:27:45.371 | DEBUG    | esg_retriever.rag:query:102 - Retrieving metric: Total injury frequency rate (TIFR) – employees and contractors
-2024-03-13 21:27:45.415 | DEBUG    | esg_retriever.rag:_filter_single_document:273 - Filtering context prompt:
+2024-03-13 22:14:59.163 | INFO     | esg_retriever.load:load_documents:60 - Loading documents from /home/tomw/unifi-pdf-llm/azure_ai_doc_intelligence/outputs/2021ESG.json
+2024-03-13 22:15:02.639 | DEBUG    | __main__:validate_retrieval:263 - Number of documents: 797
+2024-03-13 22:15:02.639 | INFO     | esg_retriever.rag:_initialise_document_store:533 - Initialising document store
+2024-03-13 22:15:02.645 | INFO     | esg_retriever.rag:_initialise_retriever:551 - Initialising retriever (using all-mpnet-base-v2 model)
+2024-03-13 22:15:10.521 | INFO     | esg_retriever.rag:_initialise_mappings:567 - Initialising mappings
+2024-03-13 22:15:10.524 | INFO     | esg_retriever.rag:_initiaise_openai_client:576 - Initialising OpenAI clients
+2024-03-13 22:15:10.539 | INFO     | esg_retriever.rag:query:100 - Retrieving AMKEY: 12
+2024-03-13 22:15:10.540 | DEBUG    | esg_retriever.rag:query:102 - Retrieving metric: Total injury frequency rate (TIFR) – employees and contractors
+2024-03-13 22:15:10.593 | DEBUG    | esg_retriever.rag:_filter_document:282 - Filtering context prompt:
 
 Can the answer to the specific question: "What was the Total injury frequency rate (TIFR) – employees and contractors in the year 2021? " be directly found in the following markdown table:
 
@@ -26,7 +26,7 @@ Please conclude your answer with a 'yes' or 'no'.
 
 Answer:
 
-2024-03-13 21:27:45.424 | DEBUG    | esg_retriever.rag:_filter_single_document:273 - Filtering context prompt:
+2024-03-13 22:15:10.600 | DEBUG    | esg_retriever.rag:_filter_document:282 - Filtering context prompt:
 
 Can the answer to the specific question: "What was the Total injury frequency rate (TIFR) – employees and contractors in the year 2021? " be directly found in the following markdown table:
 
@@ -44,7 +44,7 @@ Please conclude your answer with a 'yes' or 'no'.
 
 Answer:
 
-2024-03-13 21:27:45.427 | DEBUG    | esg_retriever.rag:_filter_single_document:273 - Filtering context prompt:
+2024-03-13 22:15:10.603 | DEBUG    | esg_retriever.rag:_filter_document:282 - Filtering context prompt:
 
 Can the answer to the specific question: "What was the Total injury frequency rate (TIFR) – employees and contractors in the year 2021? " be directly found in the following markdown table:
 
@@ -62,27 +62,27 @@ Please conclude your answer with a 'yes' or 'no'.
 
 Answer:
 
-2024-03-13 21:27:48.169 | DEBUG    | esg_retriever.rag:_filter_single_document:290 - Filtering context response: To find the Total injury frequency rate (TIFR) for employees and contractors in the year 2021, we can directly retrieve the information from the provided markdown table. The table includes a specific row for "Total injury frequency rate (TIFR) - employees and contractors" with the corresponding data for the year 2021.
+2024-03-13 22:15:12.887 | DEBUG    | esg_retriever.rag:_filter_document:299 - Filtering context response: To find the Total injury frequency rate (TIFR) for employees and contractors in the year 2021, we can directly retrieve the information from the provided markdown table. The table includes a specific row for "Total injury frequency rate (TIFR) - employees and contractors" with the corresponding data for the year 2021.
 
 Therefore, the answer to the question "What was the Total injury frequency rate (TIFR) – employees and contractors in the year 2021?" can be directly found in the context.
 
 Conclusion: yes
-2024-03-13 21:27:48.170 | DEBUG    | esg_retriever.rag:_filter_single_document:293 - Filtering context conclusion: yes
-2024-03-13 21:27:48.406 | DEBUG    | esg_retriever.rag:_filter_single_document:290 - Filtering context response: To find the Total injury frequency rate (TIFR) for employees and contractors in the year 2021, we can directly retrieve the information from the provided markdown table. The table includes a specific row for "Total injury frequency rate (TIFR) - employees and contractors" with the corresponding data for the years 2021, 2020, 2019, and 2018.
+2024-03-13 22:15:12.887 | DEBUG    | esg_retriever.rag:_filter_document:302 - Filtering context conclusion: yes
+2024-03-13 22:15:13.605 | DEBUG    | esg_retriever.rag:_filter_document:299 - Filtering context response: To find the Total injury frequency rate (TIFR) for employees and contractors in the year 2021, we can directly refer to the provided markdown table. The table includes a specific row for "Total injury frequency rate (TIFR) - employees and contractors" with the corresponding data for the years 2021, 2020, 2019, and 2018.
 
 The value for the Total injury frequency rate (TIFR) for employees and contractors in the year 2021 is explicitly stated in the table as 1.331. Therefore, the answer to the question "What was the Total injury frequency rate (TIFR) – employees and contractors in the year 2021?" can be directly found in the provided markdown table.
 
 Conclusion: yes
-2024-03-13 21:27:48.406 | DEBUG    | esg_retriever.rag:_filter_single_document:293 - Filtering context conclusion: yes
-2024-03-13 21:27:50.783 | DEBUG    | esg_retriever.rag:_filter_single_document:290 - Filtering context response: To find the Total injury frequency rate (TIFR) for employees and contractors in the year 2021, we need to look for a specific indicator related to this rate in the provided markdown table. The table includes the Lost time injury frequency rate (LTIFR) for employees and contractors, which is the number of LTIs per 200,000 person hours worked.
+2024-03-13 22:15:13.605 | DEBUG    | esg_retriever.rag:_filter_document:302 - Filtering context conclusion: yes
+2024-03-13 22:15:14.240 | DEBUG    | esg_retriever.rag:_filter_document:299 - Filtering context response: To find the Total injury frequency rate (TIFR) for employees and contractors in the year 2021, we need to look for a specific indicator related to this rate in the provided markdown table. The table includes the Lost Time Injury Frequency Rate (LTIFR) for employees and contractors, which is the number of Lost Time Injuries per 200,000 person hours worked.
 
-The LTIFR provided in the table is specific to both employees and contractors, which means it already includes the data for both groups. The LTIFR is a measure of the frequency of lost time injuries, which is a component of the Total injury frequency rate (TIFR).
+The LTIFR provided in the table is specific to Lost Time Injuries and does not directly give the Total injury frequency rate (TIFR) for both employees and contractors. The TIFR would typically include all types of injuries, not just Lost Time Injuries.
 
-Given that the LTIFR includes data for both employees and contractors, we can consider it as a part of the Total injury frequency rate (TIFR) for the combined group. Therefore, the answer to the question "What was the Total injury frequency rate (TIFR) – employees and contractors in the year 2021?" can be directly found in the provided markdown table.
+Since the table only provides data on the LTIFR and not the TIFR, we cannot directly retrieve the Total injury frequency rate (TIFR) for employees and contractors in the year 2021 from the context.
 
-Conclusion: yes
-2024-03-13 21:27:50.784 | DEBUG    | esg_retriever.rag:_filter_single_document:293 - Filtering context conclusion: yes
-2024-03-13 21:27:50.784 | DEBUG    | esg_retriever.rag:_retrieve_value:374 - Retrieval prompt:
+Conclusion: no
+2024-03-13 22:15:14.240 | DEBUG    | esg_retriever.rag:_filter_document:302 - Filtering context conclusion: no
+2024-03-13 22:15:14.241 | DEBUG    | esg_retriever.rag:_retrieve_value:383 - Retrieval prompt:
 
 Use the following markdown tables to as context to answer the question at the end.
 The answer must be a value retrieved directly from the context. Please don't do any unit conversion.
@@ -102,24 +102,19 @@ Context:
 | Total recordable injury frequency rate (TRIFR) - employees and contractors | rate              |  1.037 |  1.136 |  1.226 |  1.374 |
 | Total injury frequency rate (TIFR) - employees and contractors             | rate              |  1.331 |  1.636 |  2.039 |  2.607 |
 
-|                                                                 | Unit of measure   | 2021   | 2020   | 2019   | 2018   |
-|-----------------------------------------------------------------|-------------------|--------|--------|--------|--------|
-| Lost time injury frequency rate (LTIFR, i.e. number of LTIs per |                   |        |        |        |        |
-| 200 000 person hours worked) - employees and contractors        | rate              | 0.093  | 0.107  | 0.087  | 0.089  |
-
 Question: What was the Total injury frequency rate (TIFR) – employees and contractors in the year 2021? 
 
 Answer:
 
-2024-03-13 21:27:51.912 | DEBUG    | esg_retriever.rag:_retrieve_value:396 - Retrieval response: {
+2024-03-13 22:15:15.165 | DEBUG    | esg_retriever.rag:_retrieve_value:405 - Retrieval response: {
     "Answer": 1.331,
     "Unit": "rate"
 }
-2024-03-13 21:27:51.912 | DEBUG    | esg_retriever.rag:query:122 - Parsed answer: 1.331, rate
-2024-03-13 21:27:51.912 | DEBUG    | esg_retriever.rag:query:126 - Required unit: None
-2024-03-13 21:27:51.913 | INFO     | esg_retriever.rag:query:100 - Retrieving AMKEY: 28
-2024-03-13 21:27:51.914 | DEBUG    | esg_retriever.rag:query:102 - Retrieving metric: Total – company managed/farmed land (owned and leased)
-2024-03-13 21:27:51.954 | DEBUG    | esg_retriever.rag:_filter_single_document:273 - Filtering context prompt:
+2024-03-13 22:15:15.165 | DEBUG    | esg_retriever.rag:query:122 - Parsed answer: 1.331, rate
+2024-03-13 22:15:15.165 | DEBUG    | esg_retriever.rag:query:126 - Required unit: None
+2024-03-13 22:15:15.166 | INFO     | esg_retriever.rag:query:100 - Retrieving AMKEY: 28
+2024-03-13 22:15:15.167 | DEBUG    | esg_retriever.rag:query:102 - Retrieving metric: Total – company managed/farmed land (owned and leased)
+2024-03-13 22:15:15.224 | DEBUG    | esg_retriever.rag:_filter_document:282 - Filtering context prompt:
 
 Can the answer to the specific question: "What was the Total – company managed/farmed land (owned and leased) in the year 2021? " be directly found in the following markdown table:
 
@@ -137,7 +132,7 @@ Please conclude your answer with a 'yes' or 'no'.
 
 Answer:
 
-2024-03-13 21:27:51.957 | DEBUG    | esg_retriever.rag:_filter_single_document:273 - Filtering context prompt:
+2024-03-13 22:15:15.228 | DEBUG    | esg_retriever.rag:_filter_document:282 - Filtering context prompt:
 
 Can the answer to the specific question: "What was the Total – company managed/farmed land (owned and leased) in the year 2021? " be directly found in the following markdown table:
 
@@ -155,7 +150,7 @@ Please conclude your answer with a 'yes' or 'no'.
 
 Answer:
 
-2024-03-13 21:27:51.960 | DEBUG    | esg_retriever.rag:_filter_single_document:273 - Filtering context prompt:
+2024-03-13 22:15:15.230 | DEBUG    | esg_retriever.rag:_filter_document:282 - Filtering context prompt:
 
 Can the answer to the specific question: "What was the Total – company managed/farmed land (owned and leased) in the year 2021? " be directly found in the following markdown table:
 
@@ -173,25 +168,23 @@ Please conclude your answer with a 'yes' or 'no'.
 
 Answer:
 
-2024-03-13 21:27:53.694 | DEBUG    | esg_retriever.rag:_filter_single_document:290 - Filtering context response: Yes
-
-The specific question asks for the total company managed/farmed land (owned and leased) in the year 2021. This information is directly available in the provided markdown table under the "Total - company managed/farmed land (owned and leased)" row for the year 2021, which is 52,883 hectares. Therefore, the answer to the question can be directly found in the context.
-
-Conclusion: yes
-2024-03-13 21:27:53.694 | DEBUG    | esg_retriever.rag:_filter_single_document:293 - Filtering context conclusion: yes
-2024-03-13 21:27:54.195 | DEBUG    | esg_retriever.rag:_filter_single_document:290 - Filtering context response: To find the total company managed/farmed land (owned and leased) in the year 2021, we can directly retrieve the answer from the provided markdown table. The table includes a specific row labeled "Total - company managed/farmed land (owned and leased)" with the unit of measure in hectares and the corresponding value for the year 2021 as 60,204 hectares.
+2024-03-13 22:15:17.546 | DEBUG    | esg_retriever.rag:_filter_document:299 - Filtering context response: To find the total company-managed/farmed land (owned and leased) in the year 2021, we can directly retrieve the information from the provided markdown table. The specific indicator "Total - company managed/farmed land (owned and leased)" for the year 2021 shows a value of 60,204 hectares. This value represents the total company-managed/farmed land, including both owned and leased land, for the year 2021.
 
 Therefore, the answer to the question "What was the Total – company managed/farmed land (owned and leased) in the year 2021?" can be directly found in the context.
 
 Conclusion: yes
-2024-03-13 21:27:54.195 | DEBUG    | esg_retriever.rag:_filter_single_document:293 - Filtering context conclusion: yes
-2024-03-13 21:27:54.297 | DEBUG    | esg_retriever.rag:_filter_single_document:290 - Filtering context response: To find the total company-managed/farmed land (owned and leased) in the year 2021, we can directly retrieve the information from the provided markdown table. The specific indicator "Total - company managed/farmed land (owned and leased)" for the year 2021 shows a value of 60,204 hectares. This value represents the total company-managed/farmed land, including both owned and leased land, for the year 2021.
+2024-03-13 22:15:17.546 | DEBUG    | esg_retriever.rag:_filter_document:302 - Filtering context conclusion: yes
+2024-03-13 22:15:17.656 | DEBUG    | esg_retriever.rag:_filter_document:299 - Filtering context response: Yes
 
-Therefore, the answer to the question "What was the Total – company managed/farmed land (owned and leased) in the year 2021?" can be directly found in the context.
+The answer to the specific question "What was the Total – company managed/farmed land (owned and leased) in the year 2021?" can be directly found in the provided markdown table. The table includes a specific row titled "Total - company managed/farmed land (owned and leased)" with the unit of measure in hectares and the corresponding values for the years 2021, 2020, 2019, and 2018. The value for 2021 in this row, which is 60204 hectares, directly provides the total company managed/farmed land (owned and leased) for the year 2021.
+2024-03-13 22:15:17.657 | DEBUG    | esg_retriever.rag:_filter_document:302 - Filtering context conclusion: yes
+2024-03-13 22:15:17.800 | DEBUG    | esg_retriever.rag:_filter_document:299 - Filtering context response: Yes
 
-Conclusion: yes
-2024-03-13 21:27:54.297 | DEBUG    | esg_retriever.rag:_filter_single_document:293 - Filtering context conclusion: yes
-2024-03-13 21:27:54.297 | DEBUG    | esg_retriever.rag:_retrieve_value:374 - Retrieval prompt:
+The answer to the specific question "What was the Total – company managed/farmed land (owned and leased) in the year 2021?" can be directly found in the provided markdown table. The table includes a specific indicator labeled "Total - company managed/farmed land (owned and leased)" with the unit of measure in hectares for the years 2021, 2020, 2019, and 2018. The value for the year 2021 is explicitly stated as 52883 hectares, which directly provides the total company managed/farmed land (owned and leased) for that year.
+
+Therefore, the answer to the question can be directly retrieved from the context.
+2024-03-13 22:15:17.800 | DEBUG    | esg_retriever.rag:_filter_document:302 - Filtering context conclusion: yes
+2024-03-13 22:15:17.801 | DEBUG    | esg_retriever.rag:_retrieve_value:383 - Retrieval prompt:
 
 Use the following markdown tables to as context to answer the question at the end.
 The answer must be a value retrieved directly from the context. Please don't do any unit conversion.
@@ -220,15 +213,15 @@ Question: What was the Total – company managed/farmed land (owned and leased) 
 
 Answer:
 
-2024-03-13 21:27:54.935 | DEBUG    | esg_retriever.rag:_retrieve_value:396 - Retrieval response: {
+2024-03-13 22:15:18.499 | DEBUG    | esg_retriever.rag:_retrieve_value:405 - Retrieval response: {
     "Answer": 60204,
     "Unit": "hectares"
 }
-2024-03-13 21:27:54.935 | DEBUG    | esg_retriever.rag:query:122 - Parsed answer: 60204.0, hectares
-2024-03-13 21:27:54.936 | DEBUG    | esg_retriever.rag:query:126 - Required unit: None
-2024-03-13 21:27:54.936 | INFO     | esg_retriever.rag:query:100 - Retrieving AMKEY: 49
-2024-03-13 21:27:54.937 | DEBUG    | esg_retriever.rag:query:102 - Retrieving metric: B-BBEE Level
-2024-03-13 21:27:54.996 | DEBUG    | esg_retriever.rag:_filter_single_document:273 - Filtering context prompt:
+2024-03-13 22:15:18.499 | DEBUG    | esg_retriever.rag:query:122 - Parsed answer: 60204.0, hectares
+2024-03-13 22:15:18.500 | DEBUG    | esg_retriever.rag:query:126 - Required unit: None
+2024-03-13 22:15:18.500 | INFO     | esg_retriever.rag:query:100 - Retrieving AMKEY: 49
+2024-03-13 22:15:18.501 | DEBUG    | esg_retriever.rag:query:102 - Retrieving metric: B-BBEE Level
+2024-03-13 22:15:18.564 | DEBUG    | esg_retriever.rag:_filter_document:282 - Filtering context prompt:
 
 Can the answer to the specific question: "What was the B-BBEE Level in the year 2021? Do not include the word 'Level' in the answer." be directly found in the following markdown table:
 
@@ -246,7 +239,7 @@ Please conclude your answer with a 'yes' or 'no'.
 
 Answer:
 
-2024-03-13 21:27:54.999 | DEBUG    | esg_retriever.rag:_filter_single_document:273 - Filtering context prompt:
+2024-03-13 22:15:18.566 | DEBUG    | esg_retriever.rag:_filter_document:282 - Filtering context prompt:
 
 Can the answer to the specific question: "What was the B-BBEE Level in the year 2021? Do not include the word 'Level' in the answer." be directly found in the following markdown table:
 
@@ -264,7 +257,7 @@ Please conclude your answer with a 'yes' or 'no'.
 
 Answer:
 
-2024-03-13 21:27:55.002 | DEBUG    | esg_retriever.rag:_filter_single_document:273 - Filtering context prompt:
+2024-03-13 22:15:18.569 | DEBUG    | esg_retriever.rag:_filter_document:282 - Filtering context prompt:
 
 Can the answer to the specific question: "What was the B-BBEE Level in the year 2021? Do not include the word 'Level' in the answer." be directly found in the following markdown table:
 
@@ -282,23 +275,23 @@ Please conclude your answer with a 'yes' or 'no'.
 
 Answer:
 
-2024-03-13 21:27:56.350 | DEBUG    | esg_retriever.rag:_filter_single_document:290 - Filtering context response: Yes
+2024-03-13 22:15:20.279 | DEBUG    | esg_retriever.rag:_filter_document:299 - Filtering context response: Yes
+
+The B-BBEE Level for the year 2021 is directly provided in the markdown table as "4." Therefore, the answer to the question "What was the B-BBEE Level in the year 2021? Do not include the word 'Level' in the answer." can be directly found in the context.
+2024-03-13 22:15:20.279 | DEBUG    | esg_retriever.rag:_filter_document:302 - Filtering context conclusion: yes
+2024-03-13 22:15:20.331 | DEBUG    | esg_retriever.rag:_filter_document:299 - Filtering context response: Yes
 
 The B-BBEE Level for the year 2021 is directly stated in the provided markdown table as "4." Therefore, the answer to the question "What was the B-BBEE Level in the year 2021? Do not include the word 'Level' in the answer." can be directly found in the context.
+2024-03-13 22:15:20.331 | DEBUG    | esg_retriever.rag:_filter_document:302 - Filtering context conclusion: yes
+2024-03-13 22:15:21.665 | DEBUG    | esg_retriever.rag:_filter_document:299 - Filtering context response: In the provided markdown table, there is a mention of "B-BBEE contributor Level" under the entity "Deloitte & Touche." However, the specific B-BBEE Level for the year 2021 is not directly stated in the table. The table only mentions the entity and the fact that they are a B-BBEE contributor, but it does not provide the exact B-BBEE Level for the year 2021.
 
-Conclusion: yes
-2024-03-13 21:27:56.350 | DEBUG    | esg_retriever.rag:_filter_single_document:293 - Filtering context conclusion: yes
-2024-03-13 21:27:56.923 | DEBUG    | esg_retriever.rag:_filter_single_document:290 - Filtering context response: Yes
+Without the explicit mention of the B-BBEE Level for the year 2021 in the table, we cannot directly retrieve the answer to the question "What was the B-BBEE Level in the year 2021? Do not include the word 'Level' in the answer."
 
-The B-BBEE Level for the year 2021 is directly retrievable from the provided markdown table. The B-BBEE Level for 2021 is indicated as "4" in the table, so the answer to the question "What was the B-BBEE Level in the year 2021? Do not include the word 'Level' in the answer." is "4".
-2024-03-13 21:27:56.923 | DEBUG    | esg_retriever.rag:_filter_single_document:293 - Filtering context conclusion: yes
-2024-03-13 21:27:57.373 | DEBUG    | esg_retriever.rag:_filter_single_document:290 - Filtering context response: In the provided markdown table, there is a mention of "B-BBEE contributor Level" under the entity "Deloitte & Touche." However, the specific B-BBEE Level for the year 2021 is not directly stated in the table. The table only mentions the entity and the fact that they are a B-BBEE contributor, but it does not provide the exact B-BBEE Level for the year 2021.
-
-Since the table does not explicitly state the B-BBEE Level for the year 2021, the answer to the question "What was the B-BBEE Level in the year 2021? Do not include the word 'Level' in the answer." is not directly retrievable from the context.
+Therefore, the answer to the question is not directly retrievable from the context.
 
 Conclusion: no
-2024-03-13 21:27:57.373 | DEBUG    | esg_retriever.rag:_filter_single_document:293 - Filtering context conclusion: no
-2024-03-13 21:27:57.373 | DEBUG    | esg_retriever.rag:_retrieve_value:374 - Retrieval prompt:
+2024-03-13 22:15:21.665 | DEBUG    | esg_retriever.rag:_filter_document:302 - Filtering context conclusion: no
+2024-03-13 22:15:21.666 | DEBUG    | esg_retriever.rag:_retrieve_value:383 - Retrieval prompt:
 
 Use the following markdown tables to as context to answer the question at the end.
 The answer must be a value retrieved directly from the context. Please don't do any unit conversion.
@@ -322,15 +315,15 @@ Question: What was the B-BBEE Level in the year 2021? Do not include the word 'L
 
 Answer:
 
-2024-03-13 21:27:58.592 | DEBUG    | esg_retriever.rag:_retrieve_value:396 - Retrieval response: {
+2024-03-13 22:15:22.357 | DEBUG    | esg_retriever.rag:_retrieve_value:405 - Retrieval response: {
     "Answer": 4,
     "Unit": null
 }
-2024-03-13 21:27:58.592 | DEBUG    | esg_retriever.rag:query:122 - Parsed answer: 4.0, None
-2024-03-13 21:27:58.593 | DEBUG    | esg_retriever.rag:query:126 - Required unit: None
-2024-03-13 21:27:58.593 | INFO     | esg_retriever.rag:query:100 - Retrieving AMKEY: 52
-2024-03-13 21:27:58.594 | DEBUG    | esg_retriever.rag:query:102 - Retrieving metric: Overall Board and Committee meeting attendance
-2024-03-13 21:27:58.626 | DEBUG    | esg_retriever.rag:_filter_single_document:273 - Filtering context prompt:
+2024-03-13 22:15:22.357 | DEBUG    | esg_retriever.rag:query:122 - Parsed answer: 4.0, None
+2024-03-13 22:15:22.358 | DEBUG    | esg_retriever.rag:query:126 - Required unit: None
+2024-03-13 22:15:22.359 | INFO     | esg_retriever.rag:query:100 - Retrieving AMKEY: 52
+2024-03-13 22:15:22.359 | DEBUG    | esg_retriever.rag:query:102 - Retrieving metric: Overall Board and Committee meeting attendance
+2024-03-13 22:15:22.425 | DEBUG    | esg_retriever.rag:_filter_document:282 - Filtering context prompt:
 
 Can the answer to the specific question: "What was the Overall Board and Committee meeting attendance in the year 2021? " be directly found in the following markdown table:
 
@@ -348,7 +341,7 @@ Please conclude your answer with a 'yes' or 'no'.
 
 Answer:
 
-2024-03-13 21:27:58.629 | DEBUG    | esg_retriever.rag:_filter_single_document:273 - Filtering context prompt:
+2024-03-13 22:15:22.428 | DEBUG    | esg_retriever.rag:_filter_document:282 - Filtering context prompt:
 
 Can the answer to the specific question: "What was the Overall Board and Committee meeting attendance in the year 2021? " be directly found in the following markdown table:
 
@@ -366,7 +359,7 @@ Please conclude your answer with a 'yes' or 'no'.
 
 Answer:
 
-2024-03-13 21:27:58.631 | DEBUG    | esg_retriever.rag:_filter_single_document:273 - Filtering context prompt:
+2024-03-13 22:15:22.431 | DEBUG    | esg_retriever.rag:_filter_document:282 - Filtering context prompt:
 
 Can the answer to the specific question: "What was the Overall Board and Committee meeting attendance in the year 2021? " be directly found in the following markdown table:
 
@@ -384,29 +377,27 @@ Please conclude your answer with a 'yes' or 'no'.
 
 Answer:
 
-2024-03-13 21:28:00.862 | DEBUG    | esg_retriever.rag:_filter_single_document:290 - Filtering context response: To find the overall Board and Committee meeting attendance in the year 2021, we need to look for a specific indicator related to attendance in the provided markdown table. The table includes an indicator labeled "Overall Board and Committee meeting attendance" with the unit of measure as a percentage.
-
-The value under the "2021" column for the "Overall Board and Committee meeting attendance" indicator is 99%. This percentage represents the attendance rate for the year 2021. Therefore, the answer to the question "What was the Overall Board and Committee meeting attendance in the year 2021?" can be directly found in the provided markdown table.
-
-Conclusion: yes
-2024-03-13 21:28:00.862 | DEBUG    | esg_retriever.rag:_filter_single_document:293 - Filtering context conclusion: yes
-2024-03-13 21:28:01.267 | DEBUG    | esg_retriever.rag:_filter_single_document:290 - Filtering context response: To find the overall Board and Committee meeting attendance in the year 2021, we need to look for a specific indicator related to attendance in the provided markdown table. The table includes information on the number of Board members and Non-executive Board members for the years 2018, 2019, 2020, and 2021.
-
-However, the table does not directly provide information on the attendance of Board and Committee meetings for each year. The number of Board members and Non-executive Board members does not necessarily equate to the attendance at meetings. Attendance records would need to be explicitly stated in the table to determine the overall Board and Committee meeting attendance in 2021.
-
-Therefore, the answer to the question "What was the Overall Board and Committee meeting attendance in the year 2021?" is not directly retrievable from the context.
-
-Conclusion: no
-2024-03-13 21:28:01.267 | DEBUG    | esg_retriever.rag:_filter_single_document:293 - Filtering context conclusion: no
-2024-03-13 21:28:02.780 | DEBUG    | esg_retriever.rag:_filter_single_document:290 - Filtering context response: To find the Overall Board and Committee meeting attendance in the year 2021, we need to look for the specific indicator related to this information in the provided markdown table. The table includes an indicator labeled "Overall Board and Committee meeting attendance" with the unit of measure being a percentage (%).
-
-The value under the "2021" column for the "Overall Board and Committee meeting attendance" indicator directly provides the attendance percentage for the year 2021, which is 99%. This percentage represents the attendance for Board and Committee meetings in the year 2021.
+2024-03-13 22:15:24.766 | DEBUG    | esg_retriever.rag:_filter_document:299 - Filtering context response: To find the Overall Board and Committee meeting attendance in the year 2021, we need to look at the specific indicator provided in the markdown table. The table includes an indicator labeled "Overall Board and Committee meeting attendance" with the unit of measure being a percentage (%). The value for this indicator in the year 2021 is explicitly stated as 99%.
 
 Therefore, the answer to the question "What was the Overall Board and Committee meeting attendance in the year 2021?" can be directly found in the provided markdown table.
 
 Conclusion: yes
-2024-03-13 21:28:02.780 | DEBUG    | esg_retriever.rag:_filter_single_document:293 - Filtering context conclusion: yes
-2024-03-13 21:28:02.780 | DEBUG    | esg_retriever.rag:_retrieve_value:374 - Retrieval prompt:
+2024-03-13 22:15:24.767 | DEBUG    | esg_retriever.rag:_filter_document:302 - Filtering context conclusion: yes
+2024-03-13 22:15:25.452 | DEBUG    | esg_retriever.rag:_filter_document:299 - Filtering context response: To find the overall Board and Committee meeting attendance in the year 2021, we need to look for a specific indicator related to attendance in the provided markdown table. The table includes an indicator labeled "Overall Board and Committee meeting attendance" with the unit of measure as a percentage.
+
+The value under the "2021" column for the "Overall Board and Committee meeting attendance" indicator is 99%. This percentage represents the attendance rate for the year 2021. Therefore, the answer to the question "What was the Overall Board and Committee meeting attendance in the year 2021?" can be directly found in the provided markdown table.
+
+Conclusion: yes
+2024-03-13 22:15:25.453 | DEBUG    | esg_retriever.rag:_filter_document:302 - Filtering context conclusion: yes
+2024-03-13 22:15:25.560 | DEBUG    | esg_retriever.rag:_filter_document:299 - Filtering context response: To find the overall Board and Committee meeting attendance in the year 2021, we need to look for a specific indicator related to attendance in the provided markdown table. The table includes information on the number of Board members and Non-executive Board members for the years 2018, 2019, 2020, and 2021.
+
+However, the table does not directly provide information on the attendance of Board and Committee meetings for each year. The number of Board members and Non-executive Board members only indicates the total count of individuals in these roles and does not necessarily correlate with meeting attendance.
+
+Since there is no specific data on meeting attendance in the table, we cannot directly determine the overall Board and Committee meeting attendance in the year 2021 from the context provided.
+
+Conclusion: no
+2024-03-13 22:15:25.560 | DEBUG    | esg_retriever.rag:_filter_document:302 - Filtering context conclusion: no
+2024-03-13 22:15:25.560 | DEBUG    | esg_retriever.rag:_retrieve_value:383 - Retrieval prompt:
 
 Use the following markdown tables to as context to answer the question at the end.
 The answer must be a value retrieved directly from the context. Please don't do any unit conversion.
@@ -430,15 +421,15 @@ Question: What was the Overall Board and Committee meeting attendance in the yea
 
 Answer:
 
-2024-03-13 21:28:03.605 | DEBUG    | esg_retriever.rag:_retrieve_value:396 - Retrieval response: {
+2024-03-13 22:15:26.115 | DEBUG    | esg_retriever.rag:_retrieve_value:405 - Retrieval response: {
     "Answer": 99,
     "Unit": "%"
 }
-2024-03-13 21:28:03.605 | DEBUG    | esg_retriever.rag:query:122 - Parsed answer: 99.0, %
-2024-03-13 21:28:03.606 | DEBUG    | esg_retriever.rag:query:126 - Required unit: None
-2024-03-13 21:28:03.606 | INFO     | esg_retriever.rag:query:100 - Retrieving AMKEY: 114
-2024-03-13 21:28:03.606 | DEBUG    | esg_retriever.rag:query:102 - Retrieving metric: Energy efficiency: total direct and indirect energy consumed per ton of sugar produced
-2024-03-13 21:28:03.667 | DEBUG    | esg_retriever.rag:_filter_single_document:273 - Filtering context prompt:
+2024-03-13 22:15:26.115 | DEBUG    | esg_retriever.rag:query:122 - Parsed answer: 99.0, %
+2024-03-13 22:15:26.115 | DEBUG    | esg_retriever.rag:query:126 - Required unit: None
+2024-03-13 22:15:26.116 | INFO     | esg_retriever.rag:query:100 - Retrieving AMKEY: 114
+2024-03-13 22:15:26.116 | DEBUG    | esg_retriever.rag:query:102 - Retrieving metric: Energy efficiency: total direct and indirect energy consumed per ton of sugar produced
+2024-03-13 22:15:26.181 | DEBUG    | esg_retriever.rag:_filter_document:282 - Filtering context prompt:
 
 Can the answer to the specific question: "What was the Energy efficiency: total direct and indirect energy consumed per ton of sugar produced in the year 2021? " be directly found in the following markdown table:
 
@@ -456,7 +447,7 @@ Please conclude your answer with a 'yes' or 'no'.
 
 Answer:
 
-2024-03-13 21:28:03.670 | DEBUG    | esg_retriever.rag:_filter_single_document:273 - Filtering context prompt:
+2024-03-13 22:15:26.184 | DEBUG    | esg_retriever.rag:_filter_document:282 - Filtering context prompt:
 
 Can the answer to the specific question: "What was the Energy efficiency: total direct and indirect energy consumed per ton of sugar produced in the year 2021? " be directly found in the following markdown table:
 
@@ -474,7 +465,7 @@ Please conclude your answer with a 'yes' or 'no'.
 
 Answer:
 
-2024-03-13 21:28:03.673 | DEBUG    | esg_retriever.rag:_filter_single_document:273 - Filtering context prompt:
+2024-03-13 22:15:26.186 | DEBUG    | esg_retriever.rag:_filter_document:282 - Filtering context prompt:
 
 Can the answer to the specific question: "What was the Energy efficiency: total direct and indirect energy consumed per ton of sugar produced in the year 2021? " be directly found in the following markdown table:
 
@@ -492,25 +483,29 @@ Please conclude your answer with a 'yes' or 'no'.
 
 Answer:
 
-2024-03-13 21:28:05.412 | DEBUG    | esg_retriever.rag:_filter_single_document:290 - Filtering context response: Yes
+2024-03-13 22:15:28.817 | DEBUG    | esg_retriever.rag:_filter_document:299 - Filtering context response: To find the energy efficiency in terms of total direct and indirect energy consumed per ton of sugar produced in the year 2021, we can directly retrieve the information from the provided markdown table. The specific indicator "Energy efficiency: total direct and indirect energy consumed per ton of sugar produced" has a value of 16.63 GJ/t for the year 2021.
 
-The answer to the specific question "What was the Energy efficiency: total direct and indirect energy consumed per ton of sugar produced in the year 2021?" can be directly found in the provided markdown table. The table includes a specific indicator for "Energy efficiency: total direct and indirect energy consumed per ton of sugar produced" with the unit of measure in GJ/t for the year 2021. The value for this indicator in 2021 is 17.9 GJ/t, which directly provides the information needed to answer the question.
-2024-03-13 21:28:05.412 | DEBUG    | esg_retriever.rag:_filter_single_document:293 - Filtering context conclusion: yes
-2024-03-13 21:28:05.818 | DEBUG    | esg_retriever.rag:_filter_single_document:290 - Filtering context response: To find the energy efficiency in terms of total direct and indirect energy consumed per ton of sugar produced in the year 2021, we can directly retrieve the information from the provided markdown table. The specific indicator "Energy efficiency: total direct and indirect energy consumed per ton of sugar produced" has a value of 16.63 GJ/t for the year 2021.
-
-Therefore, the answer to the question "What was the Energy efficiency: total direct and indirect energy consumed per ton of sugar produced in the year 2021?" can be directly found in the given table.
+Therefore, the answer to the question "What was the Energy efficiency: total direct and indirect energy consumed per ton of sugar produced in the year 2021?" can be directly found in the context.
 
 Conclusion: yes
-2024-03-13 21:28:05.818 | DEBUG    | esg_retriever.rag:_filter_single_document:293 - Filtering context conclusion: yes
-2024-03-13 21:28:06.298 | DEBUG    | esg_retriever.rag:_filter_single_document:290 - Filtering context response: To find the energy efficiency in terms of total direct and indirect energy consumed per ton of sugar produced in the year 2021, we need to look for a specific indicator related to this metric in the provided markdown table. The table only includes information on carbon efficiency, specifically carbon emissions per ton of sugar produced.
+2024-03-13 22:15:28.817 | DEBUG    | esg_retriever.rag:_filter_document:302 - Filtering context conclusion: yes
+2024-03-13 22:15:28.962 | DEBUG    | esg_retriever.rag:_filter_document:299 - Filtering context response: To find the energy efficiency in terms of total direct and indirect energy consumed per ton of sugar produced in the year 2021, we can directly retrieve the information from the provided markdown table. The specific indicator "Energy efficiency: total direct and indirect energy consumed per ton of sugar produced" is listed in the table, and the corresponding value for the year 2021 is 17.9 GJ/t.
 
-The indicator provided in the table is related to carbon emissions per ton of sugar produced, not the total direct and indirect energy consumed per ton of sugar produced. While carbon emissions are related to energy efficiency, they do not directly provide the information needed to calculate the total direct and indirect energy consumed per ton of sugar produced.
+Therefore, the answer to the question "What was the Energy efficiency: total direct and indirect energy consumed per ton of sugar produced in the year 2021?" can be directly found in the context.
+
+Conclusion: yes
+2024-03-13 22:15:28.962 | DEBUG    | esg_retriever.rag:_filter_document:302 - Filtering context conclusion: yes
+2024-03-13 22:15:29.688 | DEBUG    | esg_retriever.rag:_filter_document:299 - Filtering context response: To find the Energy efficiency: total direct and indirect energy consumed per ton of sugar produced in the year 2021, we need to look for a specific indicator related to this metric in the provided markdown table. The table only includes information on carbon efficiency, specifically carbon emissions per ton of sugar produced.
+
+The indicator provided in the table, "carbon emissions per ton of sugar produced," gives us information about the carbon emissions associated with sugar production, but it does not directly provide data on the total direct and indirect energy consumed per ton of sugar produced. Energy efficiency involves a broader consideration of all energy inputs and outputs, not just carbon emissions.
+
+Since the table does not contain a specific indicator for the total direct and indirect energy consumed per ton of sugar produced, we cannot directly retrieve the information needed to answer the question about energy efficiency in the context of the table.
 
 Therefore, the answer to the question "What was the Energy efficiency: total direct and indirect energy consumed per ton of sugar produced in the year 2021?" is not directly retrievable from the context.
 
 Conclusion: no
-2024-03-13 21:28:06.298 | DEBUG    | esg_retriever.rag:_filter_single_document:293 - Filtering context conclusion: no
-2024-03-13 21:28:06.298 | DEBUG    | esg_retriever.rag:_retrieve_value:374 - Retrieval prompt:
+2024-03-13 22:15:29.688 | DEBUG    | esg_retriever.rag:_filter_document:302 - Filtering context conclusion: no
+2024-03-13 22:15:29.689 | DEBUG    | esg_retriever.rag:_retrieve_value:383 - Retrieval prompt:
 
 Use the following markdown tables to as context to answer the question at the end.
 The answer must be a value retrieved directly from the context. Please don't do any unit conversion.
@@ -534,14 +529,14 @@ Question: What was the Energy efficiency: total direct and indirect energy consu
 
 Answer:
 
-2024-03-13 21:28:07.113 | DEBUG    | esg_retriever.rag:_retrieve_value:396 - Retrieval response: {
+2024-03-13 22:15:30.406 | DEBUG    | esg_retriever.rag:_retrieve_value:405 - Retrieval response: {
     "Answer": 16.63,
     "Unit": "GJ/t"
 }
-2024-03-13 21:28:07.114 | DEBUG    | esg_retriever.rag:query:122 - Parsed answer: 16.63, GJ/t
-2024-03-13 21:28:07.114 | DEBUG    | esg_retriever.rag:query:126 - Required unit: None
-2024-03-13 21:28:07.116 | INFO     | __main__:validate_retrieval:307 - Accuracy: 1.0
-2024-03-13 21:28:07.120 | INFO     | __main__:run_validation:134 - Results:
+2024-03-13 22:15:30.406 | DEBUG    | esg_retriever.rag:query:122 - Parsed answer: 16.63, GJ/t
+2024-03-13 22:15:30.407 | DEBUG    | esg_retriever.rag:query:126 - Required unit: None
+2024-03-13 22:15:30.408 | INFO     | __main__:validate_retrieval:304 - Accuracy: 1.0
+2024-03-13 22:15:30.413 | INFO     | __main__:run_validation:133 - Results:
 
 | ID            | Metric                                                                                 |   2021_Value |   2021_Generated | Correct   |
 |---------------|----------------------------------------------------------------------------------------|--------------|------------------|-----------|
@@ -551,17 +546,17 @@ Answer:
 | 52_X_Tongaat  | Overall Board and Committee meeting attendance                                         |       99     |           99     | True      |
 | 114_X_Tongaat | Energy efficiency: total direct and indirect energy consumed per ton of sugar produced |       16.63  |           16.63  | True      |
 
-2024-03-13 21:28:07.121 | INFO     | __main__:run_validation:100 - Validation type:  nan
+2024-03-13 22:15:30.413 | INFO     | __main__:run_validation:99 - Validation type:  nan
 
-2024-03-13 21:28:07.125 | INFO     | esg_retriever.load:load_documents:60 - Loading documents from /home/tomw/unifi-pdf-llm/azure_ai_doc_intelligence/outputs/2021ESG.json
-2024-03-13 21:28:10.591 | DEBUG    | __main__:validate_retrieval:264 - Number of documents: 797
-2024-03-13 21:28:10.592 | INFO     | esg_retriever.rag:_initialise_document_store:524 - Initialising document store
-2024-03-13 21:28:10.597 | INFO     | esg_retriever.rag:_initialise_retriever:542 - Initialising retriever (using all-mpnet-base-v2 model)
-2024-03-13 21:28:16.263 | INFO     | esg_retriever.rag:_initialise_mappings:558 - Initialising mappings
-2024-03-13 21:28:16.266 | INFO     | esg_retriever.rag:_initiaise_openai_clients:567 - Initialising OpenAI clients
-2024-03-13 21:28:16.296 | INFO     | esg_retriever.rag:query:100 - Retrieving AMKEY: 3
-2024-03-13 21:28:16.297 | DEBUG    | esg_retriever.rag:query:102 - Retrieving metric: Advisory fees as per income statement
-2024-03-13 21:28:16.335 | DEBUG    | esg_retriever.rag:_filter_single_document:273 - Filtering context prompt:
+2024-03-13 22:15:30.417 | INFO     | esg_retriever.load:load_documents:60 - Loading documents from /home/tomw/unifi-pdf-llm/azure_ai_doc_intelligence/outputs/2021ESG.json
+2024-03-13 22:15:33.812 | DEBUG    | __main__:validate_retrieval:263 - Number of documents: 797
+2024-03-13 22:15:33.812 | INFO     | esg_retriever.rag:_initialise_document_store:533 - Initialising document store
+2024-03-13 22:15:33.818 | INFO     | esg_retriever.rag:_initialise_retriever:551 - Initialising retriever (using all-mpnet-base-v2 model)
+2024-03-13 22:15:39.889 | INFO     | esg_retriever.rag:_initialise_mappings:567 - Initialising mappings
+2024-03-13 22:15:39.892 | INFO     | esg_retriever.rag:_initiaise_openai_client:576 - Initialising OpenAI clients
+2024-03-13 22:15:39.908 | INFO     | esg_retriever.rag:query:100 - Retrieving AMKEY: 3
+2024-03-13 22:15:39.909 | DEBUG    | esg_retriever.rag:query:102 - Retrieving metric: Advisory fees as per income statement
+2024-03-13 22:15:39.955 | DEBUG    | esg_retriever.rag:_filter_document:282 - Filtering context prompt:
 
 Can the answer to the specific question: "What was the Advisory fees as per income statement in the year 2021? " be directly found in the following markdown table:
 
@@ -579,7 +574,7 @@ Please conclude your answer with a 'yes' or 'no'.
 
 Answer:
 
-2024-03-13 21:28:16.338 | DEBUG    | esg_retriever.rag:_filter_single_document:273 - Filtering context prompt:
+2024-03-13 22:15:39.958 | DEBUG    | esg_retriever.rag:_filter_document:282 - Filtering context prompt:
 
 Can the answer to the specific question: "What was the Advisory fees as per income statement in the year 2021? " be directly found in the following markdown table:
 
@@ -597,7 +592,7 @@ Please conclude your answer with a 'yes' or 'no'.
 
 Answer:
 
-2024-03-13 21:28:16.341 | DEBUG    | esg_retriever.rag:_filter_single_document:273 - Filtering context prompt:
+2024-03-13 22:15:39.961 | DEBUG    | esg_retriever.rag:_filter_document:282 - Filtering context prompt:
 
 Can the answer to the specific question: "What was the Advisory fees as per income statement in the year 2021? " be directly found in the following markdown table:
 
@@ -615,32 +610,30 @@ Please conclude your answer with a 'yes' or 'no'.
 
 Answer:
 
-2024-03-13 21:28:18.618 | DEBUG    | esg_retriever.rag:_filter_single_document:290 - Filtering context response: In the provided markdown table, there is no information related to advisory fees or income statements. The table primarily contains details about services provided by Deloitte & Touche, internal audit arrangements, and B-BBEE contributor level.
+2024-03-13 22:15:42.230 | DEBUG    | esg_retriever.rag:_filter_document:299 - Filtering context response: In the provided markdown table, there is no information related to advisory fees or income statements. The table primarily contains details about the review of internal controls, risk review, B-BBEE contributor level, and verification services provided by Deloitte & Touche and Internal Audit (co-sourced with KPMG).
 
-Since there is no mention of advisory fees or income statement figures in the table, the specific question "What was the Advisory fees as per income statement in the year 2021?" cannot be directly answered based on the information provided.
-
-Conclusion: no
-2024-03-13 21:28:18.618 | DEBUG    | esg_retriever.rag:_filter_single_document:293 - Filtering context conclusion: no
-2024-03-13 21:28:18.815 | DEBUG    | esg_retriever.rag:_filter_single_document:290 - Filtering context response: In the provided markdown table, there is no information related to advisory fees or income statements. The table primarily lists entities or topics such as "Deloitte & Touche," "B-BBEE contributor Level," "ESG and climate change reporting," and the verification network. There is no mention of advisory fees or income statements in this table.
-
-Since there is no mention of advisory fees or income statements in the table, the answer to the question "What was the Advisory fees as per income statement in the year 2021?" is not directly retrievable from the context.
+Since there is no mention of advisory fees or income statement figures in the table, the specific question regarding the advisory fees as per the income statement in the year 2021 cannot be directly answered from the context.
 
 Conclusion: no
-2024-03-13 21:28:18.815 | DEBUG    | esg_retriever.rag:_filter_single_document:293 - Filtering context conclusion: no
-2024-03-13 21:28:19.420 | DEBUG    | esg_retriever.rag:_filter_single_document:290 - Filtering context response: To find the Advisory fees as per the income statement in the year 2021, we need to look for a specific indicator related to advisory fees in the provided markdown table. However, the table only includes indicators related to auditor remuneration and the length of the current auditor's service.
+2024-03-13 22:15:42.230 | DEBUG    | esg_retriever.rag:_filter_document:302 - Filtering context conclusion: no
+2024-03-13 22:15:42.437 | DEBUG    | esg_retriever.rag:_filter_document:299 - Filtering context response: To find the Advisory fees as per the income statement in the year 2021, we need to look for a specific indicator related to advisory fees in the provided markdown table. However, the table only includes indicators related to auditor remuneration and the length of the current auditor's service.
 
-The indicators in the table do not directly provide information on the advisory fees as per the income statement for the year 2021. The table focuses on auditor remuneration and the length of the current auditor's service, which are different from advisory fees.
+The indicators in the table do not directly provide information on advisory fees. The "Auditor Remuneration" indicator specifically mentions the percentage of non-audit fees paid to auditors, which is different from advisory fees. Additionally, the "Length of current auditor's service" indicator is not related to advisory fees at all.
 
-Without a specific indicator related to advisory fees in the table, we cannot determine the exact amount of advisory fees as per the income statement in the year 2021.
-
-Therefore, the answer to the question "What was the Advisory fees as per income statement in the year 2021?" is not directly retrievable from the context.
+Since there is no specific indicator related to advisory fees in the table, the answer to the question "What was the Advisory fees as per the income statement in the year 2021?" is not directly retrievable from the context.
 
 Conclusion: no
-2024-03-13 21:28:19.420 | DEBUG    | esg_retriever.rag:_filter_single_document:293 - Filtering context conclusion: no
-2024-03-13 21:28:19.420 | INFO     | esg_retriever.rag:query:110 - No relevant context documents found. Returning None.
-2024-03-13 21:28:19.421 | INFO     | esg_retriever.rag:query:100 - Retrieving AMKEY: 6
-2024-03-13 21:28:19.422 | DEBUG    | esg_retriever.rag:query:102 - Retrieving metric: Air emissions of the following pollutants: (1) CO
-2024-03-13 21:28:19.455 | DEBUG    | esg_retriever.rag:_filter_single_document:273 - Filtering context prompt:
+2024-03-13 22:15:42.437 | DEBUG    | esg_retriever.rag:_filter_document:302 - Filtering context conclusion: no
+2024-03-13 22:15:43.003 | DEBUG    | esg_retriever.rag:_filter_document:299 - Filtering context response: In the provided markdown table, there is no information related to advisory fees or income statements. The table primarily lists entities or categories such as "B-BBEE contributor Level," "ESG and climate change reporting," and the associated service providers like "Deloitte & Touche" and "BDO."
+
+Since there is no mention of advisory fees or income statements in the table, the specific question regarding the advisory fees as per the income statement in the year 2021 cannot be directly answered from the context.
+
+Conclusion: no
+2024-03-13 22:15:43.003 | DEBUG    | esg_retriever.rag:_filter_document:302 - Filtering context conclusion: no
+2024-03-13 22:15:43.003 | INFO     | esg_retriever.rag:query:110 - No relevant context documents found. Returning None.
+2024-03-13 22:15:43.005 | INFO     | esg_retriever.rag:query:100 - Retrieving AMKEY: 6
+2024-03-13 22:15:43.005 | DEBUG    | esg_retriever.rag:query:102 - Retrieving metric: Air emissions of the following pollutants: (1) CO
+2024-03-13 22:15:43.053 | DEBUG    | esg_retriever.rag:_filter_document:282 - Filtering context prompt:
 
 Can the answer to the specific question: "What was the Air emissions of the following pollutants: (1) CO in the year 2021? " be directly found in the following markdown table:
 
@@ -658,7 +651,7 @@ Please conclude your answer with a 'yes' or 'no'.
 
 Answer:
 
-2024-03-13 21:28:19.458 | DEBUG    | esg_retriever.rag:_filter_single_document:273 - Filtering context prompt:
+2024-03-13 22:15:43.055 | DEBUG    | esg_retriever.rag:_filter_document:282 - Filtering context prompt:
 
 Can the answer to the specific question: "What was the Air emissions of the following pollutants: (1) CO in the year 2021? " be directly found in the following markdown table:
 
@@ -676,7 +669,7 @@ Please conclude your answer with a 'yes' or 'no'.
 
 Answer:
 
-2024-03-13 21:28:19.461 | DEBUG    | esg_retriever.rag:_filter_single_document:273 - Filtering context prompt:
+2024-03-13 22:15:43.058 | DEBUG    | esg_retriever.rag:_filter_document:282 - Filtering context prompt:
 
 Can the answer to the specific question: "What was the Air emissions of the following pollutants: (1) CO in the year 2021? " be directly found in the following markdown table:
 
@@ -694,34 +687,34 @@ Please conclude your answer with a 'yes' or 'no'.
 
 Answer:
 
-2024-03-13 21:28:22.282 | DEBUG    | esg_retriever.rag:_filter_single_document:290 - Filtering context response: To find the air emissions of CO specifically in the year 2021, we need to look for a specific entry related to CO emissions in the provided markdown table. The table includes a section for "Carbon emissions - Scope 1" but does not specify the breakdown of different pollutants within this category.
+2024-03-13 22:15:46.003 | DEBUG    | esg_retriever.rag:_filter_document:299 - Filtering context response: To find the air emissions of CO (Carbon Monoxide) in the year 2021, we need to look for a specific entry related to CO emissions in the provided markdown table. However, the table only includes information on carbon emissions in tons of carbon dioxide equivalents (CO2-e) for LPG and Acetylene.
 
-The table only provides information on carbon emissions as a whole under Scope 1, without a specific mention of CO emissions. Without a separate entry for CO emissions or a breakdown of pollutants within the carbon emissions category, we cannot determine the specific amount of CO emissions in the year 2021 from the given table.
-
-Therefore, the answer to the question "What was the Air emissions of the following pollutants: (1) CO in the year 2021?" is not directly retrievable from the context.
-
-Conclusion: no
-2024-03-13 21:28:22.282 | DEBUG    | esg_retriever.rag:_filter_single_document:293 - Filtering context conclusion: no
-2024-03-13 21:28:22.725 | DEBUG    | esg_retriever.rag:_filter_single_document:290 - Filtering context response: To find the air emissions of CO (Carbon Monoxide) in the year 2021, we need to look for a specific entry related to CO emissions in the provided markdown table. However, the table only includes information on carbon emissions in tons of carbon dioxide equivalents (CO2-e) for LPG and acetylene used in specific applications.
-
-The table does not provide any data on CO emissions specifically. It mentions carbon dioxide equivalents (CO2-e) for LPG and acetylene, which are different pollutants from CO. Without a direct mention of CO emissions in the table, we cannot determine the air emissions of CO in the year 2021 from the given information.
+The table does not provide specific data on CO emissions. It only mentions emissions related to LPG and Acetylene, which are not the same as CO emissions. Without a direct entry for CO emissions in the table, we cannot determine the air emissions of CO for the year 2021 from the given information.
 
 Therefore, the answer to the question "What was the Air emissions of the following pollutants: (1) CO in the year 2021?" is not directly retrievable from the context.
 
 Conclusion: no
-2024-03-13 21:28:22.725 | DEBUG    | esg_retriever.rag:_filter_single_document:293 - Filtering context conclusion: no
-2024-03-13 21:28:24.127 | DEBUG    | esg_retriever.rag:_filter_single_document:290 - Filtering context response: To find the air emissions of CO specifically in the year 2021, we need to look for the data related to CO emissions in the provided markdown table. The table includes a section for "Carbon emissions - Scope 1" with the unit of measure "tCO2e" (tonnes of CO2 equivalent). However, this data does not specify the emissions of CO (carbon monoxide) specifically.
+2024-03-13 22:15:46.003 | DEBUG    | esg_retriever.rag:_filter_document:302 - Filtering context conclusion: no
+2024-03-13 22:15:46.271 | DEBUG    | esg_retriever.rag:_filter_document:299 - Filtering context response: To find the air emissions of CO specifically for the year 2021, we need to look for the data related to Carbon emissions - Scope 1 in the provided markdown table. The table includes the unit of measure as tCO2e (tonnes of carbon dioxide equivalent) for Carbon emissions - Scope 1 for the years 2021, 2020, 2019, and 2018.
 
-The data provided in the table is related to carbon emissions in terms of CO2 equivalent, not specifically CO emissions. Carbon emissions can include various compounds, and without a specific breakdown for CO emissions, we cannot determine the exact amount of CO emissions in the year 2021 from the given table.
+However, the table does not provide a specific breakdown of the types of pollutants emitted under Carbon emissions - Scope 1. It only gives a general figure for carbon emissions in terms of tonnes of carbon dioxide equivalent. Without a specific value for CO emissions in the year 2021, we cannot determine the exact amount of CO emissions from this table.
 
 Therefore, the answer to the question "What was the Air emissions of the following pollutants: (1) CO in the year 2021?" is not directly retrievable from the context.
 
 Conclusion: no
-2024-03-13 21:28:24.127 | DEBUG    | esg_retriever.rag:_filter_single_document:293 - Filtering context conclusion: no
-2024-03-13 21:28:24.127 | INFO     | esg_retriever.rag:query:110 - No relevant context documents found. Returning None.
-2024-03-13 21:28:24.128 | INFO     | esg_retriever.rag:query:100 - Retrieving AMKEY: 7
-2024-03-13 21:28:24.129 | DEBUG    | esg_retriever.rag:query:102 - Retrieving metric: Air emissions of the following pollutants: (2) NOx (excluding N2O)
-2024-03-13 21:28:24.187 | DEBUG    | esg_retriever.rag:_filter_single_document:273 - Filtering context prompt:
+2024-03-13 22:15:46.271 | DEBUG    | esg_retriever.rag:_filter_document:302 - Filtering context conclusion: no
+2024-03-13 22:15:46.760 | DEBUG    | esg_retriever.rag:_filter_document:299 - Filtering context response: To find the air emissions of CO specifically in the year 2021, we need to look for the specific data related to CO emissions in the provided markdown table. The table includes data under "Carbon emissions - Scope 1" in the unit of measure tCO2e for the years 2021, 2020, 2019, and 2018.
+
+However, the data provided in the table is for "Carbon emissions - Scope 1" in general and does not specify the breakdown of individual pollutants like CO. Without a specific value for CO emissions in the year 2021, we cannot determine the exact amount of CO emissions for that year from the given table.
+
+Therefore, the answer to the question "What was the Air emissions of the following pollutants: (1) CO in the year 2021?" is not directly retrievable from the context.
+
+Conclusion: no
+2024-03-13 22:15:46.760 | DEBUG    | esg_retriever.rag:_filter_document:302 - Filtering context conclusion: no
+2024-03-13 22:15:46.761 | INFO     | esg_retriever.rag:query:110 - No relevant context documents found. Returning None.
+2024-03-13 22:15:46.762 | INFO     | esg_retriever.rag:query:100 - Retrieving AMKEY: 7
+2024-03-13 22:15:46.762 | DEBUG    | esg_retriever.rag:query:102 - Retrieving metric: Air emissions of the following pollutants: (2) NOx (excluding N2O)
+2024-03-13 22:15:46.822 | DEBUG    | esg_retriever.rag:_filter_document:282 - Filtering context prompt:
 
 Can the answer to the specific question: "What was the Air emissions of the following pollutants: (2) NOx (excluding N2O) in the year 2021? " be directly found in the following markdown table:
 
@@ -739,7 +732,7 @@ Please conclude your answer with a 'yes' or 'no'.
 
 Answer:
 
-2024-03-13 21:28:24.189 | DEBUG    | esg_retriever.rag:_filter_single_document:273 - Filtering context prompt:
+2024-03-13 22:15:46.825 | DEBUG    | esg_retriever.rag:_filter_document:282 - Filtering context prompt:
 
 Can the answer to the specific question: "What was the Air emissions of the following pollutants: (2) NOx (excluding N2O) in the year 2021? " be directly found in the following markdown table:
 
@@ -757,7 +750,7 @@ Please conclude your answer with a 'yes' or 'no'.
 
 Answer:
 
-2024-03-13 21:28:24.192 | DEBUG    | esg_retriever.rag:_filter_single_document:273 - Filtering context prompt:
+2024-03-13 22:15:46.827 | DEBUG    | esg_retriever.rag:_filter_document:282 - Filtering context prompt:
 
 Can the answer to the specific question: "What was the Air emissions of the following pollutants: (2) NOx (excluding N2O) in the year 2021? " be directly found in the following markdown table:
 
@@ -775,30 +768,34 @@ Please conclude your answer with a 'yes' or 'no'.
 
 Answer:
 
-2024-03-13 21:28:25.876 | DEBUG    | esg_retriever.rag:_filter_single_document:290 - Filtering context response: In the provided markdown table, there is no specific information related to the Air emissions of NOx (excluding N2O) for the year 2021. The table only includes data on carbon emissions, specifically related to natural gas used in stationary combustion and total scope 1 emissions.
+2024-03-13 22:15:49.607 | DEBUG    | esg_retriever.rag:_filter_document:299 - Filtering context response: To find the air emissions of NOx (excluding N2O) in the year 2021, we need to look for a specific indicator related to NOx emissions in the provided markdown table. However, the table only includes information on carbon emissions, specifically related to natural gas used in stationary combustion and total scope 1 emissions.
 
-Since the table does not contain any data on NOx emissions, including NOx (excluding N2O) for the year 2021, we cannot directly find the Air emissions of NOx (excluding N2O) for 2021 from the given context.
-
-Conclusion: no
-2024-03-13 21:28:25.876 | DEBUG    | esg_retriever.rag:_filter_single_document:293 - Filtering context conclusion: no
-2024-03-13 21:28:26.146 | DEBUG    | esg_retriever.rag:_filter_single_document:290 - Filtering context response: In the provided markdown table, there is no specific information related to the air emissions of NOx (excluding N2O) for the year 2021. The table only includes data on carbon emissions, specifically related to acetylene and natural gas usage.
-
-Since the table does not contain any data on NOx emissions, including NOx (excluding N2O), we cannot directly find the air emissions of NOx (excluding N2O) for the year 2021 from the given context.
-
-Conclusion: no
-2024-03-13 21:28:26.146 | DEBUG    | esg_retriever.rag:_filter_single_document:293 - Filtering context conclusion: no
-2024-03-13 21:28:26.606 | DEBUG    | esg_retriever.rag:_filter_single_document:290 - Filtering context response: To find the air emissions of NOx (excluding N2O) in the year 2021, we need to look for a specific indicator related to NOx emissions in the provided markdown table. However, the table only includes information on carbon emissions, specifically carbon emissions under Scope 1.
-
-Since the table does not provide any data related to NOx emissions or specify NOx emissions excluding N2O, we cannot directly retrieve the information on NOx emissions from the table for the year 2021.
+Since the table does not provide any data or specific indicator related to NOx emissions, we cannot directly determine the air emissions of NOx (excluding N2O) in the year 2021 from the given context.
 
 Therefore, the answer to the question "What was the Air emissions of the following pollutants: (2) NOx (excluding N2O) in the year 2021?" is not directly retrievable from the context.
 
 Conclusion: no
-2024-03-13 21:28:26.606 | DEBUG    | esg_retriever.rag:_filter_single_document:293 - Filtering context conclusion: no
-2024-03-13 21:28:26.606 | INFO     | esg_retriever.rag:query:110 - No relevant context documents found. Returning None.
-2024-03-13 21:28:26.607 | INFO     | esg_retriever.rag:query:100 - Retrieving AMKEY: 8
-2024-03-13 21:28:26.608 | DEBUG    | esg_retriever.rag:query:102 - Retrieving metric: Air emissions of the following pollutants: (3) SOx
-2024-03-13 21:28:26.658 | DEBUG    | esg_retriever.rag:_filter_single_document:273 - Filtering context prompt:
+2024-03-13 22:15:49.607 | DEBUG    | esg_retriever.rag:_filter_document:302 - Filtering context conclusion: no
+2024-03-13 22:15:49.915 | DEBUG    | esg_retriever.rag:_filter_document:299 - Filtering context response: To find the air emissions of NOx (excluding N2O) in the year 2021, we need to look for a specific indicator related to NOx emissions in the provided markdown table. However, the table only includes information on carbon emissions, specifically related to acetylene and natural gas usage.
+
+Since the table does not provide any data on NOx emissions, including NOx (excluding N2O), we cannot directly determine the air emissions of NOx in the year 2021 from the given table.
+
+Therefore, the answer to the question "What was the Air emissions of the following pollutants: (2) NOx (excluding N2O) in the year 2021?" is not directly retrievable from the context.
+
+Conclusion: no
+2024-03-13 22:15:49.915 | DEBUG    | esg_retriever.rag:_filter_document:302 - Filtering context conclusion: no
+2024-03-13 22:15:50.109 | DEBUG    | esg_retriever.rag:_filter_document:299 - Filtering context response: To find the air emissions of NOx (excluding N2O) in the year 2021, we need to look for a specific indicator related to NOx emissions in the provided markdown table. However, the table only includes information on carbon emissions, specifically carbon emissions under Scope 1.
+
+Since the table does not provide any data related to NOx emissions or specify the emissions of NOx (excluding N2O) for the year 2021, we cannot directly retrieve the information regarding the air emissions of NOx (excluding N2O) in 2021 from this table.
+
+Therefore, the answer to the question "What was the Air emissions of the following pollutants: (2) NOx (excluding N2O) in the year 2021?" is not directly retrievable from the context.
+
+Conclusion: no
+2024-03-13 22:15:50.109 | DEBUG    | esg_retriever.rag:_filter_document:302 - Filtering context conclusion: no
+2024-03-13 22:15:50.110 | INFO     | esg_retriever.rag:query:110 - No relevant context documents found. Returning None.
+2024-03-13 22:15:50.110 | INFO     | esg_retriever.rag:query:100 - Retrieving AMKEY: 8
+2024-03-13 22:15:50.111 | DEBUG    | esg_retriever.rag:query:102 - Retrieving metric: Air emissions of the following pollutants: (3) SOx
+2024-03-13 22:15:50.179 | DEBUG    | esg_retriever.rag:_filter_document:282 - Filtering context prompt:
 
 Can the answer to the specific question: "What was the Air emissions of the following pollutants: (3) SOx in the year 2021? " be directly found in the following markdown table:
 
@@ -816,7 +813,7 @@ Please conclude your answer with a 'yes' or 'no'.
 
 Answer:
 
-2024-03-13 21:28:26.661 | DEBUG    | esg_retriever.rag:_filter_single_document:273 - Filtering context prompt:
+2024-03-13 22:15:50.182 | DEBUG    | esg_retriever.rag:_filter_document:282 - Filtering context prompt:
 
 Can the answer to the specific question: "What was the Air emissions of the following pollutants: (3) SOx in the year 2021? " be directly found in the following markdown table:
 
@@ -834,7 +831,7 @@ Please conclude your answer with a 'yes' or 'no'.
 
 Answer:
 
-2024-03-13 21:28:26.663 | DEBUG    | esg_retriever.rag:_filter_single_document:273 - Filtering context prompt:
+2024-03-13 22:15:50.184 | DEBUG    | esg_retriever.rag:_filter_document:282 - Filtering context prompt:
 
 Can the answer to the specific question: "What was the Air emissions of the following pollutants: (3) SOx in the year 2021? " be directly found in the following markdown table:
 
@@ -852,34 +849,32 @@ Please conclude your answer with a 'yes' or 'no'.
 
 Answer:
 
-2024-03-13 21:28:28.838 | DEBUG    | esg_retriever.rag:_filter_single_document:290 - Filtering context response: To find the air emissions of SOx (Sulfur Oxides) in the year 2021, we need to look for a specific indicator related to SOx emissions in the provided markdown table. However, the table only includes information on carbon emissions, specifically related to petrol and LPG usage in contractor equipment.
+2024-03-13 22:15:52.355 | DEBUG    | esg_retriever.rag:_filter_document:299 - Filtering context response: In the provided markdown table, there is no specific information related to SOx emissions. The table only includes data on carbon emissions, specifically related to petrol and LPG usage in contractor equipment.
 
-Since the table does not provide any data on SOx emissions or sulfur oxides specifically, we cannot determine the air emissions of SOx in the year 2021 from the given table.
-
-Therefore, the answer to the question "What was the Air emissions of the following pollutants: (3) SOx in the year 2021?" is not directly retrievable from the context.
-
-Conclusion: no
-2024-03-13 21:28:28.838 | DEBUG    | esg_retriever.rag:_filter_single_document:293 - Filtering context conclusion: no
-2024-03-13 21:28:28.974 | DEBUG    | esg_retriever.rag:_filter_single_document:290 - Filtering context response: To find the air emissions of SOx (Sulfur Oxides) in the year 2021, we need to look for a specific indicator related to SOx emissions in the provided markdown table. However, the table only includes information on carbon emissions, specifically related to LPG and Acetylene usage in stationary combustion equipment, workshops, and laboratories.
-
-Since the table does not provide any data on SOx emissions or sulfur oxides specifically, we cannot directly determine the air emissions of SOx in the year 2021 from the given table.
+Since the question specifically asks for the air emissions of SOx in the year 2021, and the table does not contain any data related to SOx emissions, we cannot directly find the information on SOx emissions for the year 2021 from the given table.
 
 Therefore, the answer to the question "What was the Air emissions of the following pollutants: (3) SOx in the year 2021?" is not directly retrievable from the context.
 
 Conclusion: no
-2024-03-13 21:28:28.974 | DEBUG    | esg_retriever.rag:_filter_single_document:293 - Filtering context conclusion: no
-2024-03-13 21:28:29.582 | DEBUG    | esg_retriever.rag:_filter_single_document:290 - Filtering context response: To find the air emissions of SOx (Sulfur Oxides) in the year 2021, we need to look for a specific indicator related to SOx emissions in the provided markdown table. However, the table only includes information on carbon emissions, specifically related to carbon dioxide equivalents (CO2-e), and does not mention SOx emissions.
+2024-03-13 22:15:52.355 | DEBUG    | esg_retriever.rag:_filter_document:302 - Filtering context conclusion: no
+2024-03-13 22:15:52.603 | DEBUG    | esg_retriever.rag:_filter_document:299 - Filtering context response: In the provided markdown table, there is no specific information related to the air emissions of SOx (Sulfur Oxides) in the year 2021. The table only includes data on carbon emissions, specifically related to LPG and Acetylene usage in stationary combustion equipment, workshops, and laboratories.
+
+Since the table does not contain any data on SOx emissions or any other pollutants besides carbon emissions, it is not possible to directly find the air emissions of SOx in the year 2021 from the given table.
+
+Conclusion: no
+2024-03-13 22:15:52.603 | DEBUG    | esg_retriever.rag:_filter_document:302 - Filtering context conclusion: no
+2024-03-13 22:15:52.882 | DEBUG    | esg_retriever.rag:_filter_document:299 - Filtering context response: To find the air emissions of SOx (Sulfur Oxides) in the year 2021, we need to look for a specific indicator related to SOx emissions in the provided markdown table. However, the table only includes information on carbon emissions, specifically related to carbon dioxide equivalents (CO2-e), and does not mention SOx emissions.
 
 Since the table does not provide any data on SOx emissions or any specific information related to sulfur oxides, we cannot directly retrieve the air emissions of SOx in the year 2021 from the context.
 
 Therefore, the answer to the question "What was the Air emissions of the following pollutants: (3) SOx in the year 2021?" is not directly retrievable from the context.
 
 Conclusion: no
-2024-03-13 21:28:29.582 | DEBUG    | esg_retriever.rag:_filter_single_document:293 - Filtering context conclusion: no
-2024-03-13 21:28:29.582 | INFO     | esg_retriever.rag:query:110 - No relevant context documents found. Returning None.
-2024-03-13 21:28:29.583 | INFO     | esg_retriever.rag:query:100 - Retrieving AMKEY: 9
-2024-03-13 21:28:29.584 | DEBUG    | esg_retriever.rag:query:102 - Retrieving metric: Air emissions of the following pollutants: (4) particulate matter (PM10)
-2024-03-13 21:28:29.637 | DEBUG    | esg_retriever.rag:_filter_single_document:273 - Filtering context prompt:
+2024-03-13 22:15:52.882 | DEBUG    | esg_retriever.rag:_filter_document:302 - Filtering context conclusion: no
+2024-03-13 22:15:52.882 | INFO     | esg_retriever.rag:query:110 - No relevant context documents found. Returning None.
+2024-03-13 22:15:52.883 | INFO     | esg_retriever.rag:query:100 - Retrieving AMKEY: 9
+2024-03-13 22:15:52.884 | DEBUG    | esg_retriever.rag:query:102 - Retrieving metric: Air emissions of the following pollutants: (4) particulate matter (PM10)
+2024-03-13 22:15:52.931 | DEBUG    | esg_retriever.rag:_filter_document:282 - Filtering context prompt:
 
 Can the answer to the specific question: "What was the Air emissions of the following pollutants: (4) particulate matter (PM10) in the year 2021? " be directly found in the following markdown table:
 
@@ -897,7 +892,7 @@ Please conclude your answer with a 'yes' or 'no'.
 
 Answer:
 
-2024-03-13 21:28:29.640 | DEBUG    | esg_retriever.rag:_filter_single_document:273 - Filtering context prompt:
+2024-03-13 22:15:52.934 | DEBUG    | esg_retriever.rag:_filter_document:282 - Filtering context prompt:
 
 Can the answer to the specific question: "What was the Air emissions of the following pollutants: (4) particulate matter (PM10) in the year 2021? " be directly found in the following markdown table:
 
@@ -915,7 +910,7 @@ Please conclude your answer with a 'yes' or 'no'.
 
 Answer:
 
-2024-03-13 21:28:29.643 | DEBUG    | esg_retriever.rag:_filter_single_document:273 - Filtering context prompt:
+2024-03-13 22:15:52.937 | DEBUG    | esg_retriever.rag:_filter_document:282 - Filtering context prompt:
 
 Can the answer to the specific question: "What was the Air emissions of the following pollutants: (4) particulate matter (PM10) in the year 2021? " be directly found in the following markdown table:
 
@@ -933,31 +928,31 @@ Please conclude your answer with a 'yes' or 'no'.
 
 Answer:
 
-2024-03-13 21:28:31.415 | DEBUG    | esg_retriever.rag:_filter_single_document:290 - Filtering context response: In the provided markdown table, there is no specific information related to air emissions of particulate matter (PM10) for the year 2021. The table only includes data on carbon emissions in terms of tons of carbon dioxide equivalents (CO2-e) for LPG and acetylene use in stationary combustion equipment, workshops, and laboratories.
+2024-03-13 22:15:55.156 | DEBUG    | esg_retriever.rag:_filter_document:299 - Filtering context response: In the provided markdown table, there is no specific information related to air emissions of particulate matter (PM10) for the year 2021. The table only includes data on carbon emissions in terms of tons of carbon dioxide equivalents (CO2-e) for LPG and acetylene use in stationary combustion equipment, workshops, and laboratories.
 
-Since the table does not mention any data related to particulate matter (PM10) emissions, it is not possible to directly find the air emissions of PM10 pollutants for the year 2021 from the given context.
+Since the table does not mention any data related to particulate matter (PM10) emissions specifically, we cannot directly find the air emissions of PM10 pollutants for the year 2021 from this table.
 
 Conclusion: no
-2024-03-13 21:28:31.415 | DEBUG    | esg_retriever.rag:_filter_single_document:293 - Filtering context conclusion: no
-2024-03-13 21:28:32.739 | DEBUG    | esg_retriever.rag:_filter_single_document:290 - Filtering context response: In the provided markdown table, there is no specific information related to air emissions of particulate matter (PM10) for the year 2021. The table only includes data on carbon emissions in terms of tons of carbon dioxide equivalents (CO2-e) for petrol and LPG use in contractor equipment.
+2024-03-13 22:15:55.156 | DEBUG    | esg_retriever.rag:_filter_document:302 - Filtering context conclusion: no
+2024-03-13 22:15:55.578 | DEBUG    | esg_retriever.rag:_filter_document:299 - Filtering context response: To find the air emissions of particulate matter (PM10) in the year 2021, we need to look for a specific indicator related to this pollutant in the provided markdown table. However, the table only includes information on carbon emissions, specifically related to coal and diesel usage.
 
-Since the table does not contain any data related to particulate matter (PM10) emissions specifically, we cannot directly find the air emissions of PM10 for the year 2021 from this table.
+Since the table does not provide any data on particulate matter (PM10) emissions, we cannot directly determine the air emissions of PM10 for the year 2021 from the given table.
 
 Therefore, the answer to the question "What was the Air emissions of the following pollutants: (4) particulate matter (PM10) in the year 2021?" is not directly retrievable from the context.
 
 Conclusion: no
-2024-03-13 21:28:32.739 | DEBUG    | esg_retriever.rag:_filter_single_document:293 - Filtering context conclusion: no
-2024-03-13 21:28:33.016 | DEBUG    | esg_retriever.rag:_filter_single_document:290 - Filtering context response: To find the air emissions of particulate matter (PM10) in the year 2021, we need to look for a specific indicator related to this pollutant in the provided markdown table. However, the table only includes information on carbon emissions, specifically related to coal and diesel usage.
+2024-03-13 22:15:55.578 | DEBUG    | esg_retriever.rag:_filter_document:302 - Filtering context conclusion: no
+2024-03-13 22:15:55.631 | DEBUG    | esg_retriever.rag:_filter_document:299 - Filtering context response: To find the air emissions of particulate matter (PM10) in the year 2021, we need to look for a specific indicator related to this pollutant in the provided markdown table. However, the table only includes information on carbon emissions in terms of tons of carbon dioxide equivalents (CO2-e) for petrol and LPG use in contractor equipment.
 
-Since the table does not provide any data on particulate matter (PM10) emissions, we cannot directly determine the air emissions of PM10 for the year 2021 from this table. The table specifically focuses on carbon emissions related to coal and diesel usage, not on particulate matter emissions.
+Since the table does not provide any data or specific indicator related to particulate matter (PM10) emissions, we cannot directly determine the air emissions of PM10 in the year 2021 from the given table.
 
 Therefore, the answer to the question "What was the Air emissions of the following pollutants: (4) particulate matter (PM10) in the year 2021?" is not directly retrievable from the context.
 
 Conclusion: no
-2024-03-13 21:28:33.016 | DEBUG    | esg_retriever.rag:_filter_single_document:293 - Filtering context conclusion: no
-2024-03-13 21:28:33.016 | INFO     | esg_retriever.rag:query:110 - No relevant context documents found. Returning None.
-2024-03-13 21:28:33.018 | INFO     | __main__:validate_retrieval:307 - Accuracy: 1.0
-2024-03-13 21:28:33.023 | INFO     | __main__:run_validation:134 - Results:
+2024-03-13 22:15:55.631 | DEBUG    | esg_retriever.rag:_filter_document:302 - Filtering context conclusion: no
+2024-03-13 22:15:55.632 | INFO     | esg_retriever.rag:query:110 - No relevant context documents found. Returning None.
+2024-03-13 22:15:55.633 | INFO     | __main__:validate_retrieval:304 - Accuracy: 1.0
+2024-03-13 22:15:55.638 | INFO     | __main__:run_validation:133 - Results:
 
 | ID          | Metric                                                                   |   2021_Value |   2021_Generated | Correct   |
 |-------------|--------------------------------------------------------------------------|--------------|------------------|-----------|

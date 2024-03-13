@@ -74,9 +74,9 @@ class ModularRAG:
         self._initialise_document_store()
         self._initialise_retriever(top_k)
         self._initialise_mappings()
-        self._initiaise_openai_clients()
+        self._initiaise_openai_client()
 
-    async def query(self, amkey: int, year: int) -> tuple[float | None, float | None]:
+    def query(self, amkey: int, year: int) -> tuple[float | None, float | None]:
         """
         Return the value associated with an AMKEY for a given year.
 
@@ -104,7 +104,7 @@ class ModularRAG:
         context_documents = self.retriever.retrieve(metric)
         additional_instructions = self._retrieve_additional_appended_instructions(amkey)
         question = f"What was the {metric} in the year {year}? {additional_instructions}"
-        relevant_context_documents = await self._filter_context_documents(context_documents, question)
+        relevant_context_documents = asyncio.run(self._filter_context_documents(context_documents, question))
 
         if not relevant_context_documents:
             logger.info("No relevant context documents found. Returning None.")
@@ -215,6 +215,8 @@ class ModularRAG:
         """
         Return the documents that are relevant to the question.
 
+        The filtering is run asynchronously to speed up the process.
+
         Parameters
         ----------
         docs : list[Document]
@@ -228,20 +230,27 @@ class ModularRAG:
         relevant_docs : list[Document]
             The context documents that are relevant to the question.
         """
+        # Initialse async OpenAI client
+        self.openai_async_client = AsyncOpenAI(
+            api_key=os.environ.get("OPENAI_API_KEY")
+        )
+
         relevant_docs = []
 
         tasks = []
         for doc in docs:
-            tasks.append(self._filter_single_document(doc, question))
+            tasks.append(self._filter_document(doc, question))
         results = await asyncio.gather(*tasks)
 
         for doc, conclusion in results:
             if conclusion == "yes":
                 relevant_docs.append(doc)
 
+        await self.openai_async_client.close()
+
         return relevant_docs
 
-    async def _filter_single_document(self, doc, question):
+    async def _filter_document(self, doc, question):
         """
         Return the document and a conclusion about its relevance to the question.
 
@@ -560,19 +569,12 @@ class ModularRAG:
         self.amkey_to_synonym_df = pd.read_csv(AMKEY_TO_SYNONYM_PATH)
         self.amkey_to_unit_df = pd.read_csv(AMKEY_TO_UNIT_PATH)
 
-    def _initiaise_openai_clients(self):
+    def _initiaise_openai_client(self):
         """
-        Initialise the OpenAI clients.
+        Initialise the OpenAI client.
         """
         logger.info("Initialising OpenAI clients")
         load_dotenv()
         self.openai_client = OpenAI(
             api_key=os.environ.get("OPENAI_API_KEY"),
         )
-        self.openai_async_client = AsyncOpenAI(
-            api_key=os.environ.get("OPENAI_API_KEY")
-        )
-
-    async def close(self):
-        """Close the async OpenAI client."""
-        await self.openai_async_client.close()

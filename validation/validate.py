@@ -1,7 +1,6 @@
 """Script to validate the performance of the end-to-end RAG system."""
 
 import os
-import asyncio
 import sys
 import argparse
 import warnings
@@ -59,7 +58,7 @@ def parse_args():
 
 
 # TODO: Add a function to simplify the logging setup.
-async def run_validation(companies: list[str], num: int = 50):
+def run_validation(companies: list[str], num: int = 50):
     """
     Validate the performance of the end-to-end RAG system.
 
@@ -100,7 +99,7 @@ async def run_validation(companies: list[str], num: int = 50):
             logger.info(f"Validation type:  {validation_type}\n")
 
             accuracy, results_df = (
-                await validate_retrieval(
+                validate_retrieval(
                     company,
                     VALIDATION_YEAR,
                     type=validation_type,
@@ -179,7 +178,7 @@ async def run_validation(companies: list[str], num: int = 50):
         logger.info(f"Average accuracy (nan): {nan_accuracy}")
 
 
-async def validate_retrieval(
+def validate_retrieval(
     company: str,
     year: int,
     type: str = "retrieval",
@@ -277,10 +276,8 @@ async def validate_retrieval(
         metric = query_pipeline.retrieve_metric_description(amkey)
         results_df.at[idx, "Metric"] = metric
 
-        value = await query_pipeline.query(amkey, year)
+        value = query_pipeline.query(amkey, year)
         results_df.at[idx, f"{year}_Generated"] = value
-
-    await query_pipeline.close()
 
     results_df[f"{year}_Value"] = results_df[f"{year}_Value"].astype(float)
     results_df[f"{year}_Generated"] = results_df[f"{year}_Generated"].astype(float)
@@ -313,4 +310,4 @@ if __name__ == "__main__":
     args = parse_args()
     num = args.num
     companies = args.companies
-    asyncio.run(run_validation(companies, num))
+    run_validation(companies, num)
