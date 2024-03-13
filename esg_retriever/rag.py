@@ -279,8 +279,6 @@ class ModularRAG:
             question=question, context=doc.content
         )
 
-        logger.debug(f"Filtering context prompt:\n{prompt}")
-
         response = await self.openai_async_client.chat.completions.create(
             model="gpt-3.5-turbo",
             messages=[
@@ -296,6 +294,9 @@ class ModularRAG:
             seed=0,
         )
         response = response.choices[0].message.content
+
+        logger.debug(f"Filtering context prompt:\n{prompt}")
+
         logger.debug(f"Filtering context response: {response}")
 
         conclusion = self._extract_conclusion(response)
