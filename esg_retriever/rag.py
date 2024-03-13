@@ -50,9 +50,6 @@ class ModularRAG:
         docs: list[Document],
         company: str,
         top_k: int = 3,
-        amkey_to_metric_path: str = AMKEY_TO_METRIC_PATH,
-        amkey_to_synonym_path: str = AMKEY_TO_SYNONYM_PATH,
-        amkey_to_unit_path: str = AMKEY_TO_UNIT_PATH,
     ):
         """
         Initalise the components of the query pipeline.
@@ -67,16 +64,6 @@ class ModularRAG:
 
         top_k : int
             The number of documents to retrieve for each query.
-
-        # TODO: Do these need to be provided as arguments? I don't think so.
-        amkey_to_metric_path : str
-            Path to a csv file mapping AMKEY to metric.
-
-        amkey_to_synonym_path : str
-            Path to a csv file mapping AMKEY and company to metric synonym.
-
-        amkey_to_unit_path : str
-            Path to a csv file mapping AMKEY to desired unit.
         """
         self.docs = docs
         self.company = company
@@ -91,9 +78,7 @@ class ModularRAG:
 
         self._initialise_document_store()
         self._initialise_retriever(top_k)
-        self._initialise_mappings(
-            amkey_to_metric_path, amkey_to_synonym_path, amkey_to_unit_path
-        )
+        self._initialise_mappings()
 
     def query(self, amkey: int, year: int) -> tuple[float | None, float | None]:
         """
@@ -321,6 +306,9 @@ class ModularRAG:
         """
         Return additional instructions to append to the query.
 
+        TODO: Remove this? I don't think it matters if the word 'Level' is in the
+        generated answer, as it is parsed and removed. Test and remove.
+
         Parameters
         ----------
         amkey : int
@@ -537,27 +525,15 @@ class ModularRAG:
         )
         self.document_store.update_embeddings(retriever=self.retriever)
 
-    def _initialise_mappings(
-        self,
-        amkey_to_metric_path: str,
-        amkey_to_synonym_path: str,
-        amkey_to_unit_path: str,
-    ):
+    def _initialise_mappings(self):
         """
         Initialise mapping dataframes.
 
-        Parameters
-        ----------
-        amkey_to_metric_path : str
-            Path to a csv file mapping AMKEY to metric.
-
-        amkey_to_synonym_path : str
-            Path to a csv file mapping AMKEY and company to metric synonym.
-
-        amkey_to_unit_path : str
-            Path to a csv file mapping AMKEY to desired unit.
+        These dataframes are used to map AMKEY to metric description,
+        AMKEY to company-specific metric description, and AMKEY to required unit for
+        metric.
         """
         logger.info("Initialising mappings")
-        self.amkey_to_metric_df = pd.read_csv(amkey_to_metric_path)
-        self.amkey_to_synonym_df = pd.read_csv(amkey_to_synonym_path)
-        self.amkey_to_unit_df = pd.read_csv(amkey_to_unit_path)
+        self.amkey_to_metric_df = pd.read_csv(AMKEY_TO_METRIC_PATH)
+        self.amkey_to_synonym_df = pd.read_csv(AMKEY_TO_SYNONYM_PATH)
+        self.amkey_to_unit_df = pd.read_csv(AMKEY_TO_UNIT_PATH)
