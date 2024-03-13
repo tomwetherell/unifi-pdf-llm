@@ -10,8 +10,7 @@ warnings.filterwarnings("ignore", category=UserWarning, module="transformers")
 import pandas as pd
 from loguru import logger
 
-from esg_retriever.load import load_documents
-from esg_retriever.preprocess import preprocess_documents
+from esg_retriever.load import load_and_preprocess_documents
 from esg_retriever.rag import ModularRAG
 from esg_retriever.config import MISC_DATA_DIR
 
@@ -255,9 +254,8 @@ def validate_retrieval(
     train_df = train_df.head(n=num)
 
     # Load and preprocess the documents
-    docs = load_documents(company, year)
-    docs = preprocess_documents(
-        docs, window_size=window_size, discard_text=discard_text
+    docs = load_and_preprocess_documents(
+        company, year, window_size=window_size, discard_text=discard_text
     )
 
     logger.debug(f"Number of documents: {len(docs)}")
