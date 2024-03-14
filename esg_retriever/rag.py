@@ -1,12 +1,13 @@
 """Module containing functions to preprocess parsed pdfs."""
 
 import os
+import asyncio
 import json
 import re
 from pathlib import Path
 
 import pandas as pd
-from openai import OpenAI
+from openai import AsyncOpenAI, OpenAI
 from haystack import Document
 from haystack.nodes import EmbeddingRetriever
 from haystack.document_stores import InMemoryDocumentStore
@@ -32,14 +33,6 @@ AMKEY_TO_SYNONYM_PATH = MISC_DATA_DIR / Path("ActivityMetricsSynonyms.csv")
 
 AMKEY_TO_UNIT_PATH = MISC_DATA_DIR / Path("AMKEY_unit_conversion.csv")
 """Path to csv file mapping AMKEY to required unit."""
-
-
-# Initalise the OpenAI client
-load_dotenv()
-
-client = OpenAI(
-    api_key=os.environ.get("OPENAI_API_KEY"),
-)
 
 
 class ModularRAG:
@@ -75,10 +68,13 @@ class ModularRAG:
         self.amkey_to_metric_df = None
         self.amkey_to_synonym_df = None
         self.amkey_to_unit_df = None
+        self.openai_client = None
+        self.openai_async_client = None
 
         self._initialise_document_store()
         self._initialise_retriever(top_k)
         self._initialise_mappings()
+        self._initiaise_openai_client()
 
     def query(self, amkey: int, year: int) -> tuple[float | None, float | None]:
         """
@@ -108,7 +104,7 @@ class ModularRAG:
         context_documents = self.retriever.retrieve(metric)
         additional_instructions = self._retrieve_additional_appended_instructions(amkey)
         question = f"What was the {metric} in the year {year}? {additional_instructions}"
-        relevant_context_documents = self._filter_context_documents(context_documents, question)
+        relevant_context_documents = asyncio.run(self._filter_context_documents(context_documents, question))
 
         if not relevant_context_documents:
             logger.info("No relevant context documents found. Returning None.")
@@ -213,11 +209,13 @@ class ModularRAG:
 
         return metric
 
-    def _filter_context_documents(
+    async def _filter_context_documents(
         self, docs: list[Document], question: str
     ) -> list[Document]:
         """
         Return the documents that are relevant to the question.
+
+        The filtering is run asynchronously to speed up the process.
 
         Parameters
         ----------
@@ -232,48 +230,81 @@ class ModularRAG:
         relevant_docs : list[Document]
             The context documents that are relevant to the question.
         """
+        # Initialse async OpenAI client
+        self.openai_async_client = AsyncOpenAI(
+            api_key=os.environ.get("OPENAI_API_KEY")
+        )
+
         relevant_docs = []
 
+        tasks = []
         for doc in docs:
-            example_prompt = FILTER_CONTEXT_PROMPT_TEMPLATE.format(
-                question=FILTER_CONTEXT_EXAMPLE_QUESTION, context=FILTER_CONTEXT_EXAMPLE_CONTEXT
-            )
+            tasks.append(self._filter_document(doc, question))
+        results = await asyncio.gather(*tasks)
 
-            prompt = FILTER_CONTEXT_PROMPT_TEMPLATE.format(
-                question=question, context=doc.content
-            )
-
-            logger.debug(f"Filtering context prompt:\n{prompt}")
-
-            response = (
-                client.chat.completions.create(
-                    model="gpt-3.5-turbo",
-                    messages=[
-                        {
-                            "role": "system",
-                            "content": "You are an expert at reading markdown tables. It is possible that the answer is not explicitly stated in the context. Please be analytical and skeptical.",
-                        },
-                        {"role": "user", "content": example_prompt},
-                        {"role": "assistant", "content": FILTER_CONTEXT_EXAMPLE_ANSWER},
-                        {"role": "user", "content": prompt},
-                    ],
-                    temperature=0.01,
-                    seed=0,
-                )
-                .choices[0]
-                .message.content
-            )
-            logger.debug(f"Filtering context response: {response}")
-
-            conclusion = self._extract_conclusion(response)
-            logger.debug(f"Filtering context conclusion: {conclusion}")
-
+        for doc, conclusion in results:
             if conclusion == "yes":
                 relevant_docs.append(doc)
 
+        await self.openai_async_client.close()
+
         return relevant_docs
 
-    def _extract_conclusion(self, response: str) -> str | None:
+    async def _filter_document(self, doc, question):
+        """
+        Return the document and a conclusion about its relevance to the question.
+
+        Parameters
+        ----------
+        doc : Document
+            The context document to filter.
+
+        question : str
+            The question to filter the context document by.
+
+        Returns
+        -------
+        doc : Document
+            The context document.
+
+        conclusion : str
+            A conclusion about the relevance of the document to the question. Either
+            'yes' or 'no'.
+        """
+        example_prompt = FILTER_CONTEXT_PROMPT_TEMPLATE.format(
+            question=FILTER_CONTEXT_EXAMPLE_QUESTION, context=FILTER_CONTEXT_EXAMPLE_CONTEXT
+        )
+
+        prompt = FILTER_CONTEXT_PROMPT_TEMPLATE.format(
+            question=question, context=doc.content
+        )
+
+        response = await self.openai_async_client.chat.completions.create(
+            model="gpt-3.5-turbo",
+            messages=[
+                {
+                    "role": "system",
+                    "content": "You are an expert at reading markdown tables. It is possible that the answer is not explicitly stated in the context. Please be analytical and skeptical.",
+                },
+                {"role": "user", "content": example_prompt},
+                {"role": "assistant", "content": FILTER_CONTEXT_EXAMPLE_ANSWER},
+                {"role": "user", "content": prompt},
+            ],
+            temperature=0.01,
+            seed=0,
+        )
+        response = response.choices[0].message.content
+
+        logger.debug(f"Filtering context prompt:\n{prompt}")
+
+        logger.debug(f"Filtering context response: {response}")
+
+        conclusion = self._extract_conclusion(response)
+        logger.debug(f"Filtering context conclusion: {conclusion}")
+
+        return doc, conclusion
+
+    def _extract_conclusion(self, response: str) -> str:
         """
         Extract 'yes' or 'no' conclusion from the response.
 
@@ -285,12 +316,10 @@ class ModularRAG:
 
         Returns
         -------
-        conclusion : str | None
+        conclusion : str
             The conclusion from the answer - either 'yes' or 'no'. If the conclusion
-            is not found, None is returned.
+            is not found, 'no' is returned.
         """
-        conclusion = None
-
         # First, check if the answer ends with a 'yes' or 'no'
         conclusion = response.split()[-1].lower()
 
@@ -299,6 +328,9 @@ class ModularRAG:
             matches = re.findall(r"\b(yes|no)\b", response, re.IGNORECASE)
             if matches:
                 conclusion = matches[-1].lower()
+            else:
+                # Assume the conclusion is 'no' if it cannot be extracted
+                conclusion = 'no'
 
         return conclusion
 
@@ -353,7 +385,7 @@ class ModularRAG:
 
         # TODO: Test using `top_p` parameter. Not recommended to set both `temperature` and `top_p`.
         answer = (
-            client.chat.completions.create(
+            self.openai_client.chat.completions.create(
                 model="gpt-3.5-turbo",
                 messages=[
                     {
@@ -471,7 +503,7 @@ class ModularRAG:
         logger.debug(f"Unit conversion prompt:\n{prompt}")
 
         response = (
-            client.chat.completions.create(
+            self.openai_client.chat.completions.create(
                 model="gpt-3.5-turbo",
                 messages=[
                     {
@@ -537,3 +569,13 @@ class ModularRAG:
         self.amkey_to_metric_df = pd.read_csv(AMKEY_TO_METRIC_PATH)
         self.amkey_to_synonym_df = pd.read_csv(AMKEY_TO_SYNONYM_PATH)
         self.amkey_to_unit_df = pd.read_csv(AMKEY_TO_UNIT_PATH)
+
+    def _initiaise_openai_client(self):
+        """
+        Initialise the OpenAI client.
+        """
+        logger.info("Initialising OpenAI clients")
+        load_dotenv()
+        self.openai_client = OpenAI(
+            api_key=os.environ.get("OPENAI_API_KEY"),
+        )
