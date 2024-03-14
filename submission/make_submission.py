@@ -1,5 +1,6 @@
 """Script to make submission for competition."""
 
+import os
 from pathlib import Path
 
 import pandas as pd
@@ -9,6 +10,10 @@ from esg_retriever.load import load_and_preprocess_documents
 from esg_retriever.rag import ModularRAG
 from esg_retriever.utils import list_all_amkeys
 from esg_retriever.config import COMPANY_YEAR_PDF_MAPPING, COMPANIES
+
+
+SUBMISSION_LOG_FILE = Path(__file__).resolve().parent / "submission.log"
+"""File to save the logs from making the submission."""
 
 
 def retrieve_all_amkey_values(company: str, year: int) -> dict:
@@ -34,7 +39,7 @@ def retrieve_all_amkey_values(company: str, year: int) -> dict:
     docs = load_and_preprocess_documents(company, year, window_size=2, discard_text=True)
     rag = ModularRAG(docs=docs, company=company)
 
-    for amkey in amkeys:
+    for amkey in amkeys[:2]:
         value = rag.query(amkey, year=year)
 
         if value is None:
@@ -46,7 +51,16 @@ def retrieve_all_amkey_values(company: str, year: int) -> dict:
 
 
 def make_submission():
-    """Make a submission for the competition."""
+    """
+    Make a submission for the competition.
+
+    The submission is saved to `submission.csv`.
+    """
+    if os.path.exists(SUBMISSION_LOG_FILE):
+        os.remove(SUBMISSION_LOG_FILE)
+    logger.remove()
+    logger.add(SUBMISSION_LOG_FILE, level="DEBUG")
+
     company_submission_dfs = []
 
     for company in COMPANIES:

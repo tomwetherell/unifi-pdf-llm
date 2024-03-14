@@ -1,0 +1,1609 @@
+2024-03-14 22:43:30.732 | INFO     | __main__:make_submission:71 - Making submission for Absa 2022
+2024-03-14 22:43:30.735 | INFO     | esg_retriever.load:load_documents:103 - Loading documents from /home/tomw/unifi-pdf-llm/azure_ai_doc_intelligence/outputs/2022-Absa-Group-limited-Environmental-Social-and-Governance-Data-sheet.json
+2024-03-14 22:43:33.460 | INFO     | esg_retriever.rag:_initialise_document_store:534 - Initialising document store
+2024-03-14 22:43:33.464 | INFO     | esg_retriever.rag:_initialise_retriever:552 - Initialising retriever (using all-mpnet-base-v2 model)
+2024-03-14 22:43:40.896 | INFO     | esg_retriever.rag:_initialise_mappings:568 - Initialising mappings
+2024-03-14 22:43:40.899 | INFO     | esg_retriever.rag:_initiaise_openai_client:577 - Initialising OpenAI clients
+2024-03-14 22:43:40.914 | INFO     | esg_retriever.rag:query:100 - Retrieving AMKEY: 3
+2024-03-14 22:43:40.915 | DEBUG    | esg_retriever.rag:query:102 - Retrieving metric: Advisory fees as per income statement
+2024-03-14 22:43:42.928 | DEBUG    | esg_retriever.rag:_filter_document:298 - Filtering context prompt:
+
+Can the answer to the specific question: "What was the Advisory fees as per income statement in the year 2022? " be directly found in the following markdown table:
+
+| Indicator                  | Trend   |   2022 |   2021 |   2020 |   2019 | Notes   |
+|----------------------------|---------|--------|--------|--------|--------|---------|
+| Corporate taxes paid (Rbn) | 1       |    8.4 |    5.5 |    3.7 |    6.7 |         |
+| Indirect taxes paid (Rbn)  | =       |    2.9 |    2.9 |    3.3 |    2.9 |         |
+
+It is possible that the answer is not explicitly stated in the context.
+The answer, if it exists, should be specific to the question asked.
+No calculations will be required to answer the question - the answer, if it exists, will be directly retrievable from the context.
+If the answer is not directly retrievable from the context, your conclusion should be 'no'.
+Think step by step, and explain your reasoning.
+Please conclude your answer with a 'yes' or 'no'.
+
+Answer:
+
+2024-03-14 22:43:42.929 | DEBUG    | esg_retriever.rag:_filter_document:300 - Filtering context response: In the provided markdown table, there is no specific indicator related to "Advisory fees" mentioned. The table includes indicators such as "Corporate taxes paid" and "Indirect taxes paid," but there is no direct mention of advisory fees in the context of the income statement for any year.
+
+Since there is no specific information provided about advisory fees in the table, we cannot directly find the advisory fees as per the income statement in the year 2022 or any other year.
+
+Conclusion: no
+2024-03-14 22:43:42.929 | DEBUG    | esg_retriever.rag:_filter_document:303 - Filtering context conclusion: no
+2024-03-14 22:43:42.980 | DEBUG    | esg_retriever.rag:_filter_document:298 - Filtering context prompt:
+
+Can the answer to the specific question: "What was the Advisory fees as per income statement in the year 2022? " be directly found in the following markdown table:
+
+| Indicator             | Trend   |   2022 |   2021 |   2020 |   2019 | Notes   |
+|-----------------------|---------|--------|--------|--------|--------|---------|
+| Security transfer tax |         |    2.1 |    1.4 |    1.3 |    1.9 |         |
+| VAT recovered         |         |   23.6 |   25.1 |   23   |   30.4 |         |
+
+It is possible that the answer is not explicitly stated in the context.
+The answer, if it exists, should be specific to the question asked.
+No calculations will be required to answer the question - the answer, if it exists, will be directly retrievable from the context.
+If the answer is not directly retrievable from the context, your conclusion should be 'no'.
+Think step by step, and explain your reasoning.
+Please conclude your answer with a 'yes' or 'no'.
+
+Answer:
+
+2024-03-14 22:43:42.980 | DEBUG    | esg_retriever.rag:_filter_document:300 - Filtering context response: The specific question is asking for the "Advisory fees as per income statement in the year 2022." However, the provided markdown table does not contain any information related to advisory fees. The table only includes indicators such as "Security transfer tax" and "VAT recovered."
+
+Since there is no mention of advisory fees in the table, we cannot directly find the information regarding advisory fees as per the income statement in the year 2022 from the given context.
+
+Conclusion: no
+2024-03-14 22:43:42.980 | DEBUG    | esg_retriever.rag:_filter_document:303 - Filtering context conclusion: no
+2024-03-14 22:43:43.680 | DEBUG    | esg_retriever.rag:_filter_document:298 - Filtering context prompt:
+
+Can the answer to the specific question: "What was the Advisory fees as per income statement in the year 2022? " be directly found in the following markdown table:
+
+| Environment   | Financial service   | Equator Principles, REIPPP and sustainable products     |
+|---------------|---------------------|---------------------------------------------------------|
+| Tax           |                     | Tax disclosures - type and per country, paid, collected |
+| Governance    |                     | Board, Exco, ethics and remuneration                    |
+
+It is possible that the answer is not explicitly stated in the context.
+The answer, if it exists, should be specific to the question asked.
+No calculations will be required to answer the question - the answer, if it exists, will be directly retrievable from the context.
+If the answer is not directly retrievable from the context, your conclusion should be 'no'.
+Think step by step, and explain your reasoning.
+Please conclude your answer with a 'yes' or 'no'.
+
+Answer:
+
+2024-03-14 22:43:43.680 | DEBUG    | esg_retriever.rag:_filter_document:300 - Filtering context response: In the provided markdown table, there is no specific information related to "Advisory fees" or "income statement." The table primarily mentions topics related to environment, financial services, Equator Principles, REIPPP, sustainable products, tax disclosures, governance, board, Exco, ethics, and remuneration.
+
+Since there is no mention of "Advisory fees" or "income statement" in the table, the specific question "What was the Advisory fees as per income statement in the year 2022?" cannot be directly answered from the context.
+
+Conclusion: no
+2024-03-14 22:43:43.680 | DEBUG    | esg_retriever.rag:_filter_document:303 - Filtering context conclusion: no
+2024-03-14 22:43:43.681 | INFO     | esg_retriever.rag:query:110 - No relevant context documents found. Returning None.
+2024-03-14 22:43:43.681 | INFO     | esg_retriever.rag:query:100 - Retrieving AMKEY: 6
+2024-03-14 22:43:43.682 | DEBUG    | esg_retriever.rag:query:102 - Retrieving metric: Air emissions of the following pollutants: (1) CO
+2024-03-14 22:43:45.392 | DEBUG    | esg_retriever.rag:_filter_document:298 - Filtering context prompt:
+
+Can the answer to the specific question: "What was the Air emissions of the following pollutants: (1) CO in the year 2022? " be directly found in the following markdown table:
+
+| Indicator                           | Trend   | 2022   | 2021   | 2020   | 2019   | 2018   | Notes                                               |
+|-------------------------------------|---------|--------|--------|--------|--------|--------|-----------------------------------------------------|
+| Carbon emissions                    |         |        |        |        |        |        |                                                     |
+| Total carbon emissions (tonnes CO2) |         | 177489 | 187237 | 189961 | 153326 | 211490 | Targeting 51% reduction in carbon emissions by 2030 |
+
+It is possible that the answer is not explicitly stated in the context.
+The answer, if it exists, should be specific to the question asked.
+No calculations will be required to answer the question - the answer, if it exists, will be directly retrievable from the context.
+If the answer is not directly retrievable from the context, your conclusion should be 'no'.
+Think step by step, and explain your reasoning.
+Please conclude your answer with a 'yes' or 'no'.
+
+Answer:
+
+2024-03-14 22:43:45.392 | DEBUG    | esg_retriever.rag:_filter_document:300 - Filtering context response: To find the air emissions of CO specifically in the year 2022, we need to look for a specific indicator related to CO emissions in the provided markdown table. The table includes an indicator for "Total carbon emissions (tonnes CO2)" but this specifically refers to carbon dioxide (CO2) emissions, not carbon monoxide (CO) emissions.
+
+Since the table does not provide data on CO emissions specifically, we cannot directly retrieve the air emissions of CO for the year 2022 from the context.
+
+Conclusion: no
+2024-03-14 22:43:45.392 | DEBUG    | esg_retriever.rag:_filter_document:303 - Filtering context conclusion: no
+2024-03-14 22:43:46.457 | DEBUG    | esg_retriever.rag:_filter_document:298 - Filtering context prompt:
+
+Can the answer to the specific question: "What was the Air emissions of the following pollutants: (1) CO in the year 2022? " be directly found in the following markdown table:
+
+| Indicator                              | Trend   |   2022 |   2021 |   2020 |   2019 | 2018   | Notes   |
+|----------------------------------------|---------|--------|--------|--------|--------|--------|---------|
+| Intensity ratio                        | 1       |   4.37 |   5.02 |   4.81 |   5.79 | 6.45   |         |
+| Carbon emission per m2 of office space | =       |   0.16 |   0.16 |   0.18 |   0.15 | -      |         |
+
+It is possible that the answer is not explicitly stated in the context.
+The answer, if it exists, should be specific to the question asked.
+No calculations will be required to answer the question - the answer, if it exists, will be directly retrievable from the context.
+If the answer is not directly retrievable from the context, your conclusion should be 'no'.
+Think step by step, and explain your reasoning.
+Please conclude your answer with a 'yes' or 'no'.
+
+Answer:
+
+2024-03-14 22:43:46.457 | DEBUG    | esg_retriever.rag:_filter_document:300 - Filtering context response: To find the air emissions of CO (Carbon Monoxide) in the year 2022, we need to look for a specific indicator related to CO emissions in the provided markdown table. However, the table only includes indicators such as "Intensity ratio" and "Carbon emission per m2 of office space."
+
+Neither of these indicators directly provides information on the air emissions of CO in the year 2022. The "Intensity ratio" and "Carbon emission per m2 of office space" do not specifically mention CO emissions or provide data on CO emissions for the year 2022.
+
+Without a specific indicator related to CO emissions or air emissions of pollutants in the table, we cannot determine the air emissions of CO in the year 2022 from the given context.
+
+Therefore, the answer to the question "What was the Air emissions of the following pollutants: (1) CO in the year 2022?" is not directly retrievable from the context.
+
+Conclusion: no
+2024-03-14 22:43:46.457 | DEBUG    | esg_retriever.rag:_filter_document:303 - Filtering context conclusion: no
+2024-03-14 22:43:47.424 | DEBUG    | esg_retriever.rag:_filter_document:298 - Filtering context prompt:
+
+Can the answer to the specific question: "What was the Air emissions of the following pollutants: (1) CO in the year 2022? " be directly found in the following markdown table:
+
+| Indicator                           | Trend   |   2022 |   2021 |   2020 |   2019 |   2018 | Notes                                               |
+|-------------------------------------|---------|--------|--------|--------|--------|--------|-----------------------------------------------------|
+| Total carbon emissions (tonnes CO2) |         | 177489 | 187237 | 189961 | 153326 | 211490 | Targeting 51% reduction in carbon emissions by 2030 |
+| Scope 1                             | 1       |  15885 |  12276 |  12258 |  20835 |  22003 |                                                     |
+
+It is possible that the answer is not explicitly stated in the context.
+The answer, if it exists, should be specific to the question asked.
+No calculations will be required to answer the question - the answer, if it exists, will be directly retrievable from the context.
+If the answer is not directly retrievable from the context, your conclusion should be 'no'.
+Think step by step, and explain your reasoning.
+Please conclude your answer with a 'yes' or 'no'.
+
+Answer:
+
+2024-03-14 22:43:47.424 | DEBUG    | esg_retriever.rag:_filter_document:300 - Filtering context response: To find the air emissions of CO specifically in the year 2022, we need to look for a specific indicator related to CO emissions in the provided markdown table. The table includes indicators such as "Total carbon emissions (tonnes CO2)" and "Scope 1."
+
+The "Total carbon emissions (tonnes CO2)" indicator provides information on the total carbon emissions in tonnes of CO2, which is different from specifically measuring CO emissions. CO2 and CO are different pollutants, with CO2 being carbon dioxide and CO being carbon monoxide. Therefore, the information provided in the table does not directly give the air emissions of CO in the year 2022.
+
+Since the table does not contain a specific indicator for CO emissions, the answer to the question "What was the Air emissions of the following pollutants: (1) CO in the year 2022?" is not directly retrievable from the context.
+
+Conclusion: no
+2024-03-14 22:43:47.424 | DEBUG    | esg_retriever.rag:_filter_document:303 - Filtering context conclusion: no
+2024-03-14 22:43:47.424 | INFO     | esg_retriever.rag:query:110 - No relevant context documents found. Returning None.
+2024-03-14 22:43:47.428 | INFO     | __main__:make_submission:71 - Making submission for Clicks 2022
+2024-03-14 22:43:47.429 | INFO     | esg_retriever.load:load_documents:103 - Loading documents from /home/tomw/unifi-pdf-llm/azure_ai_doc_intelligence/outputs/Clicks-Sustainability-Report-2022.json
+2024-03-14 22:43:48.157 | INFO     | esg_retriever.rag:_initialise_document_store:534 - Initialising document store
+2024-03-14 22:43:48.159 | INFO     | esg_retriever.rag:_initialise_retriever:552 - Initialising retriever (using all-mpnet-base-v2 model)
+2024-03-14 22:43:51.769 | INFO     | esg_retriever.rag:_initialise_mappings:568 - Initialising mappings
+2024-03-14 22:43:51.772 | INFO     | esg_retriever.rag:_initiaise_openai_client:577 - Initialising OpenAI clients
+2024-03-14 22:43:51.787 | INFO     | esg_retriever.rag:query:100 - Retrieving AMKEY: 3
+2024-03-14 22:43:51.787 | DEBUG    | esg_retriever.rag:query:102 - Retrieving metric: Advisory fees as per income statement
+2024-03-14 22:43:53.630 | DEBUG    | esg_retriever.rag:_filter_document:298 - Filtering context prompt:
+
+Can the answer to the specific question: "What was the Advisory fees as per income statement in the year 2022? " be directly found in the following markdown table:
+
+|                   |                        |   Scope 1 and 2 |
+|-------------------|------------------------|-----------------|
+| Scope 3 and other | 3.6 Business travel    |             607 |
+| Scope 3 and other | 3.7 Employee commuting |            8757 |
+
+It is possible that the answer is not explicitly stated in the context.
+The answer, if it exists, should be specific to the question asked.
+No calculations will be required to answer the question - the answer, if it exists, will be directly retrievable from the context.
+If the answer is not directly retrievable from the context, your conclusion should be 'no'.
+Think step by step, and explain your reasoning.
+Please conclude your answer with a 'yes' or 'no'.
+
+Answer:
+
+2024-03-14 22:43:53.630 | DEBUG    | esg_retriever.rag:_filter_document:300 - Filtering context response: The provided markdown table does not contain any information related to advisory fees or income statements. The table only includes data related to Scope 1, Scope 2, and Scope 3 emissions, specifically business travel and employee commuting.
+
+Since there is no mention of advisory fees or income statements in the table, the specific question regarding the advisory fees as per the income statement in the year 2022 cannot be directly found in the context.
+
+Conclusion: no
+2024-03-14 22:43:53.630 | DEBUG    | esg_retriever.rag:_filter_document:303 - Filtering context conclusion: no
+2024-03-14 22:43:54.207 | DEBUG    | esg_retriever.rag:_filter_document:298 - Filtering context prompt:
+
+Can the answer to the specific question: "What was the Advisory fees as per income statement in the year 2022? " be directly found in the following markdown table:
+
+|                                    |                       |   Scope 1 and 2 |
+|------------------------------------|-----------------------|-----------------|
+| Scope 1 sub-total                  |                       |            4087 |
+| Scope 2 sub-total - location based | Purchased electricity |          110099 |
+
+It is possible that the answer is not explicitly stated in the context.
+The answer, if it exists, should be specific to the question asked.
+No calculations will be required to answer the question - the answer, if it exists, will be directly retrievable from the context.
+If the answer is not directly retrievable from the context, your conclusion should be 'no'.
+Think step by step, and explain your reasoning.
+Please conclude your answer with a 'yes' or 'no'.
+
+Answer:
+
+2024-03-14 22:43:54.207 | DEBUG    | esg_retriever.rag:_filter_document:300 - Filtering context response: The specific question is about the "Advisory fees as per income statement in the year 2022." However, the provided markdown table only includes information related to Scope 1 and Scope 2 sub-totals, specifically mentioning purchased electricity under Scope 2.
+
+There is no mention of advisory fees or any direct reference to income statement items in the table. Since the table does not contain any information related to advisory fees or income statement details, we cannot directly find the advisory fees as per the income statement for the year 2022 from the given context.
+
+Conclusion: no
+2024-03-14 22:43:54.207 | DEBUG    | esg_retriever.rag:_filter_document:303 - Filtering context conclusion: no
+2024-03-14 22:43:54.633 | DEBUG    | esg_retriever.rag:_filter_document:298 - Filtering context prompt:
+
+Can the answer to the specific question: "What was the Advisory fees as per income statement in the year 2022? " be directly found in the following markdown table:
+
+|                                    |                                  |   Scope 1 and 2 |
+|------------------------------------|----------------------------------|-----------------|
+| Scope 2 sub-total - location based | Purchased electricity            |          110099 |
+| Scope 3 and other                  | 3.1 Purchased goods and services |              90 |
+
+It is possible that the answer is not explicitly stated in the context.
+The answer, if it exists, should be specific to the question asked.
+No calculations will be required to answer the question - the answer, if it exists, will be directly retrievable from the context.
+If the answer is not directly retrievable from the context, your conclusion should be 'no'.
+Think step by step, and explain your reasoning.
+Please conclude your answer with a 'yes' or 'no'.
+
+Answer:
+
+2024-03-14 22:43:54.633 | DEBUG    | esg_retriever.rag:_filter_document:300 - Filtering context response: The specific question is asking for the Advisory fees as per the income statement in the year 2022. However, the provided markdown table does not contain any information related to advisory fees or income statement. The table only includes details about Scope 1, Scope 2, and Scope 3 emissions, specifically related to purchased electricity and purchased goods and services.
+
+Since there is no mention of advisory fees or income statement figures in the table, the answer to the question "What was the Advisory fees as per income statement in the year 2022?" is not directly retrievable from the context.
+
+Conclusion: no
+2024-03-14 22:43:54.633 | DEBUG    | esg_retriever.rag:_filter_document:303 - Filtering context conclusion: no
+2024-03-14 22:43:54.634 | INFO     | esg_retriever.rag:query:110 - No relevant context documents found. Returning None.
+2024-03-14 22:43:54.634 | INFO     | esg_retriever.rag:query:100 - Retrieving AMKEY: 6
+2024-03-14 22:43:54.635 | DEBUG    | esg_retriever.rag:query:102 - Retrieving metric: Air emissions of the following pollutants: (1) CO
+2024-03-14 22:43:56.780 | DEBUG    | esg_retriever.rag:_filter_document:298 - Filtering context prompt:
+
+Can the answer to the specific question: "What was the Air emissions of the following pollutants: (1) CO in the year 2022? " be directly found in the following markdown table:
+
+| Environmental     | Description Units        | Description Units   |   2022 |   2021 |   2020 |
+|-------------------|--------------------------|---------------------|--------|--------|--------|
+| Scope 1 emissions | Mobile petrol combustion |                     |    802 |    795 |    759 |
+| Scope 1 emissions | Refrigerant use          |                     |   1797 |    205 |    540 |
+
+It is possible that the answer is not explicitly stated in the context.
+The answer, if it exists, should be specific to the question asked.
+No calculations will be required to answer the question - the answer, if it exists, will be directly retrievable from the context.
+If the answer is not directly retrievable from the context, your conclusion should be 'no'.
+Think step by step, and explain your reasoning.
+Please conclude your answer with a 'yes' or 'no'.
+
+Answer:
+
+2024-03-14 22:43:56.781 | DEBUG    | esg_retriever.rag:_filter_document:300 - Filtering context response: To find the air emissions of CO specifically in the year 2022, we need to look for a row in the table that explicitly mentions CO emissions. However, in the provided markdown table, there is no row that directly provides information about CO emissions. The table only includes information about Scope 1 emissions related to mobile petrol combustion and refrigerant use.
+
+Since there is no specific mention of CO emissions in the table, we cannot directly retrieve the air emissions of CO for the year 2022 from the context.
+
+Conclusion: no
+2024-03-14 22:43:56.781 | DEBUG    | esg_retriever.rag:_filter_document:303 - Filtering context conclusion: no
+2024-03-14 22:43:57.254 | DEBUG    | esg_retriever.rag:_filter_document:298 - Filtering context prompt:
+
+Can the answer to the specific question: "What was the Air emissions of the following pollutants: (1) CO in the year 2022? " be directly found in the following markdown table:
+
+| Environmental     | Description Units            | Description Units     |   2022 |   2021 |   2020 |
+|-------------------|------------------------------|-----------------------|--------|--------|--------|
+| Scope 1 emissions | Stationary diesel combustion | (CO2 e) metric tonnes |    599 |    335 |    432 |
+| Scope 1 emissions | Mobile diesel combustion     |                       |    889 |   1004 |   1039 |
+
+It is possible that the answer is not explicitly stated in the context.
+The answer, if it exists, should be specific to the question asked.
+No calculations will be required to answer the question - the answer, if it exists, will be directly retrievable from the context.
+If the answer is not directly retrievable from the context, your conclusion should be 'no'.
+Think step by step, and explain your reasoning.
+Please conclude your answer with a 'yes' or 'no'.
+
+Answer:
+
+2024-03-14 22:43:57.254 | DEBUG    | esg_retriever.rag:_filter_document:300 - Filtering context response: To find the air emissions of CO specifically for the year 2022, we need to look for the relevant data in the provided markdown table. The table includes information on Scope 1 emissions for stationary and mobile diesel combustion, but it does not provide a specific value for CO emissions in the year 2022.
+
+The table only mentions the emissions in metric tonnes of CO2 equivalent for stationary diesel combustion and mobile diesel combustion. It does not directly provide the emissions of CO for the year 2022. CO2 and CO are different pollutants, and the table does not break down the emissions by individual pollutants.
+
+Therefore, the answer to the question "What was the Air emissions of the following pollutants: (1) CO in the year 2022?" is not directly retrievable from the context.
+
+Conclusion: no
+2024-03-14 22:43:57.254 | DEBUG    | esg_retriever.rag:_filter_document:303 - Filtering context conclusion: no
+2024-03-14 22:43:57.667 | DEBUG    | esg_retriever.rag:_filter_document:298 - Filtering context prompt:
+
+Can the answer to the specific question: "What was the Air emissions of the following pollutants: (1) CO in the year 2022? " be directly found in the following markdown table:
+
+| Environmental     | Description Units                                          | Description Units   |   2022 |   2021 |   2020 |
+|-------------------|------------------------------------------------------------|---------------------|--------|--------|--------|
+| Scope 3 emissions | Employee commuting                                         |                     |   8757 |   9406 |   9254 |
+| Scope 3 emissions | Intensity (tCO2 e/full-time employees) (Scopes 1, 2 and 3) |                     |     16 |     16 |     16 |
+
+It is possible that the answer is not explicitly stated in the context.
+The answer, if it exists, should be specific to the question asked.
+No calculations will be required to answer the question - the answer, if it exists, will be directly retrievable from the context.
+If the answer is not directly retrievable from the context, your conclusion should be 'no'.
+Think step by step, and explain your reasoning.
+Please conclude your answer with a 'yes' or 'no'.
+
+Answer:
+
+2024-03-14 22:43:57.667 | DEBUG    | esg_retriever.rag:_filter_document:300 - Filtering context response: To find the air emissions of CO specifically in the year 2022, we need to look for a row in the table that directly mentions CO emissions for that year. In the provided markdown table, there is no specific row that mentions CO emissions for the year 2022. The table only includes information about Scope 3 emissions related to employee commuting and intensity in terms of tCO2e per full-time employees for Scopes 1, 2, and 3.
+
+Since there is no explicit mention of CO emissions for the year 2022 in the table, we cannot directly retrieve the information regarding the air emissions of CO for that year from the context.
+
+Conclusion: no
+2024-03-14 22:43:57.667 | DEBUG    | esg_retriever.rag:_filter_document:303 - Filtering context conclusion: no
+2024-03-14 22:43:57.668 | INFO     | esg_retriever.rag:query:110 - No relevant context documents found. Returning None.
+2024-03-14 22:43:57.672 | INFO     | __main__:make_submission:71 - Making submission for Distell 2022
+2024-03-14 22:43:57.673 | INFO     | esg_retriever.load:load_documents:103 - Loading documents from /home/tomw/unifi-pdf-llm/azure_ai_doc_intelligence/outputs/DISTELL ESG Appendix 2022.json
+2024-03-14 22:43:58.469 | INFO     | esg_retriever.rag:_initialise_document_store:534 - Initialising document store
+2024-03-14 22:43:58.470 | INFO     | esg_retriever.rag:_initialise_retriever:552 - Initialising retriever (using all-mpnet-base-v2 model)
+2024-03-14 22:44:02.000 | INFO     | esg_retriever.rag:_initialise_mappings:568 - Initialising mappings
+2024-03-14 22:44:02.003 | INFO     | esg_retriever.rag:_initiaise_openai_client:577 - Initialising OpenAI clients
+2024-03-14 22:44:02.018 | INFO     | esg_retriever.rag:query:100 - Retrieving AMKEY: 3
+2024-03-14 22:44:02.019 | DEBUG    | esg_retriever.rag:query:102 - Retrieving metric: Advisory fees as per income statement
+2024-03-14 22:44:04.214 | DEBUG    | esg_retriever.rag:_filter_document:298 - Filtering context prompt:
+
+Can the answer to the specific question: "What was the Advisory fees as per income statement in the year 2022? " be directly found in the following markdown table:
+
+| GOVERNANCE                                | 2022   | 2021   | 2020   |
+|-------------------------------------------|--------|--------|--------|
+| Auditor remuneration: % of non-audit fees | 37,2%  | 21,6%  | 12,1%  |
+| Length of current auditor's service       | 77     | 76     | 75     |
+
+It is possible that the answer is not explicitly stated in the context.
+The answer, if it exists, should be specific to the question asked.
+No calculations will be required to answer the question - the answer, if it exists, will be directly retrievable from the context.
+If the answer is not directly retrievable from the context, your conclusion should be 'no'.
+Think step by step, and explain your reasoning.
+Please conclude your answer with a 'yes' or 'no'.
+
+Answer:
+
+2024-03-14 22:44:04.214 | DEBUG    | esg_retriever.rag:_filter_document:300 - Filtering context response: The specific question is asking for the "Advisory fees as per income statement in the year 2022." However, the provided markdown table only includes information related to auditor remuneration and the length of the current auditor's service. There is no direct mention of advisory fees in the table.
+
+Since the table does not contain any information related to advisory fees or the income statement, we cannot directly find the advisory fees as per the income statement for the year 2022 from the given context.
+
+Conclusion: no
+2024-03-14 22:44:04.214 | DEBUG    | esg_retriever.rag:_filter_document:303 - Filtering context conclusion: no
+2024-03-14 22:44:04.527 | DEBUG    | esg_retriever.rag:_filter_document:298 - Filtering context prompt:
+
+Can the answer to the specific question: "What was the Advisory fees as per income statement in the year 2022? " be directly found in the following markdown table:
+
+| GOVERNANCE                                                                        | 2022   | 2021   | 2020   |
+|-----------------------------------------------------------------------------------|--------|--------|--------|
+| Length of current auditor's service                                               | 77     | 76     | 75     |
+| Fees paid to executive/board remuneration consultants during the reporting period | Yes    | No     | No     |
+
+It is possible that the answer is not explicitly stated in the context.
+The answer, if it exists, should be specific to the question asked.
+No calculations will be required to answer the question - the answer, if it exists, will be directly retrievable from the context.
+If the answer is not directly retrievable from the context, your conclusion should be 'no'.
+Think step by step, and explain your reasoning.
+Please conclude your answer with a 'yes' or 'no'.
+
+Answer:
+
+2024-03-14 22:44:04.527 | DEBUG    | esg_retriever.rag:_filter_document:300 - Filtering context response: The specific question is asking for the "Advisory fees as per income statement in the year 2022." However, the provided markdown table does not contain any information related to advisory fees or income statements. The table only includes information about the length of the current auditor's service and fees paid to executive/board remuneration consultants.
+
+Since there is no mention of advisory fees or income statements in the table, the answer to the question "What was the Advisory fees as per income statement in the year 2022?" is not directly retrievable from the context.
+
+Conclusion: no
+2024-03-14 22:44:04.527 | DEBUG    | esg_retriever.rag:_filter_document:303 - Filtering context conclusion: no
+2024-03-14 22:44:05.030 | DEBUG    | esg_retriever.rag:_filter_document:298 - Filtering context prompt:
+
+Can the answer to the specific question: "What was the Advisory fees as per income statement in the year 2022? " be directly found in the following markdown table:
+
+| GOVERNANCE                                     | 2022   | 2021   | 2020   |
+|------------------------------------------------|--------|--------|--------|
+| Overall board and committee meeting attendance | 93,7%  | 95,8%  | 95,1%  |
+| Auditor remuneration: % of non-audit fees      | 37,2%  | 21,6%  | 12,1%  |
+
+It is possible that the answer is not explicitly stated in the context.
+The answer, if it exists, should be specific to the question asked.
+No calculations will be required to answer the question - the answer, if it exists, will be directly retrievable from the context.
+If the answer is not directly retrievable from the context, your conclusion should be 'no'.
+Think step by step, and explain your reasoning.
+Please conclude your answer with a 'yes' or 'no'.
+
+Answer:
+
+2024-03-14 22:44:05.030 | DEBUG    | esg_retriever.rag:_filter_document:300 - Filtering context response: To find the Advisory fees as per the income statement in the year 2022, we need to look for a specific indicator related to advisory fees in the provided markdown table. However, the table only includes information related to governance metrics such as "Overall board and committee meeting attendance" and "Auditor remuneration: % of non-audit fees."
+
+The table does not contain a direct indicator for Advisory fees or any specific mention of income statement items related to advisory fees. The information provided in the table is focused on governance and auditor remuneration percentages, which do not directly relate to the specific question about Advisory fees in the income statement for 2022.
+
+Therefore, the answer to the question "What was the Advisory fees as per the income statement in the year 2022?" is not directly retrievable from the context.
+
+Conclusion: no
+2024-03-14 22:44:05.030 | DEBUG    | esg_retriever.rag:_filter_document:303 - Filtering context conclusion: no
+2024-03-14 22:44:05.031 | INFO     | esg_retriever.rag:query:110 - No relevant context documents found. Returning None.
+2024-03-14 22:44:05.031 | INFO     | esg_retriever.rag:query:100 - Retrieving AMKEY: 6
+2024-03-14 22:44:05.032 | DEBUG    | esg_retriever.rag:query:102 - Retrieving metric: Air emissions of the following pollutants: (1) CO
+2024-03-14 22:44:06.981 | DEBUG    | esg_retriever.rag:_filter_document:298 - Filtering context prompt:
+
+Can the answer to the specific question: "What was the Air emissions of the following pollutants: (1) CO in the year 2022? " be directly found in the following markdown table:
+
+|                                                          | 2014*1   | 20151   | 2016   | 20171   | 20181   |   2019 |   20202 |   2021 |   2022 |
+|----------------------------------------------------------|----------|---------|--------|---------|---------|--------|---------|--------|--------|
+| Generation and consumption of electricity, heat or steam | –        | –       | –      | –       | –       |      0 |       0 |      0 |      0 |
+| Total Scope 1 emissions                                  | 70612    | 75784   | 76967  | 80977   | 80636   |  78349 |   59268 |  69478 |  74081 |
+
+It is possible that the answer is not explicitly stated in the context.
+The answer, if it exists, should be specific to the question asked.
+No calculations will be required to answer the question - the answer, if it exists, will be directly retrievable from the context.
+If the answer is not directly retrievable from the context, your conclusion should be 'no'.
+Think step by step, and explain your reasoning.
+Please conclude your answer with a 'yes' or 'no'.
+
+Answer:
+
+2024-03-14 22:44:06.982 | DEBUG    | esg_retriever.rag:_filter_document:300 - Filtering context response: To find the air emissions of CO specifically in the year 2022, we need to look for a specific entry related to CO emissions in the provided markdown table. The table includes data on "Total Scope 1 emissions" for various years, but it does not provide a breakdown of emissions by specific pollutants like CO.
+
+Since the table does not contain a specific value for CO emissions in the year 2022, we cannot directly retrieve the information on the air emissions of CO for that year from the context.
+
+Conclusion: no
+2024-03-14 22:44:06.982 | DEBUG    | esg_retriever.rag:_filter_document:303 - Filtering context conclusion: no
+2024-03-14 22:44:07.866 | DEBUG    | esg_retriever.rag:_filter_document:298 - Filtering context prompt:
+
+Can the answer to the specific question: "What was the Air emissions of the following pollutants: (1) CO in the year 2022? " be directly found in the following markdown table:
+
+|                                                    |   2014*1 |   20151 |   2016 |   20171 |   20181 |   2019 |   20202 |   2021 | 2022   |
+|----------------------------------------------------|----------|---------|--------|---------|---------|--------|---------|--------|--------|
+| Outside of Scope 1, 2 and 3 - biomass (wood chips) |      285 |       0 |      0 |       0 |       0 |      0 |       0 |      0 | 0      |
+| Total emissions                                    |   485280 |  504822 | 482726 |  503994 |  490839 | 468455 |  360553 | 432280 |        |
+
+It is possible that the answer is not explicitly stated in the context.
+The answer, if it exists, should be specific to the question asked.
+No calculations will be required to answer the question - the answer, if it exists, will be directly retrievable from the context.
+If the answer is not directly retrievable from the context, your conclusion should be 'no'.
+Think step by step, and explain your reasoning.
+Please conclude your answer with a 'yes' or 'no'.
+
+Answer:
+
+2024-03-14 22:44:07.866 | DEBUG    | esg_retriever.rag:_filter_document:300 - Filtering context response: To find the air emissions of CO specifically in the year 2022, we need to look for a row or entry in the provided markdown table that corresponds to CO emissions. However, the table only includes two rows: one for emissions outside of Scope 1, 2, and 3 related to biomass (wood chips) and another row for total emissions.
+
+There is no specific mention of CO emissions in the table, and the data provided does not break down the total emissions into specific pollutants like CO. Since there is no explicit information on CO emissions in the table, we cannot directly retrieve the air emissions of CO for the year 2022 from the context.
+
+Therefore, the answer to the question "What was the Air emissions of the following pollutants: (1) CO in the year 2022?" is not directly retrievable from the context.
+
+Conclusion: no
+2024-03-14 22:44:07.866 | DEBUG    | esg_retriever.rag:_filter_document:303 - Filtering context conclusion: no
+2024-03-14 22:44:08.406 | DEBUG    | esg_retriever.rag:_filter_document:298 - Filtering context prompt:
+
+Can the answer to the specific question: "What was the Air emissions of the following pollutants: (1) CO in the year 2022? " be directly found in the following markdown table:
+
+|                          | 2014*1   | 20151   | 2016   | 20171   | 20181   | 2019   | 20202   | 2021   | 2022   |
+|--------------------------|----------|---------|--------|---------|---------|--------|---------|--------|--------|
+| Scope 1 direct emissions |          |         |        |         |         |        |         |        |        |
+| Stationary combustion    | 65287    | 68961   | 70005  | 74434   | 73885   | 71222  | 52983   | 63656  | 67419  |
+
+It is possible that the answer is not explicitly stated in the context.
+The answer, if it exists, should be specific to the question asked.
+No calculations will be required to answer the question - the answer, if it exists, will be directly retrievable from the context.
+If the answer is not directly retrievable from the context, your conclusion should be 'no'.
+Think step by step, and explain your reasoning.
+Please conclude your answer with a 'yes' or 'no'.
+
+Answer:
+
+2024-03-14 22:44:08.406 | DEBUG    | esg_retriever.rag:_filter_document:300 - Filtering context response: To find the air emissions of CO (Carbon Monoxide) in the year 2022, we need to look for the specific value related to CO emissions in the provided markdown table. The table includes data under the category "Scope 1 direct emissions" with a subcategory of "Stationary combustion" for each year, including 2022.
+
+In the table, the value under "Stationary combustion" for the year 2022 is 67419. However, this value does not specify the emissions of CO specifically. It only provides the total emissions from stationary combustion for that year.
+
+Without a specific breakdown of the pollutants emitted under stationary combustion, we cannot determine the emissions of CO in the year 2022 directly from the context.
+
+Therefore, the answer to the question "What was the Air emissions of the following pollutants: (1) CO in the year 2022?" is not directly retrievable from the context.
+
+Conclusion: no
+2024-03-14 22:44:08.406 | DEBUG    | esg_retriever.rag:_filter_document:303 - Filtering context conclusion: no
+2024-03-14 22:44:08.407 | INFO     | esg_retriever.rag:query:110 - No relevant context documents found. Returning None.
+2024-03-14 22:44:08.413 | INFO     | __main__:make_submission:71 - Making submission for Impala 2023
+2024-03-14 22:44:08.415 | INFO     | esg_retriever.load:load_documents:103 - Loading documents from /home/tomw/unifi-pdf-llm/azure_ai_doc_intelligence/outputs/ESG-spreads.json
+2024-03-14 22:44:13.336 | INFO     | esg_retriever.rag:_initialise_document_store:534 - Initialising document store
+2024-03-14 22:44:13.343 | INFO     | esg_retriever.rag:_initialise_retriever:552 - Initialising retriever (using all-mpnet-base-v2 model)
+2024-03-14 22:44:19.858 | INFO     | esg_retriever.rag:_initialise_mappings:568 - Initialising mappings
+2024-03-14 22:44:19.861 | INFO     | esg_retriever.rag:_initiaise_openai_client:577 - Initialising OpenAI clients
+2024-03-14 22:44:19.876 | INFO     | esg_retriever.rag:query:100 - Retrieving AMKEY: 3
+2024-03-14 22:44:19.876 | DEBUG    | esg_retriever.rag:query:102 - Retrieving metric: Advisory fees as per income statement
+2024-03-14 22:44:21.589 | DEBUG    | esg_retriever.rag:_filter_document:298 - Filtering context prompt:
+
+Can the answer to the specific question: "What was the Advisory fees as per income statement in the year 2023? " be directly found in the following markdown table:
+
+| REGISTERED OFFICE   | Impala Bafokeng   | COMPANY SECRETARY                         |
+|---------------------|-------------------|-------------------------------------------|
+| Private Bag X18     | Impala Canada     | Computershare Investor Services (Pty) Ltd |
+| Northlands, 2116    | 69 Yonge Street   | Rosebank Towers                           |
+
+It is possible that the answer is not explicitly stated in the context.
+The answer, if it exists, should be specific to the question asked.
+No calculations will be required to answer the question - the answer, if it exists, will be directly retrievable from the context.
+If the answer is not directly retrievable from the context, your conclusion should be 'no'.
+Think step by step, and explain your reasoning.
+Please conclude your answer with a 'yes' or 'no'.
+
+Answer:
+
+2024-03-14 22:44:21.589 | DEBUG    | esg_retriever.rag:_filter_document:300 - Filtering context response: The provided markdown table does not contain any financial information related to advisory fees or income statements. The table primarily includes details about the registered office, Impala Bafokeng, and the company secretary.
+
+Since there is no mention of advisory fees or income statement figures in the table, the specific question regarding the advisory fees as per the income statement in the year 2023 cannot be directly found in the context.
+
+Conclusion: no
+2024-03-14 22:44:21.589 | DEBUG    | esg_retriever.rag:_filter_document:303 - Filtering context conclusion: no
+2024-03-14 22:44:22.698 | DEBUG    | esg_retriever.rag:_filter_document:298 - Filtering context prompt:
+
+Can the answer to the specific question: "What was the Advisory fees as per income statement in the year 2023? " be directly found in the following markdown table:
+
+| REGISTERED OFFICE   | Impala Bafokeng              | COMPANY SECRETARY   |
+|---------------------|------------------------------|---------------------|
+| PO Box 5683         | Telephone: +1 (416) 360 7590 |                     |
+| Rustenburg, 0300    | Email: info@impalacanada.com | AUDITORS            |
+
+It is possible that the answer is not explicitly stated in the context.
+The answer, if it exists, should be specific to the question asked.
+No calculations will be required to answer the question - the answer, if it exists, will be directly retrievable from the context.
+If the answer is not directly retrievable from the context, your conclusion should be 'no'.
+Think step by step, and explain your reasoning.
+Please conclude your answer with a 'yes' or 'no'.
+
+Answer:
+
+2024-03-14 22:44:22.698 | DEBUG    | esg_retriever.rag:_filter_document:300 - Filtering context response: In the provided markdown table, there is information related to the registered office of Impala Bafokeng, contact details, and the company secretary. However, there is no mention of any financial data, income statement, or advisory fees. The table primarily contains contact information and details about the company's office and personnel.
+
+Since there is no mention of financial figures, income statement details, or advisory fees in the table, the answer to the question "What was the Advisory fees as per income statement in the year 2023?" cannot be directly found in the context.
+
+Conclusion: no
+2024-03-14 22:44:22.698 | DEBUG    | esg_retriever.rag:_filter_document:303 - Filtering context conclusion: no
+2024-03-14 22:44:22.845 | DEBUG    | esg_retriever.rag:_filter_document:298 - Filtering context prompt:
+
+Can the answer to the specific question: "What was the Advisory fees as per income statement in the year 2023? " be directly found in the following markdown table:
+
+| REGISTERED OFFICE            | Impala Bafokeng              | COMPANY SECRETARY   |
+|------------------------------|------------------------------|---------------------|
+| Rustenburg, 0300             | Email: info@impalacanada.com | AUDITORS            |
+| Telephone: +27 (14) 569 0000 |                              | Deloitte & Touche   |
+
+It is possible that the answer is not explicitly stated in the context.
+The answer, if it exists, should be specific to the question asked.
+No calculations will be required to answer the question - the answer, if it exists, will be directly retrievable from the context.
+If the answer is not directly retrievable from the context, your conclusion should be 'no'.
+Think step by step, and explain your reasoning.
+Please conclude your answer with a 'yes' or 'no'.
+
+Answer:
+
+2024-03-14 22:44:22.845 | DEBUG    | esg_retriever.rag:_filter_document:300 - Filtering context response: In the provided markdown table, there is information about the registered office of Impala Bafokeng, the company secretary's contact email, and the auditors (Deloitte & Touche). However, there is no specific mention of advisory fees or an income statement in the table. The table primarily provides contact information and details about the company's office location, company secretary, and auditors.
+
+Since there is no mention of advisory fees or an income statement in the table, the specific question regarding the advisory fees as per the income statement in the year 2023 cannot be directly found in the provided context.
+
+Conclusion: no
+2024-03-14 22:44:22.845 | DEBUG    | esg_retriever.rag:_filter_document:303 - Filtering context conclusion: no
+2024-03-14 22:44:22.845 | INFO     | esg_retriever.rag:query:110 - No relevant context documents found. Returning None.
+2024-03-14 22:44:22.846 | INFO     | esg_retriever.rag:query:100 - Retrieving AMKEY: 6
+2024-03-14 22:44:22.846 | DEBUG    | esg_retriever.rag:query:102 - Retrieving metric: Air emissions of the following pollutants: (1) CO
+2024-03-14 22:44:25.497 | DEBUG    | esg_retriever.rag:_filter_document:298 - Filtering context prompt:
+
+Can the answer to the specific question: "What was the Air emissions of the following pollutants: (1) CO in the year 2023? " be directly found in the following markdown table:
+
+|                    | Unit   | 2023   | 2022   | 2021   | 2020   | 2019   |
+|--------------------|--------|--------|--------|--------|--------|--------|
+| Group total        |        | 498569 | 527248 | 493817 | 419364 | 411265 |
+| Total indirect CO2 | tonnes |        |        |        |        |        |
+
+It is possible that the answer is not explicitly stated in the context.
+The answer, if it exists, should be specific to the question asked.
+No calculations will be required to answer the question - the answer, if it exists, will be directly retrievable from the context.
+If the answer is not directly retrievable from the context, your conclusion should be 'no'.
+Think step by step, and explain your reasoning.
+Please conclude your answer with a 'yes' or 'no'.
+
+Answer:
+
+2024-03-14 22:44:25.497 | DEBUG    | esg_retriever.rag:_filter_document:300 - Filtering context response: To find the air emissions of CO in the year 2023, we need to look for a specific value related to CO emissions in the provided markdown table. However, the table only includes information on "Group total" and "Total indirect CO2" for the year 2023. There is no specific mention of CO emissions in the table for the year 2023.
+
+Since there is no direct mention of CO emissions in the table for the year 2023, we cannot determine the specific air emissions of CO for that year based on the information provided.
+
+Therefore, the answer to the question "What was the Air emissions of CO in the year 2023?" is not directly retrievable from the context.
+
+Conclusion: no
+2024-03-14 22:44:25.497 | DEBUG    | esg_retriever.rag:_filter_document:303 - Filtering context conclusion: no
+2024-03-14 22:44:25.569 | DEBUG    | esg_retriever.rag:_filter_document:298 - Filtering context prompt:
+
+Can the answer to the specific question: "What was the Air emissions of the following pollutants: (1) CO in the year 2023? " be directly found in the following markdown table:
+
+|                  | Unit   | 2023   | 2022   | 2021   | 2020   | 2019   |
+|------------------|--------|--------|--------|--------|--------|--------|
+| Emissions        |        |        |        |        |        |        |
+| Total direct CO2 | tonnes |        |        |        |        |        |
+
+It is possible that the answer is not explicitly stated in the context.
+The answer, if it exists, should be specific to the question asked.
+No calculations will be required to answer the question - the answer, if it exists, will be directly retrievable from the context.
+If the answer is not directly retrievable from the context, your conclusion should be 'no'.
+Think step by step, and explain your reasoning.
+Please conclude your answer with a 'yes' or 'no'.
+
+Answer:
+
+2024-03-14 22:44:25.569 | DEBUG    | esg_retriever.rag:_filter_document:300 - Filtering context response: In the provided markdown table, there is a row for "Emissions" and a column for the year 2023. However, the specific pollutant "CO" (Carbon Monoxide) is not listed in the table. The only pollutant mentioned in the table is "Total direct CO2."
+
+Since the table does not provide information on the emissions of Carbon Monoxide (CO) for the year 2023, the answer to the question "What was the Air emissions of the following pollutants: (1) CO in the year 2023?" is not directly retrievable from the context.
+
+Conclusion: no
+2024-03-14 22:44:25.569 | DEBUG    | esg_retriever.rag:_filter_document:303 - Filtering context conclusion: no
+2024-03-14 22:44:26.275 | DEBUG    | esg_retriever.rag:_filter_document:298 - Filtering context prompt:
+
+Can the answer to the specific question: "What was the Air emissions of the following pollutants: (1) CO in the year 2023? " be directly found in the following markdown table:
+
+|                    | Unit   | 2023    | 2022    | 2021    | 2020    | 2019    |
+|--------------------|--------|---------|---------|---------|---------|---------|
+| Total indirect CO2 | tonnes |         |         |         |         |         |
+| Impala Rustenburg  |        | 2792190 | 2785598 | 2820629 | 2567497 | 2723722 |
+
+It is possible that the answer is not explicitly stated in the context.
+The answer, if it exists, should be specific to the question asked.
+No calculations will be required to answer the question - the answer, if it exists, will be directly retrievable from the context.
+If the answer is not directly retrievable from the context, your conclusion should be 'no'.
+Think step by step, and explain your reasoning.
+Please conclude your answer with a 'yes' or 'no'.
+
+Answer:
+
+2024-03-14 22:44:26.275 | DEBUG    | esg_retriever.rag:_filter_document:300 - Filtering context response: To determine the air emissions of CO specifically for the year 2023, we need to look for a row or entry in the table that directly provides this information. In the provided markdown table, there is a row labeled "Total indirect CO2," which indicates the total indirect CO2 emissions. However, this row does not specify the emissions of CO (carbon monoxide) specifically.
+
+The table only provides data for "Total indirect CO2" emissions for Impala Rustenburg for the years 2019 to 2023. Since the table does not contain a specific entry for CO emissions, we cannot directly retrieve the information on the CO emissions for the year 2023 from this table.
+
+Therefore, the answer to the question "What was the Air emissions of the following pollutants: (1) CO in the year 2023?" is not directly retrievable from the context.
+
+Conclusion: no
+2024-03-14 22:44:26.275 | DEBUG    | esg_retriever.rag:_filter_document:303 - Filtering context conclusion: no
+2024-03-14 22:44:26.276 | INFO     | esg_retriever.rag:query:110 - No relevant context documents found. Returning None.
+2024-03-14 22:44:26.280 | INFO     | __main__:make_submission:71 - Making submission for Oceana 2022
+2024-03-14 22:44:26.281 | INFO     | esg_retriever.load:load_documents:103 - Loading documents from /home/tomw/unifi-pdf-llm/azure_ai_doc_intelligence/outputs/Oceana_ESG_Databook_FY2022.json
+2024-03-14 22:44:26.711 | INFO     | esg_retriever.load:load_documents:103 - Loading documents from /home/tomw/unifi-pdf-llm/azure_ai_doc_intelligence/outputs/Oceana_Group_Sustainability_Report_2022.json
+2024-03-14 22:44:29.451 | INFO     | esg_retriever.rag:_initialise_document_store:534 - Initialising document store
+2024-03-14 22:44:29.455 | INFO     | esg_retriever.rag:_initialise_retriever:552 - Initialising retriever (using all-mpnet-base-v2 model)
+2024-03-14 22:44:34.855 | INFO     | esg_retriever.rag:_initialise_mappings:568 - Initialising mappings
+2024-03-14 22:44:34.857 | INFO     | esg_retriever.rag:_initiaise_openai_client:577 - Initialising OpenAI clients
+2024-03-14 22:44:34.872 | INFO     | esg_retriever.rag:query:100 - Retrieving AMKEY: 3
+2024-03-14 22:44:34.873 | DEBUG    | esg_retriever.rag:query:102 - Retrieving metric: Advisory fees as per income statement
+2024-03-14 22:44:36.981 | DEBUG    | esg_retriever.rag:_filter_document:298 - Filtering context prompt:
+
+Can the answer to the specific question: "What was the Advisory fees as per income statement in the year 2022? " be directly found in the following markdown table:
+
+| AEL      | Atmospheric emission licence                                        |
+|----------|---------------------------------------------------------------------|
+| IFFO-FIP | The Marine Ingredients Organisation - Fisheries Improvement Project |
+| IFFO-RS  | International Fishmeal and Fish Oil Organisation Responsible Supply |
+
+It is possible that the answer is not explicitly stated in the context.
+The answer, if it exists, should be specific to the question asked.
+No calculations will be required to answer the question - the answer, if it exists, will be directly retrievable from the context.
+If the answer is not directly retrievable from the context, your conclusion should be 'no'.
+Think step by step, and explain your reasoning.
+Please conclude your answer with a 'yes' or 'no'.
+
+Answer:
+
+2024-03-14 22:44:36.981 | DEBUG    | esg_retriever.rag:_filter_document:300 - Filtering context response: In the provided markdown table, there is no information related to advisory fees or income statement. The table primarily lists abbreviations and their corresponding descriptions, such as Atmospheric emission licence, The Marine Ingredients Organisation - Fisheries Improvement Project, and International Fishmeal and Fish Oil Organisation Responsible Supply.
+
+Since there is no mention of advisory fees or income statement in the table, the specific question "What was the Advisory fees as per income statement in the year 2022?" cannot be directly answered from the context.
+
+Conclusion: no
+2024-03-14 22:44:36.981 | DEBUG    | esg_retriever.rag:_filter_document:303 - Filtering context conclusion: no
+2024-03-14 22:44:37.125 | DEBUG    | esg_retriever.rag:_filter_document:298 - Filtering context prompt:
+
+Can the answer to the specific question: "What was the Advisory fees as per income statement in the year 2022? " be directly found in the following markdown table:
+
+| WILL HELP YOU NAVIGATE   | WILL HELP YOU NAVIGATE   | WILL HELP YOU NAVIGATE                              |
+|--------------------------|--------------------------|-----------------------------------------------------|
+|                          | SI3:                     | CREATE SUSTAINABLE EARNINGS THROUGH DIVERSIFICATION |
+| STRATEGIC ENABLERS       | STRATEGIC ENABLERS       | STRATEGIC ENABLERS                                  |
+
+It is possible that the answer is not explicitly stated in the context.
+The answer, if it exists, should be specific to the question asked.
+No calculations will be required to answer the question - the answer, if it exists, will be directly retrievable from the context.
+If the answer is not directly retrievable from the context, your conclusion should be 'no'.
+Think step by step, and explain your reasoning.
+Please conclude your answer with a 'yes' or 'no'.
+
+Answer:
+
+2024-03-14 22:44:37.125 | DEBUG    | esg_retriever.rag:_filter_document:300 - Filtering context response: In the provided markdown table, there is no information related to advisory fees, income statements, or any financial data. The table seems to contain headings related to strategic enablers and navigation assistance, which do not provide any details about specific financial figures such as advisory fees.
+
+Since the table does not contain any information related to advisory fees as per the income statement in the year 2022, the answer to the question "What was the Advisory fees as per income statement in the year 2022?" is not directly retrievable from the context.
+
+Conclusion: no
+2024-03-14 22:44:37.125 | DEBUG    | esg_retriever.rag:_filter_document:303 - Filtering context conclusion: no
+2024-03-14 22:44:37.205 | DEBUG    | esg_retriever.rag:_filter_document:298 - Filtering context prompt:
+
+Can the answer to the specific question: "What was the Advisory fees as per income statement in the year 2022? " be directly found in the following markdown table:
+
+| AEL     | Atmospheric emission licence                                        |
+|---------|---------------------------------------------------------------------|
+| IFFO-RS | International Fishmeal and Fish Oil Organisation Responsible Supply |
+| IIRC    | International Integrated Reporting Council                          |
+
+It is possible that the answer is not explicitly stated in the context.
+The answer, if it exists, should be specific to the question asked.
+No calculations will be required to answer the question - the answer, if it exists, will be directly retrievable from the context.
+If the answer is not directly retrievable from the context, your conclusion should be 'no'.
+Think step by step, and explain your reasoning.
+Please conclude your answer with a 'yes' or 'no'.
+
+Answer:
+
+2024-03-14 22:44:37.205 | DEBUG    | esg_retriever.rag:_filter_document:300 - Filtering context response: In the provided markdown table, there is no information related to advisory fees or an income statement. The table only lists abbreviations and their corresponding meanings, such as "AEL" for Atmospheric emission licence, "IFFO-RS" for International Fishmeal and Fish Oil Organisation Responsible Supply, and "IIRC" for International Integrated Reporting Council.
+
+Since there is no mention of advisory fees or an income statement in the table, the specific question "What was the Advisory fees as per income statement in the year 2022?" cannot be directly answered from the context.
+
+Conclusion: no
+2024-03-14 22:44:37.205 | DEBUG    | esg_retriever.rag:_filter_document:303 - Filtering context conclusion: no
+2024-03-14 22:44:37.206 | INFO     | esg_retriever.rag:query:110 - No relevant context documents found. Returning None.
+2024-03-14 22:44:37.206 | INFO     | esg_retriever.rag:query:100 - Retrieving AMKEY: 6
+2024-03-14 22:44:37.207 | DEBUG    | esg_retriever.rag:query:102 - Retrieving metric: Air emissions of the following pollutants: (1) CO
+2024-03-14 22:44:39.846 | DEBUG    | esg_retriever.rag:_filter_document:298 - Filtering context prompt:
+
+Can the answer to the specific question: "What was the Air emissions of the following pollutants: (1) CO in the year 2022? " be directly found in the following markdown table:
+
+| AEL   | Atmospheric emission licence       |
+|-------|------------------------------------|
+| CIP   | Conservation Improvement Programme |
+| CO,   | Carbon dioxide                     |
+
+It is possible that the answer is not explicitly stated in the context.
+The answer, if it exists, should be specific to the question asked.
+No calculations will be required to answer the question - the answer, if it exists, will be directly retrievable from the context.
+If the answer is not directly retrievable from the context, your conclusion should be 'no'.
+Think step by step, and explain your reasoning.
+Please conclude your answer with a 'yes' or 'no'.
+
+Answer:
+
+2024-03-14 22:44:39.847 | DEBUG    | esg_retriever.rag:_filter_document:300 - Filtering context response: In the provided markdown table, the information given pertains to the Atmospheric Emission Licence (AEL) and abbreviations related to conservation programs. The table mentions "CO" as an abbreviation for carbon monoxide, not carbon dioxide. Additionally, the table does not provide any specific data or values related to air emissions of pollutants such as CO or carbon dioxide in the year 2022.
+
+Given that the table only provides abbreviations and general information about the Atmospheric Emission Licence and conservation programs, it does not contain any direct information about the air emissions of pollutants like CO or carbon dioxide in the year 2022. Therefore, the answer to the question "What was the Air emissions of the following pollutants: (1) CO in the year 2022?" is not directly retrievable from the context.
+
+Conclusion: no
+2024-03-14 22:44:39.847 | DEBUG    | esg_retriever.rag:_filter_document:303 - Filtering context conclusion: no
+2024-03-14 22:44:39.945 | DEBUG    | esg_retriever.rag:_filter_document:298 - Filtering context prompt:
+
+Can the answer to the specific question: "What was the Air emissions of the following pollutants: (1) CO in the year 2022? " be directly found in the following markdown table:
+
+| AEL   | Atmospheric emission licence   |
+|-------|--------------------------------|
+| CO,   | Carbon dioxide                 |
+| COP23 | Conference of the Parties 23   |
+
+It is possible that the answer is not explicitly stated in the context.
+The answer, if it exists, should be specific to the question asked.
+No calculations will be required to answer the question - the answer, if it exists, will be directly retrievable from the context.
+If the answer is not directly retrievable from the context, your conclusion should be 'no'.
+Think step by step, and explain your reasoning.
+Please conclude your answer with a 'yes' or 'no'.
+
+Answer:
+
+2024-03-14 22:44:39.946 | DEBUG    | esg_retriever.rag:_filter_document:300 - Filtering context response: In the provided markdown table, there is a mention of "CO" which stands for Carbon Monoxide, not Carbon Dioxide as indicated in the table. The table does not provide any specific data related to the air emissions of pollutants like CO in the year 2022. It simply lists "CO" as an abbreviation for Carbon Monoxide and "COP23" as an abbreviation for Conference of the Parties 23.
+
+Since the table does not contain any numerical data or information related to the air emissions of pollutants like CO in the year 2022, the specific question regarding the air emissions of CO in 2022 cannot be directly answered from the context provided.
+
+Conclusion: no
+2024-03-14 22:44:39.946 | DEBUG    | esg_retriever.rag:_filter_document:303 - Filtering context conclusion: no
+2024-03-14 22:44:40.145 | DEBUG    | esg_retriever.rag:_filter_document:298 - Filtering context prompt:
+
+Can the answer to the specific question: "What was the Air emissions of the following pollutants: (1) CO in the year 2022? " be directly found in the following markdown table:
+
+| AEL   | Atmospheric emission licence               |
+|-------|--------------------------------------------|
+| IIRC  | International Integrated Reporting Council |
+| ILO   | International Labour Organisation          |
+
+It is possible that the answer is not explicitly stated in the context.
+The answer, if it exists, should be specific to the question asked.
+No calculations will be required to answer the question - the answer, if it exists, will be directly retrievable from the context.
+If the answer is not directly retrievable from the context, your conclusion should be 'no'.
+Think step by step, and explain your reasoning.
+Please conclude your answer with a 'yes' or 'no'.
+
+Answer:
+
+2024-03-14 22:44:40.145 | DEBUG    | esg_retriever.rag:_filter_document:300 - Filtering context response: In the provided markdown table, there is no information related to air emissions of pollutants such as CO (Carbon Monoxide) in the year 2022. The table only contains abbreviations and their corresponding full forms, which are not related to air emissions data.
+
+Since the table does not contain any data or indicators related to air emissions of pollutants like CO in the year 2022, the answer to the specific question "What was the Air emissions of the following pollutants: (1) CO in the year 2022?" is not directly retrievable from the context.
+
+Conclusion: no
+2024-03-14 22:44:40.145 | DEBUG    | esg_retriever.rag:_filter_document:303 - Filtering context conclusion: no
+2024-03-14 22:44:40.146 | INFO     | esg_retriever.rag:query:110 - No relevant context documents found. Returning None.
+2024-03-14 22:44:40.150 | INFO     | __main__:make_submission:71 - Making submission for Picknpay 2023
+2024-03-14 22:44:40.152 | INFO     | esg_retriever.load:load_documents:103 - Loading documents from /home/tomw/unifi-pdf-llm/azure_ai_doc_intelligence/outputs/picknpay-esg-report-spreads-2023.json
+2024-03-14 22:44:42.008 | INFO     | esg_retriever.rag:_initialise_document_store:534 - Initialising document store
+2024-03-14 22:44:42.011 | INFO     | esg_retriever.rag:_initialise_retriever:552 - Initialising retriever (using all-mpnet-base-v2 model)
+2024-03-14 22:44:46.436 | INFO     | esg_retriever.rag:_initialise_mappings:568 - Initialising mappings
+2024-03-14 22:44:46.439 | INFO     | esg_retriever.rag:_initiaise_openai_client:577 - Initialising OpenAI clients
+2024-03-14 22:44:46.454 | INFO     | esg_retriever.rag:query:100 - Retrieving AMKEY: 3
+2024-03-14 22:44:46.454 | DEBUG    | esg_retriever.rag:query:102 - Retrieving metric: Advisory fees as per income statement
+2024-03-14 22:44:48.600 | DEBUG    | esg_retriever.rag:_filter_document:298 - Filtering context prompt:
+
+Can the answer to the specific question: "What was the Advisory fees as per income statement in the year 2023? " be directly found in the following markdown table:
+
+|   ESG/Sustainability Databook | ESG/Sustainability Databook                          |   FY23 |   FY22 |   FY21 |   FY20 | GRI STANDARDS   | SASB STANDARDS   | JSE COMMENTS   | JSE COMMENTS                                                      |
+|-------------------------------|------------------------------------------------------|--------|--------|--------|--------|-----------------|------------------|----------------|-------------------------------------------------------------------|
+|                            17 | Rand Million Value of Dividends Paid to Shareholders |  881.5 | 1081.1 |  876   | 1039.4 | 201-1           |                  |                | Prior year reporting updated to align to current year methodology |
+|                            18 | Rand Million Value of Retained Earnings              | 4685.2 | 4717.3 | 4573.5 | 4303.2 | 201-1           |                  |                |                                                                   |
+
+It is possible that the answer is not explicitly stated in the context.
+The answer, if it exists, should be specific to the question asked.
+No calculations will be required to answer the question - the answer, if it exists, will be directly retrievable from the context.
+If the answer is not directly retrievable from the context, your conclusion should be 'no'.
+Think step by step, and explain your reasoning.
+Please conclude your answer with a 'yes' or 'no'.
+
+Answer:
+
+2024-03-14 22:44:48.601 | DEBUG    | esg_retriever.rag:_filter_document:300 - Filtering context response: In the provided markdown table, there is no specific indicator related to "Advisory fees" mentioned. The table includes information such as the value of dividends paid to shareholders and the value of retained earnings, but there is no direct mention of advisory fees in the context of the income statement for the year 2023.
+
+Since there is no explicit mention of advisory fees in the table, we cannot directly find the information regarding the advisory fees as per the income statement in the year 2023.
+
+Conclusion: no
+2024-03-14 22:44:48.601 | DEBUG    | esg_retriever.rag:_filter_document:303 - Filtering context conclusion: no
+2024-03-14 22:44:49.200 | DEBUG    | esg_retriever.rag:_filter_document:298 - Filtering context prompt:
+
+Can the answer to the specific question: "What was the Advisory fees as per income statement in the year 2023? " be directly found in the following markdown table:
+
+|    | ESG/Sustainability Databook               | FY23   | FY22   | FY21   | FY20   | GRI STANDARDS   | SASB STANDARDS   | JSE   | COMMENTS   |
+|----|-------------------------------------------|--------|--------|--------|--------|-----------------|------------------|-------|------------|
+| 40 | Auditor Remuneration: % of Non-audit Fees | 0.0%   | 0.0%   | 2.2%   | 3.6%   |                 |                  |       |            |
+| 41 | Length of Current Auditor's service       | 8      | 7      | 6      | 5      |                 |                  |       |            |
+
+It is possible that the answer is not explicitly stated in the context.
+The answer, if it exists, should be specific to the question asked.
+No calculations will be required to answer the question - the answer, if it exists, will be directly retrievable from the context.
+If the answer is not directly retrievable from the context, your conclusion should be 'no'.
+Think step by step, and explain your reasoning.
+Please conclude your answer with a 'yes' or 'no'.
+
+Answer:
+
+2024-03-14 22:44:49.201 | DEBUG    | esg_retriever.rag:_filter_document:300 - Filtering context response: Based on the provided markdown table, there is no specific indicator related to "Advisory fees" or "income statement." The table includes information on auditor remuneration and the length of the current auditor's service, but it does not provide any direct information on advisory fees as per the income statement for the year 2023.
+
+Since there is no explicit mention of advisory fees in the context of the income statement for the year 2023, the answer to the question "What was the Advisory fees as per income statement in the year 2023?" is not directly retrievable from the context.
+
+Conclusion: no
+2024-03-14 22:44:49.201 | DEBUG    | esg_retriever.rag:_filter_document:303 - Filtering context conclusion: no
+2024-03-14 22:44:49.313 | DEBUG    | esg_retriever.rag:_filter_document:298 - Filtering context prompt:
+
+Can the answer to the specific question: "What was the Advisory fees as per income statement in the year 2023? " be directly found in the following markdown table:
+
+|    | ESG/Sustainability Databook               | FY23               | FY22               | FY21               | FY20               | GRI STANDARDS   | SASB STANDARDS   | JSE   | COMMENTS   |
+|----|-------------------------------------------|--------------------|--------------------|--------------------|--------------------|-----------------|------------------|-------|------------|
+| 39 | Name of Financial Auditor                 | Ernst & Young Inc. | Ernst & Young Inc. | Ernst & Young Inc. | Ernst & Young Inc. |                 |                  |       |            |
+| 40 | Auditor Remuneration: % of Non-audit Fees | 0.0%               | 0.0%               | 2.2%               | 3.6%               |                 |                  |       |            |
+
+It is possible that the answer is not explicitly stated in the context.
+The answer, if it exists, should be specific to the question asked.
+No calculations will be required to answer the question - the answer, if it exists, will be directly retrievable from the context.
+If the answer is not directly retrievable from the context, your conclusion should be 'no'.
+Think step by step, and explain your reasoning.
+Please conclude your answer with a 'yes' or 'no'.
+
+Answer:
+
+2024-03-14 22:44:49.313 | DEBUG    | esg_retriever.rag:_filter_document:300 - Filtering context response: To find the Advisory fees as per the income statement in the year 2023, we need to look for a specific indicator related to advisory fees in the provided markdown table. However, the table only includes information about the financial auditor and auditor remuneration as a percentage of non-audit fees.
+
+There is no direct mention of advisory fees in the table. The indicators provided do not give us information about the specific advisory fees as per the income statement for the year 2023. The table primarily focuses on the financial auditor and their remuneration percentages.
+
+Without a specific line item or indicator related to advisory fees in the income statement for 2023, we cannot directly retrieve the information about the advisory fees from the context.
+
+Conclusion: no
+2024-03-14 22:44:49.313 | DEBUG    | esg_retriever.rag:_filter_document:303 - Filtering context conclusion: no
+2024-03-14 22:44:49.314 | INFO     | esg_retriever.rag:query:110 - No relevant context documents found. Returning None.
+2024-03-14 22:44:49.314 | INFO     | esg_retriever.rag:query:100 - Retrieving AMKEY: 6
+2024-03-14 22:44:49.315 | DEBUG    | esg_retriever.rag:query:102 - Retrieving metric: Air emissions of the following pollutants: (1) CO
+2024-03-14 22:44:51.569 | DEBUG    | esg_retriever.rag:_filter_document:298 - Filtering context prompt:
+
+Can the answer to the specific question: "What was the Air emissions of the following pollutants: (1) CO in the year 2023? " be directly found in the following markdown table:
+
+|                                                                            | FY23   | FY22   | FY21   |
+|----------------------------------------------------------------------------|--------|--------|--------|
+| Total Scope 1 and Scope 2 carbon emissions (million tonnes CO2e)*          | 1.14   | 1.00   | 0.89   |
+| Percentage of stores using natural refrigerants (PnP company-owned stores) | 9.5%   | 6.4%   | 5%     |
+
+It is possible that the answer is not explicitly stated in the context.
+The answer, if it exists, should be specific to the question asked.
+No calculations will be required to answer the question - the answer, if it exists, will be directly retrievable from the context.
+If the answer is not directly retrievable from the context, your conclusion should be 'no'.
+Think step by step, and explain your reasoning.
+Please conclude your answer with a 'yes' or 'no'.
+
+Answer:
+
+2024-03-14 22:44:51.569 | DEBUG    | esg_retriever.rag:_filter_document:300 - Filtering context response: To find the air emissions of CO specifically in the year 2023, we need to look for a direct mention of CO emissions in the provided markdown table. The table includes information on "Total Scope 1 and Scope 2 carbon emissions (million tonnes CO2e)" but does not specify the breakdown of individual pollutants like CO.
+
+Since the table does not provide specific data on CO emissions for the year 2023, we cannot directly retrieve the information on the air emissions of CO for that year from the context.
+
+Conclusion: no
+2024-03-14 22:44:51.569 | DEBUG    | esg_retriever.rag:_filter_document:303 - Filtering context conclusion: no
+2024-03-14 22:44:52.394 | DEBUG    | esg_retriever.rag:_filter_document:298 - Filtering context prompt:
+
+Can the answer to the specific question: "What was the Air emissions of the following pollutants: (1) CO in the year 2023? " be directly found in the following markdown table:
+
+|   ESG/Sustainability Databook | ESG/Sustainability Databook                                                                                |   FY23 | FY22   | FY21   | FY20   | GRI STANDARDS   | SASB STANDARDS   | JSE   | COMMENTS                            |
+|-------------------------------|------------------------------------------------------------------------------------------------------------|--------|--------|--------|--------|-----------------|------------------|-------|-------------------------------------|
+|                           168 | GHG Emissions Intensity for Scope 1 Emissions expressed as Metric tonnes of CO2e per unit of Million Rands |    3.6 | –      | –      | –      | 305-4           |                  | E1.1c | Reported for the first time in FY23 |
+|                           169 | GHG emissions Intensity for Scope 2 Emissions expressed as Metric tonnes of CO2e per unit of Million Rands |    7.1 | –      | –      | –      | 305-4           |                  | E1.1c | Reported for the first time in FY23 |
+
+It is possible that the answer is not explicitly stated in the context.
+The answer, if it exists, should be specific to the question asked.
+No calculations will be required to answer the question - the answer, if it exists, will be directly retrievable from the context.
+If the answer is not directly retrievable from the context, your conclusion should be 'no'.
+Think step by step, and explain your reasoning.
+Please conclude your answer with a 'yes' or 'no'.
+
+Answer:
+
+2024-03-14 22:44:52.394 | DEBUG    | esg_retriever.rag:_filter_document:300 - Filtering context response: To find the air emissions of CO in the year 2023, we need to look for a specific indicator related to CO emissions in the provided markdown table. The table includes indicators related to GHG emissions intensity for Scope 1 and Scope 2 emissions, expressed as metric tonnes of CO2e per unit of Million Rands. However, these indicators do not provide the direct amount of CO emissions in metric tonnes for the year 2023.
+
+The indicators in the table focus on GHG emissions intensity for different scopes and are expressed in CO2e, which includes various greenhouse gases, not just CO. Without a specific breakdown of CO emissions in metric tonnes for the year 2023, we cannot determine the exact amount of CO emissions from the table.
+
+Therefore, the answer to the question "What was the Air emissions of CO in the year 2023?" is not directly retrievable from the context.
+
+Conclusion: no
+2024-03-14 22:44:52.394 | DEBUG    | esg_retriever.rag:_filter_document:303 - Filtering context conclusion: no
+2024-03-14 22:44:52.919 | DEBUG    | esg_retriever.rag:_filter_document:298 - Filtering context prompt:
+
+Can the answer to the specific question: "What was the Air emissions of the following pollutants: (1) CO in the year 2023? " be directly found in the following markdown table:
+
+| ESG/Sustainability Databook                  | ESG/Sustainability Databook                  |    FY23 |    FY22 |    FY21 |    FY20 | GRI STANDARDS   | SASB STANDARDS   | JSE   | COMMENTS                                                                               |
+|----------------------------------------------|----------------------------------------------|---------|---------|---------|---------|-----------------|------------------|-------|----------------------------------------------------------------------------------------|
+| 159 Carbon Emissions (tonnes CO2e) - Scope 3 | 159 Carbon Emissions (tonnes CO2e) - Scope 3 |  452280 |  475222 |  482615 |  507967 | 305-3           |                  | E1.1a | FY23 reduction due to reduction in franchise store's Scope 2 emissions                 |
+| 160 Total Carbon Emissions (tonnes CO2e)     | 160 Total Carbon Emissions (tonnes CO2e)     | 1595625 | 1475780 | 1372210 | 1495197 |                 |                  |       | FY23 increase largely due to increased diesel consumption as a result of load-shedding |
+
+It is possible that the answer is not explicitly stated in the context.
+The answer, if it exists, should be specific to the question asked.
+No calculations will be required to answer the question - the answer, if it exists, will be directly retrievable from the context.
+If the answer is not directly retrievable from the context, your conclusion should be 'no'.
+Think step by step, and explain your reasoning.
+Please conclude your answer with a 'yes' or 'no'.
+
+Answer:
+
+2024-03-14 22:44:52.919 | DEBUG    | esg_retriever.rag:_filter_document:300 - Filtering context response: To find the air emissions of CO (Carbon Monoxide) in the year 2023, we need to look for a specific indicator related to CO emissions in the provided markdown table. The table includes indicators such as "159 Carbon Emissions (tonnes CO2e) - Scope 3" and "160 Total Carbon Emissions (tonnes CO2e)." However, these indicators specifically mention CO2e (Carbon Dioxide equivalent) emissions, not CO emissions.
+
+Carbon Monoxide (CO) is a different pollutant from Carbon Dioxide (CO2), and the table does not provide a specific value for CO emissions. Without a direct mention of CO emissions in the table, we cannot determine the air emissions of CO in the year 2023 from the given data.
+
+Therefore, the answer to the question "What was the Air emissions of the following pollutants: (1) CO in the year 2023?" is not directly retrievable from the context.
+
+Conclusion: no
+2024-03-14 22:44:52.919 | DEBUG    | esg_retriever.rag:_filter_document:303 - Filtering context conclusion: no
+2024-03-14 22:44:52.920 | INFO     | esg_retriever.rag:query:110 - No relevant context documents found. Returning None.
+2024-03-14 22:44:52.924 | INFO     | __main__:make_submission:71 - Making submission for Sasol 2023
+2024-03-14 22:44:52.925 | INFO     | esg_retriever.load:load_documents:103 - Loading documents from /home/tomw/unifi-pdf-llm/azure_ai_doc_intelligence/outputs/SASOL Sustainability Report 2023 20-09_0.json
+2024-03-14 22:44:57.355 | INFO     | esg_retriever.rag:_initialise_document_store:534 - Initialising document store
+2024-03-14 22:44:57.363 | INFO     | esg_retriever.rag:_initialise_retriever:552 - Initialising retriever (using all-mpnet-base-v2 model)
+2024-03-14 22:45:03.209 | INFO     | esg_retriever.rag:_initialise_mappings:568 - Initialising mappings
+2024-03-14 22:45:03.212 | INFO     | esg_retriever.rag:_initiaise_openai_client:577 - Initialising OpenAI clients
+2024-03-14 22:45:03.227 | INFO     | esg_retriever.rag:query:100 - Retrieving AMKEY: 3
+2024-03-14 22:45:03.227 | DEBUG    | esg_retriever.rag:query:102 - Retrieving metric: Advisory fees as per income statement
+2024-03-14 22:45:04.955 | DEBUG    | esg_retriever.rag:_filter_document:298 - Filtering context prompt:
+
+Can the answer to the specific question: "What was the Advisory fees as per income statement in the year 2023? " be directly found in the following markdown table:
+
+| The International Integrated Reporting <IR> Framework                  | IR   | IR   | IR   |    |
+|------------------------------------------------------------------------|------|------|------|----|
+| United States Securities and Exchange Commission rules and regulations | 20-F |      |      |    |
+| Sarbanes-Oxley Act of 2002                                             | 20-F |      |      |    |
+
+It is possible that the answer is not explicitly stated in the context.
+The answer, if it exists, should be specific to the question asked.
+No calculations will be required to answer the question - the answer, if it exists, will be directly retrievable from the context.
+If the answer is not directly retrievable from the context, your conclusion should be 'no'.
+Think step by step, and explain your reasoning.
+Please conclude your answer with a 'yes' or 'no'.
+
+Answer:
+
+2024-03-14 22:45:04.955 | DEBUG    | esg_retriever.rag:_filter_document:300 - Filtering context response: In the provided markdown table, there is no information related to "Advisory fees" or "income statement." The table seems to list different frameworks, regulations, and acts, but none of them directly mention advisory fees or income statements.
+
+Since there is no mention of advisory fees or income statement in the table, the answer to the question "What was the Advisory fees as per income statement in the year 2023?" is not directly retrievable from the context.
+
+Conclusion: no
+2024-03-14 22:45:04.955 | DEBUG    | esg_retriever.rag:_filter_document:303 - Filtering context conclusion: no
+2024-03-14 22:45:05.436 | DEBUG    | esg_retriever.rag:_filter_document:298 - Filtering context prompt:
+
+Can the answer to the specific question: "What was the Advisory fees as per income statement in the year 2023? " be directly found in the following markdown table:
+
+| The International Integrated Reporting <IR> Framework   | IR   | IR   | IR   |     |
+|---------------------------------------------------------|------|------|------|-----|
+| JSE Sustainability and Climate Disclosure Guidelines    | IR   | SR   | SR   | CCR |
+| Global tax regulations and principles                   | TR   |      |      |     |
+
+It is possible that the answer is not explicitly stated in the context.
+The answer, if it exists, should be specific to the question asked.
+No calculations will be required to answer the question - the answer, if it exists, will be directly retrievable from the context.
+If the answer is not directly retrievable from the context, your conclusion should be 'no'.
+Think step by step, and explain your reasoning.
+Please conclude your answer with a 'yes' or 'no'.
+
+Answer:
+
+2024-03-14 22:45:05.437 | DEBUG    | esg_retriever.rag:_filter_document:300 - Filtering context response: In the provided markdown table, there is no information related to "Advisory fees" or an "income statement." The table primarily lists different frameworks, guidelines, regulations, and principles, none of which directly relate to advisory fees or income statements.
+
+Since there is no mention of advisory fees or income statements in the table, the specific question "What was the Advisory fees as per income statement in the year 2023?" cannot be directly answered from the context.
+
+Conclusion: no
+2024-03-14 22:45:05.437 | DEBUG    | esg_retriever.rag:_filter_document:303 - Filtering context conclusion: no
+2024-03-14 22:45:05.970 | DEBUG    | esg_retriever.rag:_filter_document:298 - Filtering context prompt:
+
+Can the answer to the specific question: "What was the Advisory fees as per income statement in the year 2023? " be directly found in the following markdown table:
+
+| The International Integrated Reporting <IR> Framework                               | IR     | IR     | IR     |     |
+|-------------------------------------------------------------------------------------|--------|--------|--------|-----|
+| Task Force on Climate-related Financial Disclosures (TCFD)                          | IR     |        | SR     | CCR |
+| United Nations Advanced Reporting Criteria and Sustainable Development Goals (SDGs) | SR CCR | SR CCR | SR CCR |     |
+
+It is possible that the answer is not explicitly stated in the context.
+The answer, if it exists, should be specific to the question asked.
+No calculations will be required to answer the question - the answer, if it exists, will be directly retrievable from the context.
+If the answer is not directly retrievable from the context, your conclusion should be 'no'.
+Think step by step, and explain your reasoning.
+Please conclude your answer with a 'yes' or 'no'.
+
+Answer:
+
+2024-03-14 22:45:05.970 | DEBUG    | esg_retriever.rag:_filter_document:300 - Filtering context response: In the provided markdown table, there is no information related to "Advisory fees" or "income statement." The table seems to list different frameworks and criteria, such as the International Integrated Reporting Framework, Task Force on Climate-related Financial Disclosures (TCFD), United Nations Advanced Reporting Criteria, and Sustainable Development Goals (SDGs).
+
+Since there is no mention of "Advisory fees" or "income statement" in the table, we cannot directly find the specific information about the Advisory fees as per the income statement in the year 2023 from this context.
+
+Conclusion: no
+2024-03-14 22:45:05.970 | DEBUG    | esg_retriever.rag:_filter_document:303 - Filtering context conclusion: no
+2024-03-14 22:45:05.971 | INFO     | esg_retriever.rag:query:110 - No relevant context documents found. Returning None.
+2024-03-14 22:45:05.971 | INFO     | esg_retriever.rag:query:100 - Retrieving AMKEY: 6
+2024-03-14 22:45:05.972 | DEBUG    | esg_retriever.rag:query:102 - Retrieving metric: Air emissions of the following pollutants: (1) CO
+2024-03-14 22:45:08.563 | DEBUG    | esg_retriever.rag:_filter_document:298 - Filtering context prompt:
+
+Can the answer to the specific question: "What was the Air emissions of the following pollutants: (1) CO in the year 2023? " be directly found in the following markdown table:
+
+| Natural Capital - Our environment         | 2023   | 2022   | 2021   | 2020   | LoA 2023   | Footnote   |
+|-------------------------------------------|--------|--------|--------|--------|------------|------------|
+| Direct carbon dioxide (CO2) Scope 1 (CO2) | 58644  | 57284  | 60778  | 59411  |            | 12         |
+| equivalent) (kilotons)                    |        |        |        |        |            |            |
+
+It is possible that the answer is not explicitly stated in the context.
+The answer, if it exists, should be specific to the question asked.
+No calculations will be required to answer the question - the answer, if it exists, will be directly retrievable from the context.
+If the answer is not directly retrievable from the context, your conclusion should be 'no'.
+Think step by step, and explain your reasoning.
+Please conclude your answer with a 'yes' or 'no'.
+
+Answer:
+
+2024-03-14 22:45:08.563 | DEBUG    | esg_retriever.rag:_filter_document:300 - Filtering context response: To determine the air emissions of CO (carbon monoxide) in the year 2023, we need to look for a specific entry related to CO in the provided markdown table. However, the table only includes information about direct carbon dioxide (CO2) emissions, not carbon monoxide (CO) emissions.
+
+Since the table does not provide any data related to carbon monoxide (CO) emissions, we cannot directly find the air emissions of CO in the year 2023 from the context.
+
+Conclusion: no
+2024-03-14 22:45:08.563 | DEBUG    | esg_retriever.rag:_filter_document:303 - Filtering context conclusion: no
+2024-03-14 22:45:08.584 | DEBUG    | esg_retriever.rag:_filter_document:298 - Filtering context prompt:
+
+Can the answer to the specific question: "What was the Air emissions of the following pollutants: (1) CO in the year 2023? " be directly found in the following markdown table:
+
+| GHG emissions CO2e (kilotons)   |   2023 |   2022 |
+|---------------------------------|--------|--------|
+| Indirect scope 2                |   5748 |   6607 |
+| Indirect scope 3                |  36664 |  37557 |
+
+It is possible that the answer is not explicitly stated in the context.
+The answer, if it exists, should be specific to the question asked.
+No calculations will be required to answer the question - the answer, if it exists, will be directly retrievable from the context.
+If the answer is not directly retrievable from the context, your conclusion should be 'no'.
+Think step by step, and explain your reasoning.
+Please conclude your answer with a 'yes' or 'no'.
+
+Answer:
+
+2024-03-14 22:45:08.584 | DEBUG    | esg_retriever.rag:_filter_document:300 - Filtering context response: To find the air emissions of CO in the year 2023, we need to look for a specific indicator related to CO emissions in the provided markdown table. However, the table only includes information about GHG emissions in terms of CO2e (carbon dioxide equivalent) for indirect scope 2 and indirect scope 3.
+
+The table does not provide specific data on the emissions of CO (carbon monoxide) for the year 2023. It only presents information on CO2e emissions for different scopes. Since CO and CO2 are different pollutants, we cannot directly retrieve the air emissions of CO from the given table.
+
+Therefore, the answer to the question "What was the Air emissions of the following pollutants: (1) CO in the year 2023?" is not directly retrievable from the context.
+
+Conclusion: no
+2024-03-14 22:45:08.584 | DEBUG    | esg_retriever.rag:_filter_document:303 - Filtering context conclusion: no
+2024-03-14 22:45:09.067 | DEBUG    | esg_retriever.rag:_filter_document:298 - Filtering context prompt:
+
+Can the answer to the specific question: "What was the Air emissions of the following pollutants: (1) CO in the year 2023? " be directly found in the following markdown table:
+
+| Natural Capital - Our environment                | 2023   | 2022          | 2021          | 2020   | LoA 2023   | Footnote   |
+|--------------------------------------------------|--------|---------------|---------------|--------|------------|------------|
+| Indirect carbon dioxide (CO2) Scope 3 (kilotons) |        | Refer to page | 63 of the CCR |        | Limited    |            |
+| Total greenhouse gas (CO2 equivalent) (kilotons) | 64392  | 63891         | 66273         | 64829  | Reasonable |            |
+
+It is possible that the answer is not explicitly stated in the context.
+The answer, if it exists, should be specific to the question asked.
+No calculations will be required to answer the question - the answer, if it exists, will be directly retrievable from the context.
+If the answer is not directly retrievable from the context, your conclusion should be 'no'.
+Think step by step, and explain your reasoning.
+Please conclude your answer with a 'yes' or 'no'.
+
+Answer:
+
+2024-03-14 22:45:09.067 | DEBUG    | esg_retriever.rag:_filter_document:300 - Filtering context response: To find the air emissions of CO (carbon monoxide) in the year 2023, we need to look for a specific indicator related to CO emissions in the provided markdown table. However, the table only includes information on indirect carbon dioxide (CO2) emissions and total greenhouse gas emissions in CO2 equivalent.
+
+The table does not provide specific data on carbon monoxide (CO) emissions. It mentions indirect carbon dioxide (CO2) emissions and total greenhouse gas emissions in CO2 equivalent, but these are different from carbon monoxide (CO) emissions.
+
+Since the table does not contain information on carbon monoxide (CO) emissions specifically, we cannot determine the air emissions of CO in the year 2023 from the given data.
+
+Conclusion: no
+2024-03-14 22:45:09.067 | DEBUG    | esg_retriever.rag:_filter_document:303 - Filtering context conclusion: no
+2024-03-14 22:45:09.068 | INFO     | esg_retriever.rag:query:110 - No relevant context documents found. Returning None.
+2024-03-14 22:45:09.072 | INFO     | __main__:make_submission:71 - Making submission for Ssw 2022
+2024-03-14 22:45:09.074 | INFO     | esg_retriever.load:load_documents:103 - Loading documents from /home/tomw/unifi-pdf-llm/azure_ai_doc_intelligence/outputs/ssw-IR22.json
+2024-03-14 22:45:23.781 | INFO     | esg_retriever.rag:_initialise_document_store:534 - Initialising document store
+2024-03-14 22:45:23.800 | INFO     | esg_retriever.rag:_initialise_retriever:552 - Initialising retriever (using all-mpnet-base-v2 model)
+2024-03-14 22:45:40.691 | INFO     | esg_retriever.rag:_initialise_mappings:568 - Initialising mappings
+2024-03-14 22:45:40.695 | INFO     | esg_retriever.rag:_initiaise_openai_client:577 - Initialising OpenAI clients
+2024-03-14 22:45:40.710 | INFO     | esg_retriever.rag:query:100 - Retrieving AMKEY: 3
+2024-03-14 22:45:40.711 | DEBUG    | esg_retriever.rag:query:102 - Retrieving metric: Advisory fees as per income statement
+2024-03-14 22:45:42.970 | DEBUG    | esg_retriever.rag:_filter_document:298 - Filtering context prompt:
+
+Can the answer to the specific question: "What was the Advisory fees as per income statement in the year 2022? " be directly found in the following markdown table:
+
+| Per year                                                                                                                                                                                                                                            | 2022       | 2023       | % year-on- year - increase   | converted at - 2023 fees R16/US$   |
+|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------|------------|------------------------------|------------------------------------|
+| Lead independent director, who is not eligible to receive fees in respect of committee chairmanship or membership except in the event of being a member of the Investment Committee which meets on an ad hoc basis and is remunerated on that basis | R2,332,000 | R2,460,000 | 5.5 %                        | US$153,750                         |
+| Chair of the Audit Committee                                                                                                                                                                                                                        | R416,000   | R439,000   | 5.5 %                        | US$27,438                          |
+
+It is possible that the answer is not explicitly stated in the context.
+The answer, if it exists, should be specific to the question asked.
+No calculations will be required to answer the question - the answer, if it exists, will be directly retrievable from the context.
+If the answer is not directly retrievable from the context, your conclusion should be 'no'.
+Think step by step, and explain your reasoning.
+Please conclude your answer with a 'yes' or 'no'.
+
+Answer:
+
+2024-03-14 22:45:42.970 | DEBUG    | esg_retriever.rag:_filter_document:300 - Filtering context response: The specific question is asking for the Advisory fees as per the income statement in the year 2022. However, the provided markdown table does not contain any information related to Advisory fees. The table only includes details about fees for specific positions like Lead independent director and Chair of the Audit Committee, along with their corresponding amounts for the years 2022 and 2023.
+
+Since there is no mention of Advisory fees in the table, we cannot directly find the information regarding Advisory fees as per the income statement in the year 2022 from the context provided.
+
+Conclusion: no
+2024-03-14 22:45:42.970 | DEBUG    | esg_retriever.rag:_filter_document:303 - Filtering context conclusion: no
+2024-03-14 22:45:43.066 | DEBUG    | esg_retriever.rag:_filter_document:298 - Filtering context prompt:
+
+Can the answer to the specific question: "What was the Advisory fees as per income statement in the year 2022? " be directly found in the following markdown table:
+
+| Per year                            | 2022     | 2023     | % year-on- year - increase   | converted at - 2023 fees R16/US$   |
+|-------------------------------------|----------|----------|------------------------------|------------------------------------|
+| Chair of the Audit Committee        | R416,000 | R439,000 | 5.5 %                        | US$27,438                          |
+| Chair of the Remuneration Committee | R293,000 | R309,000 | 5.5 %                        | US$19,313                          |
+
+It is possible that the answer is not explicitly stated in the context.
+The answer, if it exists, should be specific to the question asked.
+No calculations will be required to answer the question - the answer, if it exists, will be directly retrievable from the context.
+If the answer is not directly retrievable from the context, your conclusion should be 'no'.
+Think step by step, and explain your reasoning.
+Please conclude your answer with a 'yes' or 'no'.
+
+Answer:
+
+2024-03-14 22:45:43.066 | DEBUG    | esg_retriever.rag:_filter_document:300 - Filtering context response: The specific question is asking for the Advisory fees as per the income statement in the year 2022. However, the provided markdown table only includes information about the fees for the Chair of the Audit Committee and the Chair of the Remuneration Committee. There is no mention of Advisory fees in the table.
+
+Since the table does not contain any information related to Advisory fees or income statement specifically for the year 2022, the answer to the question "What was the Advisory fees as per income statement in the year 2022?" is not directly retrievable from the context.
+
+Conclusion: no
+2024-03-14 22:45:43.066 | DEBUG    | esg_retriever.rag:_filter_document:303 - Filtering context conclusion: no
+2024-03-14 22:45:43.207 | DEBUG    | esg_retriever.rag:_filter_document:298 - Filtering context prompt:
+
+Can the answer to the specific question: "What was the Advisory fees as per income statement in the year 2022? " be directly found in the following markdown table:
+
+| Per year                       | 2022       | 2023       | % year-on- year - increase   | converted at - 2023 fees R16/US$   |
+|--------------------------------|------------|------------|------------------------------|------------------------------------|
+| Members of the Board           | R1,149,000 | R1,212,000 | 5.5 %                        | US$75,750                          |
+| Members of the Audit Committee | R216,000   | R228,000   | 5.5 %                        | US$14,250                          |
+
+It is possible that the answer is not explicitly stated in the context.
+The answer, if it exists, should be specific to the question asked.
+No calculations will be required to answer the question - the answer, if it exists, will be directly retrievable from the context.
+If the answer is not directly retrievable from the context, your conclusion should be 'no'.
+Think step by step, and explain your reasoning.
+Please conclude your answer with a 'yes' or 'no'.
+
+Answer:
+
+2024-03-14 22:45:43.207 | DEBUG    | esg_retriever.rag:_filter_document:300 - Filtering context response: To find the Advisory fees as per the income statement in the year 2022, we need to look for a specific entry related to advisory fees in the provided markdown table. However, the table only includes information about the fees for "Members of the Board" and "Members of the Audit Committee." There is no specific mention of advisory fees in the table.
+
+Since there is no direct mention of advisory fees in the table, we cannot determine the exact amount of advisory fees as per the income statement in the year 2022 from the given information.
+
+Therefore, the answer to the question "What was the Advisory fees as per income statement in the year 2022?" is not directly retrievable from the context.
+
+Conclusion: no
+2024-03-14 22:45:43.207 | DEBUG    | esg_retriever.rag:_filter_document:303 - Filtering context conclusion: no
+2024-03-14 22:45:43.209 | INFO     | esg_retriever.rag:query:110 - No relevant context documents found. Returning None.
+2024-03-14 22:45:43.209 | INFO     | esg_retriever.rag:query:100 - Retrieving AMKEY: 6
+2024-03-14 22:45:43.210 | DEBUG    | esg_retriever.rag:query:102 - Retrieving metric: Air emissions of the following pollutants: (1) CO
+2024-03-14 22:45:45.627 | DEBUG    | esg_retriever.rag:_filter_document:298 - Filtering context prompt:
+
+Can the answer to the specific question: "What was the Air emissions of the following pollutants: (1) CO in the year 2022? " be directly found in the following markdown table:
+
+| Selected sustainability information           | Unit of measurement   | Boundary                 |
+|-----------------------------------------------|-----------------------|--------------------------|
+| Environment                                   |                       |                          |
+| Total CO2 equivalent emissions: scope 1 and 2 | '000 tCO2e            | Sibanye-Stillwater Group |
+
+It is possible that the answer is not explicitly stated in the context.
+The answer, if it exists, should be specific to the question asked.
+No calculations will be required to answer the question - the answer, if it exists, will be directly retrievable from the context.
+If the answer is not directly retrievable from the context, your conclusion should be 'no'.
+Think step by step, and explain your reasoning.
+Please conclude your answer with a 'yes' or 'no'.
+
+Answer:
+
+2024-03-14 22:45:45.628 | DEBUG    | esg_retriever.rag:_filter_document:300 - Filtering context response: To find the Air emissions of CO specifically in the year 2022, we need to look for a specific data point related to CO emissions in the provided markdown table. The table only includes information about "Total CO2 equivalent emissions: scope 1 and 2" in '000 tCO2e for the Sibanye-Stillwater Group.
+
+The table does not provide specific data on the emissions of CO (Carbon Monoxide) for the year 2022. It only mentions the total CO2 equivalent emissions, which is different from the emissions of CO specifically.
+
+Therefore, the answer to the question "What was the Air emissions of CO in the year 2022?" is not directly retrievable from the context.
+
+Conclusion: no
+2024-03-14 22:45:45.628 | DEBUG    | esg_retriever.rag:_filter_document:303 - Filtering context conclusion: no
+2024-03-14 22:45:46.091 | DEBUG    | esg_retriever.rag:_filter_document:298 - Filtering context prompt:
+
+Can the answer to the specific question: "What was the Air emissions of the following pollutants: (1) CO in the year 2022? " be directly found in the following markdown table:
+
+| Selected sustainability information           | Unit of measurement   | Boundary                 |
+|-----------------------------------------------|-----------------------|--------------------------|
+| Total CO2 equivalent emissions: scope 1 and 2 | '000 tCO2e            | Sibanye-Stillwater Group |
+| GHG emissions intensity (Scope 1 + 2)         | tCO2e /oz             | Sibanye-Stillwater Group |
+
+It is possible that the answer is not explicitly stated in the context.
+The answer, if it exists, should be specific to the question asked.
+No calculations will be required to answer the question - the answer, if it exists, will be directly retrievable from the context.
+If the answer is not directly retrievable from the context, your conclusion should be 'no'.
+Think step by step, and explain your reasoning.
+Please conclude your answer with a 'yes' or 'no'.
+
+Answer:
+
+2024-03-14 22:45:46.091 | DEBUG    | esg_retriever.rag:_filter_document:300 - Filtering context response: In the provided markdown table, there is information related to total CO2 equivalent emissions and GHG emissions intensity for the Sibanye-Stillwater Group. However, the specific air emissions of CO (Carbon Monoxide) are not directly provided in the table. The table mentions total CO2 equivalent emissions and GHG emissions intensity, but it does not specify the emissions of CO (Carbon Monoxide) separately.
+
+Since the table does not contain the specific data for the air emissions of CO (Carbon Monoxide) in the year 2022, the answer to the question "What was the Air emissions of CO in the year 2022?" is not directly retrievable from the context.
+
+Conclusion: no
+2024-03-14 22:45:46.091 | DEBUG    | esg_retriever.rag:_filter_document:303 - Filtering context conclusion: no
+2024-03-14 22:45:46.566 | DEBUG    | esg_retriever.rag:_filter_document:298 - Filtering context prompt:
+
+Can the answer to the specific question: "What was the Air emissions of the following pollutants: (1) CO in the year 2022? " be directly found in the following markdown table:
+
+| Selected sustainability information     | Unit of measurement   | Boundary                 |
+|-----------------------------------------|-----------------------|--------------------------|
+| GHG emissions intensity (Scope 1 + 2)   | tCO2e /oz             | Sibanye-Stillwater Group |
+| Total CO2 equivalent emissions: scope 3 | '000 tCO2e            | Sibanye-Stillwater Group |
+
+It is possible that the answer is not explicitly stated in the context.
+The answer, if it exists, should be specific to the question asked.
+No calculations will be required to answer the question - the answer, if it exists, will be directly retrievable from the context.
+If the answer is not directly retrievable from the context, your conclusion should be 'no'.
+Think step by step, and explain your reasoning.
+Please conclude your answer with a 'yes' or 'no'.
+
+Answer:
+
+2024-03-14 22:45:46.567 | DEBUG    | esg_retriever.rag:_filter_document:300 - Filtering context response: To find the air emissions of CO specifically for the year 2022, we need to look for the specific data related to CO emissions in the provided markdown table. The table includes information on GHG emissions intensity and total CO2 equivalent emissions, but it does not provide a breakdown of individual pollutants like CO.
+
+The table mentions GHG emissions intensity in tCO2e, which represents the total greenhouse gas emissions, and total CO2 equivalent emissions in '000 tCO2e, which includes various greenhouse gases converted to CO2 equivalents. However, it does not specify the amount of CO emissions separately.
+
+Since the table does not directly provide the specific data for CO emissions in the year 2022, the answer to the question "What was the Air emissions of CO in the year 2022?" is not directly retrievable from the context.
+
+Conclusion: no
+2024-03-14 22:45:46.567 | DEBUG    | esg_retriever.rag:_filter_document:303 - Filtering context conclusion: no
+2024-03-14 22:45:46.567 | INFO     | esg_retriever.rag:query:110 - No relevant context documents found. Returning None.
+2024-03-14 22:45:46.573 | INFO     | __main__:make_submission:71 - Making submission for Tongaat 2021
+2024-03-14 22:45:46.575 | INFO     | esg_retriever.load:load_documents:103 - Loading documents from /home/tomw/unifi-pdf-llm/azure_ai_doc_intelligence/outputs/2021ESG.json
+2024-03-14 22:45:49.617 | INFO     | esg_retriever.rag:_initialise_document_store:534 - Initialising document store
+2024-03-14 22:45:49.622 | INFO     | esg_retriever.rag:_initialise_retriever:552 - Initialising retriever (using all-mpnet-base-v2 model)
+2024-03-14 22:45:55.987 | INFO     | esg_retriever.rag:_initialise_mappings:568 - Initialising mappings
+2024-03-14 22:45:55.990 | INFO     | esg_retriever.rag:_initiaise_openai_client:577 - Initialising OpenAI clients
+2024-03-14 22:45:56.006 | INFO     | esg_retriever.rag:query:100 - Retrieving AMKEY: 3
+2024-03-14 22:45:56.007 | DEBUG    | esg_retriever.rag:query:102 - Retrieving metric: Advisory fees as per income statement
+2024-03-14 22:45:58.315 | DEBUG    | esg_retriever.rag:_filter_document:298 - Filtering context prompt:
+
+Can the answer to the specific question: "What was the Advisory fees as per income statement in the year 2021? " be directly found in the following markdown table:
+
+| Annual Financial Statements                 | Deloitte & Touche                     |
+|---------------------------------------------|---------------------------------------|
+| Review of internal controls and risk review | Internal Audit (co-sourced with KPMG) |
+| B-BBEE contributor Level                    | 1 st Verification Networx             |
+
+It is possible that the answer is not explicitly stated in the context.
+The answer, if it exists, should be specific to the question asked.
+No calculations will be required to answer the question - the answer, if it exists, will be directly retrievable from the context.
+If the answer is not directly retrievable from the context, your conclusion should be 'no'.
+Think step by step, and explain your reasoning.
+Please conclude your answer with a 'yes' or 'no'.
+
+Answer:
+
+2024-03-14 22:45:58.315 | DEBUG    | esg_retriever.rag:_filter_document:300 - Filtering context response: In the provided markdown table, there is no information related to advisory fees or income statements. The table primarily includes details about the review of internal controls, risk review, B-BBEE contributor level, and verification services.
+
+Since there is no mention of advisory fees or income statements in the table, the specific question regarding the advisory fees as per the income statement in the year 2021 cannot be directly answered from the context.
+
+Conclusion: no
+2024-03-14 22:45:58.315 | DEBUG    | esg_retriever.rag:_filter_document:303 - Filtering context conclusion: no
+2024-03-14 22:45:59.007 | DEBUG    | esg_retriever.rag:_filter_document:298 - Filtering context prompt:
+
+Can the answer to the specific question: "What was the Advisory fees as per income statement in the year 2021? " be directly found in the following markdown table:
+
+| Annual Financial Statements      | Deloitte & Touche         |
+|----------------------------------|---------------------------|
+| B-BBEE contributor Level         | 1 st Verification Networx |
+| ESG and climate change reporting | BDO                       |
+
+It is possible that the answer is not explicitly stated in the context.
+The answer, if it exists, should be specific to the question asked.
+No calculations will be required to answer the question - the answer, if it exists, will be directly retrievable from the context.
+If the answer is not directly retrievable from the context, your conclusion should be 'no'.
+Think step by step, and explain your reasoning.
+Please conclude your answer with a 'yes' or 'no'.
+
+Answer:
+
+2024-03-14 22:45:59.007 | DEBUG    | esg_retriever.rag:_filter_document:300 - Filtering context response: In the provided markdown table, there is no information related to advisory fees or income statements. The table primarily lists entities or categories such as "Deloitte & Touche," "B-BBEE contributor Level," "ESG and climate change reporting," and "BDO." None of these entries directly relate to advisory fees as per an income statement.
+
+Since there is no mention of advisory fees or income statements in the table, the answer to the question "What was the Advisory fees as per income statement in the year 2021?" is not directly retrievable from the context.
+
+Conclusion: no
+2024-03-14 22:45:59.007 | DEBUG    | esg_retriever.rag:_filter_document:303 - Filtering context conclusion: no
+2024-03-14 22:45:59.275 | DEBUG    | esg_retriever.rag:_filter_document:298 - Filtering context prompt:
+
+Can the answer to the specific question: "What was the Advisory fees as per income statement in the year 2021? " be directly found in the following markdown table:
+
+|                                                    | Unit of measure   |   2021 |   2020 |   2019 |   2018 |
+|----------------------------------------------------|-------------------|--------|--------|--------|--------|
+| Auditor Remuneration: percentage of non-audit fees | %                 |   3.92 |  15.38 |  16.67 |    8.7 |
+| Length of current auditor's service                | number            |  83    |  82    |  81    |   80   |
+
+It is possible that the answer is not explicitly stated in the context.
+The answer, if it exists, should be specific to the question asked.
+No calculations will be required to answer the question - the answer, if it exists, will be directly retrievable from the context.
+If the answer is not directly retrievable from the context, your conclusion should be 'no'.
+Think step by step, and explain your reasoning.
+Please conclude your answer with a 'yes' or 'no'.
+
+Answer:
+
+2024-03-14 22:45:59.275 | DEBUG    | esg_retriever.rag:_filter_document:300 - Filtering context response: To find the Advisory fees as per the income statement in the year 2021, we need to look for a specific indicator related to advisory fees in the provided markdown table. However, the table only includes indicators related to Auditor Remuneration and the length of the current auditor's service.
+
+The indicators in the table do not directly provide information on the Advisory fees as per the income statement. The Auditor Remuneration percentage of non-audit fees and the length of the current auditor's service are not directly related to the specific question about Advisory fees in the income statement for the year 2021.
+
+Without a specific indicator related to Advisory fees in the table, we cannot directly retrieve the information about the Advisory fees as per the income statement in the year 2021.
+
+Therefore, the answer to the question "What was the Advisory fees as per the income statement in the year 2021?" is not directly retrievable from the context.
+
+Conclusion: no
+2024-03-14 22:45:59.276 | DEBUG    | esg_retriever.rag:_filter_document:303 - Filtering context conclusion: no
+2024-03-14 22:45:59.276 | INFO     | esg_retriever.rag:query:110 - No relevant context documents found. Returning None.
+2024-03-14 22:45:59.277 | INFO     | esg_retriever.rag:query:100 - Retrieving AMKEY: 6
+2024-03-14 22:45:59.278 | DEBUG    | esg_retriever.rag:query:102 - Retrieving metric: Air emissions of the following pollutants: (1) CO
+2024-03-14 22:46:01.860 | DEBUG    | esg_retriever.rag:_filter_document:298 - Filtering context prompt:
+
+Can the answer to the specific question: "What was the Air emissions of the following pollutants: (1) CO in the year 2021? " be directly found in the following markdown table:
+
+| CARBON EMISSIONS (TONS OF CARBON DIOXIDE EQUIVALENTS, CO2-e)   |   2021 |   2020 |   2019 |   2018 |
+|----------------------------------------------------------------|--------|--------|--------|--------|
+| LPG used in stationary combustion equipment                    |     95 |      0 |      0 |      0 |
+| Acetylene used in workshops and laboratories                   |     80 |      0 |      0 |      0 |
+
+It is possible that the answer is not explicitly stated in the context.
+The answer, if it exists, should be specific to the question asked.
+No calculations will be required to answer the question - the answer, if it exists, will be directly retrievable from the context.
+If the answer is not directly retrievable from the context, your conclusion should be 'no'.
+Think step by step, and explain your reasoning.
+Please conclude your answer with a 'yes' or 'no'.
+
+Answer:
+
+2024-03-14 22:46:01.861 | DEBUG    | esg_retriever.rag:_filter_document:300 - Filtering context response: To find the air emissions of CO (Carbon Monoxide) in the year 2021, we need to look for a specific entry related to CO emissions in the provided markdown table. However, the table only includes information on carbon emissions in terms of tons of carbon dioxide equivalents (CO2-e) for specific activities like LPG and Acetylene use.
+
+Since the table does not provide any data on CO emissions specifically, we cannot determine the air emissions of CO in the year 2021 from the given table.
+
+Therefore, the answer to the question "What was the Air emissions of the following pollutants: (1) CO in the year 2021?" is not directly retrievable from the context.
+
+Conclusion: no
+2024-03-14 22:46:01.861 | DEBUG    | esg_retriever.rag:_filter_document:303 - Filtering context conclusion: no
+2024-03-14 22:46:01.882 | DEBUG    | esg_retriever.rag:_filter_document:298 - Filtering context prompt:
+
+Can the answer to the specific question: "What was the Air emissions of the following pollutants: (1) CO in the year 2021? " be directly found in the following markdown table:
+
+|                            | Unit of measure   | 2021   | 2020   | 2019   | 2018   |
+|----------------------------|-------------------|--------|--------|--------|--------|
+| CARBON EMISSIONS           |                   |        |        |        |        |
+| Carbon emissions - Scope 1 | tCO,-e            | 505575 | 704989 | 695914 | 733138 |
+
+It is possible that the answer is not explicitly stated in the context.
+The answer, if it exists, should be specific to the question asked.
+No calculations will be required to answer the question - the answer, if it exists, will be directly retrievable from the context.
+If the answer is not directly retrievable from the context, your conclusion should be 'no'.
+Think step by step, and explain your reasoning.
+Please conclude your answer with a 'yes' or 'no'.
+
+Answer:
+
+2024-03-14 22:46:01.882 | DEBUG    | esg_retriever.rag:_filter_document:300 - Filtering context response: To find the air emissions of CO specifically for the year 2021, we need to look for the data related to CO emissions in the provided markdown table. The table includes data under "Carbon emissions - Scope 1" but does not specify the breakdown of different pollutants within the carbon emissions category.
+
+The data provided in the table is for "Carbon emissions - Scope 1" in terms of tCO2e (tonnes of CO2 equivalent). While CO2 is a type of carbon emission, it is not the same as CO (carbon monoxide). Therefore, the specific information regarding the emissions of CO (carbon monoxide) in the year 2021 is not directly retrievable from the context.
+
+Conclusion: no
+2024-03-14 22:46:01.882 | DEBUG    | esg_retriever.rag:_filter_document:303 - Filtering context conclusion: no
+2024-03-14 22:46:02.386 | DEBUG    | esg_retriever.rag:_filter_document:298 - Filtering context prompt:
+
+Can the answer to the specific question: "What was the Air emissions of the following pollutants: (1) CO in the year 2021? " be directly found in the following markdown table:
+
+|                            | Unit of measure   | 2021   | 2020   | 2019   | 2018   |
+|----------------------------|-------------------|--------|--------|--------|--------|
+| CARBON EMISSIONS           |                   |        |        |        |        |
+| Carbon emissions - Scope 1 | tCO,-e            | 673285 | 668775 | 695914 | 733138 |
+
+It is possible that the answer is not explicitly stated in the context.
+The answer, if it exists, should be specific to the question asked.
+No calculations will be required to answer the question - the answer, if it exists, will be directly retrievable from the context.
+If the answer is not directly retrievable from the context, your conclusion should be 'no'.
+Think step by step, and explain your reasoning.
+Please conclude your answer with a 'yes' or 'no'.
+
+Answer:
+
+2024-03-14 22:46:02.386 | DEBUG    | esg_retriever.rag:_filter_document:300 - Filtering context response: To find the air emissions of CO specifically for the year 2021, we need to look for the specific data related to CO emissions in the provided markdown table. The table includes a section for "Carbon emissions - Scope 1" with the unit of measure as tCO2e (tonnes of CO2 equivalent). 
+
+However, the table does not provide a breakdown of the specific pollutants within the carbon emissions category. It only gives the total carbon emissions for Scope 1. Since CO (carbon monoxide) is a different pollutant from CO2 (carbon dioxide), we cannot directly retrieve the air emissions data for CO from this table.
+
+Therefore, the answer to the question "What was the Air emissions of the following pollutants: (1) CO in the year 2021?" is not directly retrievable from the context.
+
+Conclusion: no
+2024-03-14 22:46:02.387 | DEBUG    | esg_retriever.rag:_filter_document:303 - Filtering context conclusion: no
+2024-03-14 22:46:02.387 | INFO     | esg_retriever.rag:query:110 - No relevant context documents found. Returning None.
+2024-03-14 22:46:02.392 | INFO     | __main__:make_submission:71 - Making submission for Uct 2021
+2024-03-14 22:46:02.393 | INFO     | esg_retriever.load:load_documents:103 - Loading documents from /home/tomw/unifi-pdf-llm/azure_ai_doc_intelligence/outputs/UCT_Carbon_Footprint_Report_2020-2021.json
+2024-03-14 22:46:02.820 | INFO     | esg_retriever.load:load_documents:103 - Loading documents from /home/tomw/unifi-pdf-llm/azure_ai_doc_intelligence/outputs/afs2021.json
+2024-03-14 22:46:08.266 | INFO     | esg_retriever.rag:_initialise_document_store:534 - Initialising document store
+2024-03-14 22:46:08.274 | INFO     | esg_retriever.rag:_initialise_retriever:552 - Initialising retriever (using all-mpnet-base-v2 model)
+2024-03-14 22:46:14.742 | INFO     | esg_retriever.rag:_initialise_mappings:568 - Initialising mappings
+2024-03-14 22:46:14.745 | INFO     | esg_retriever.rag:_initiaise_openai_client:577 - Initialising OpenAI clients
+2024-03-14 22:46:14.761 | INFO     | esg_retriever.rag:query:100 - Retrieving AMKEY: 3
+2024-03-14 22:46:14.761 | DEBUG    | esg_retriever.rag:query:102 - Retrieving metric: Advisory fees as per income statement
+2024-03-14 22:46:17.148 | DEBUG    | esg_retriever.rag:_filter_document:298 - Filtering context prompt:
+
+Can the answer to the specific question: "What was the Advisory fees as per income statement in the year 2021? " be directly found in the following markdown table:
+
+| Amounts in R'000              | 2021 Fees   | 2020 Fees   | 2019 Fees   | 2018 Fees   | Total     |
+|-------------------------------|-------------|-------------|-------------|-------------|-----------|
+| Provision for expected losses | (65 000)    | (16 051)    | (29 357)    | (30 623)    | (141 031) |
+| Expected loss rate            | 22.09%      | 60.00%      | 75.00%      | 90.33%      | 35.79%    |
+
+It is possible that the answer is not explicitly stated in the context.
+The answer, if it exists, should be specific to the question asked.
+No calculations will be required to answer the question - the answer, if it exists, will be directly retrievable from the context.
+If the answer is not directly retrievable from the context, your conclusion should be 'no'.
+Think step by step, and explain your reasoning.
+Please conclude your answer with a 'yes' or 'no'.
+
+Answer:
+
+2024-03-14 22:46:17.148 | DEBUG    | esg_retriever.rag:_filter_document:300 - Filtering context response: To find the Advisory fees as per the income statement in the year 2021, we need to look for a specific line item related to advisory fees in the provided markdown table. However, the table only includes information on "Provision for expected losses" and "Expected loss rate." There is no direct mention of "Advisory fees" in the table.
+
+Since there is no explicit mention of Advisory fees in the table, we cannot directly retrieve the information regarding the Advisory fees as per the income statement in the year 2021 from the context provided.
+
+Conclusion: no
+2024-03-14 22:46:17.148 | DEBUG    | esg_retriever.rag:_filter_document:303 - Filtering context conclusion: no
+2024-03-14 22:46:17.515 | DEBUG    | esg_retriever.rag:_filter_document:298 - Filtering context prompt:
+
+Can the answer to the specific question: "What was the Advisory fees as per income statement in the year 2021? " be directly found in the following markdown table:
+
+| All amounts in R'000                                                           | Notes   | Council- Controlled Unrestricted   |   Specifically Funded Activities Restricted |   Sub-total | Student and Staff Housing Restricted   |   Total | % Change   |
+|--------------------------------------------------------------------------------|---------|------------------------------------|---------------------------------------------|-------------|----------------------------------------|---------|------------|
+| Income from associates                                                         | 7       | –                                  |                                         241 |         241 | –                                      |     241 | (58.7)     |
+| Fair value movement on fair value through profit or loss financial instruments |         | 664                                |                                      213670 |      214334 | –                                      |  214334 | (46.6)     |
+
+It is possible that the answer is not explicitly stated in the context.
+The answer, if it exists, should be specific to the question asked.
+No calculations will be required to answer the question - the answer, if it exists, will be directly retrievable from the context.
+If the answer is not directly retrievable from the context, your conclusion should be 'no'.
+Think step by step, and explain your reasoning.
+Please conclude your answer with a 'yes' or 'no'.
+
+Answer:
+
+2024-03-14 22:46:17.515 | DEBUG    | esg_retriever.rag:_filter_document:300 - Filtering context response: To find the Advisory fees as per the income statement in the year 2021, we need to look for a specific line item related to advisory fees in the provided markdown table. However, the table only includes information on "Income from associates" and "Fair value movement on fair value through profit or loss financial instruments."
+
+There is no explicit mention of advisory fees in the table. Advisory fees are a specific type of expense that would typically be listed separately in an income statement. Since there is no line item related to advisory fees in the table, we cannot directly retrieve the information about the advisory fees as per the income statement in the year 2021 from the context provided.
+
+Conclusion: no
+2024-03-14 22:46:17.515 | DEBUG    | esg_retriever.rag:_filter_document:303 - Filtering context conclusion: no
+2024-03-14 22:46:17.674 | DEBUG    | esg_retriever.rag:_filter_document:298 - Filtering context prompt:
+
+Can the answer to the specific question: "What was the Advisory fees as per income statement in the year 2021? " be directly found in the following markdown table:
+
+|                                                                                | Note   | 2021 R'000   | 2020 R'000   |
+|--------------------------------------------------------------------------------|--------|--------------|--------------|
+| Fair value movement on fair value through profit or loss financial instruments |        | (1 082 194)  | (214 334)    |
+| Income from associate                                                          | 7      | (513)        | (241)        |
+
+It is possible that the answer is not explicitly stated in the context.
+The answer, if it exists, should be specific to the question asked.
+No calculations will be required to answer the question - the answer, if it exists, will be directly retrievable from the context.
+If the answer is not directly retrievable from the context, your conclusion should be 'no'.
+Think step by step, and explain your reasoning.
+Please conclude your answer with a 'yes' or 'no'.
+
+Answer:
+
+2024-03-14 22:46:17.674 | DEBUG    | esg_retriever.rag:_filter_document:300 - Filtering context response: To find the Advisory fees as per the income statement in the year 2021, we need to look for a specific line item related to advisory fees in the provided markdown table. However, the table only includes information about the fair value movement on fair value through profit or loss financial instruments and income from associates.
+
+There is no explicit mention of advisory fees in the table. The information provided in the table pertains to fair value movements and income from associates, which are different from advisory fees. Without a specific line item indicating advisory fees, we cannot determine the exact amount of advisory fees as per the income statement in the year 2021 from this table.
+
+Therefore, the answer to the question "What was the Advisory fees as per the income statement in the year 2021?" is not directly retrievable from the context.
+
+Conclusion: no
+2024-03-14 22:46:17.674 | DEBUG    | esg_retriever.rag:_filter_document:303 - Filtering context conclusion: no
+2024-03-14 22:46:17.675 | INFO     | esg_retriever.rag:query:110 - No relevant context documents found. Returning None.
+2024-03-14 22:46:17.675 | INFO     | esg_retriever.rag:query:100 - Retrieving AMKEY: 6
+2024-03-14 22:46:17.676 | DEBUG    | esg_retriever.rag:query:102 - Retrieving metric: Air emissions of the following pollutants: (1) CO
+2024-03-14 22:46:20.024 | DEBUG    | esg_retriever.rag:_filter_document:298 - Filtering context prompt:
+
+Can the answer to the specific question: "What was the Air emissions of the following pollutants: (1) CO in the year 2021? " be directly found in the following markdown table:
+
+|   1 | Executive Summary               |   .5 |
+|-----|---------------------------------|------|
+| 5.4 | Stationary Combustion Emissions |   15 |
+| 6   | Scope 2                         |   16 |
+
+It is possible that the answer is not explicitly stated in the context.
+The answer, if it exists, should be specific to the question asked.
+No calculations will be required to answer the question - the answer, if it exists, will be directly retrievable from the context.
+If the answer is not directly retrievable from the context, your conclusion should be 'no'.
+Think step by step, and explain your reasoning.
+Please conclude your answer with a 'yes' or 'no'.
+
+Answer:
+
+2024-03-14 22:46:20.024 | DEBUG    | esg_retriever.rag:_filter_document:300 - Filtering context response: In the provided markdown table, there is no specific information related to the air emissions of pollutants, specifically CO (Carbon Monoxide), in the year 2021. The table includes entries related to "Stationary Combustion Emissions" and "Scope 2," but it does not provide any data on the emissions of CO or any other specific pollutants.
+
+Since there is no mention of CO emissions or any specific information regarding the air emissions of pollutants in the table, the answer to the question "What was the Air emissions of the following pollutants: (1) CO in the year 2021?" is not directly retrievable from the context.
+
+Conclusion: no
+2024-03-14 22:46:20.024 | DEBUG    | esg_retriever.rag:_filter_document:303 - Filtering context conclusion: no
+2024-03-14 22:46:20.361 | DEBUG    | esg_retriever.rag:_filter_document:298 - Filtering context prompt:
+
+Can the answer to the specific question: "What was the Air emissions of the following pollutants: (1) CO in the year 2021? " be directly found in the following markdown table:
+
+|   1 | Executive Summary   |   .5 |
+|-----|---------------------|------|
+| 4.1 | Absolute Emissions  |   11 |
+| 4.2 | Intensity Metrics   |   12 |
+
+It is possible that the answer is not explicitly stated in the context.
+The answer, if it exists, should be specific to the question asked.
+No calculations will be required to answer the question - the answer, if it exists, will be directly retrievable from the context.
+If the answer is not directly retrievable from the context, your conclusion should be 'no'.
+Think step by step, and explain your reasoning.
+Please conclude your answer with a 'yes' or 'no'.
+
+Answer:
+
+2024-03-14 22:46:20.361 | DEBUG    | esg_retriever.rag:_filter_document:300 - Filtering context response: In the provided markdown table, there is no specific information related to air emissions of pollutants such as CO (Carbon Monoxide) in the year 2021. The table only includes sections like "Executive Summary," "Absolute Emissions," and "Intensity Metrics," but it does not provide any data on the emissions of specific pollutants like CO.
+
+Since there is no mention of CO emissions or any specific data related to air emissions of pollutants in the table, the answer to the question "What was the Air emissions of the following pollutants: (1) CO in the year 2021?" is not directly retrievable from the context.
+
+Conclusion: no
+2024-03-14 22:46:20.361 | DEBUG    | esg_retriever.rag:_filter_document:303 - Filtering context conclusion: no
+2024-03-14 22:46:20.973 | DEBUG    | esg_retriever.rag:_filter_document:298 - Filtering context prompt:
+
+Can the answer to the specific question: "What was the Air emissions of the following pollutants: (1) CO in the year 2021? " be directly found in the following markdown table:
+
+|   1 | Executive Summary               |   .5 |
+|-----|---------------------------------|------|
+| 5.3 | Refrigerant Gas Emissions       |   14 |
+| 5.4 | Stationary Combustion Emissions |   15 |
+
+It is possible that the answer is not explicitly stated in the context.
+The answer, if it exists, should be specific to the question asked.
+No calculations will be required to answer the question - the answer, if it exists, will be directly retrievable from the context.
+If the answer is not directly retrievable from the context, your conclusion should be 'no'.
+Think step by step, and explain your reasoning.
+Please conclude your answer with a 'yes' or 'no'.
+
+Answer:
+
+2024-03-14 22:46:20.974 | DEBUG    | esg_retriever.rag:_filter_document:300 - Filtering context response: To find the air emissions of CO (Carbon Monoxide) in the year 2021, we need to look for a specific entry related to CO emissions in the provided markdown table. However, the table only includes entries for "Refrigerant Gas Emissions" and "Stationary Combustion Emissions." There is no specific mention of CO emissions in the table.
+
+Since there is no explicit mention of CO emissions in the table, we cannot directly retrieve the information regarding the air emissions of CO in the year 2021 from the context provided.
+
+Conclusion: no
+2024-03-14 22:46:20.974 | DEBUG    | esg_retriever.rag:_filter_document:303 - Filtering context conclusion: no
+2024-03-14 22:46:20.974 | INFO     | esg_retriever.rag:query:110 - No relevant context documents found. Returning None.
+2024-03-14 22:46:20.981 | INFO     | __main__:make_submission:91 - Submission created
