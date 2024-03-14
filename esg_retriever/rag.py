@@ -76,7 +76,7 @@ class ModularRAG:
         self._initialise_mappings()
         self._initiaise_openai_client()
 
-    def query(self, amkey: int, year: int) -> tuple[float | None, float | None]:
+    def query(self, amkey: int, year: int) -> tuple[float | None]:
         """
         Return the value associated with an AMKEY for a given year.
 

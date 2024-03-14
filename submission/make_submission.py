@@ -3,68 +3,76 @@
 from pathlib import Path
 
 import pandas as pd
+from loguru import logger
 
-from esg_retriever.load import load_documents
-from esg_retriever.preprocess import preprocess_documents
+from esg_retriever.load import load_and_preprocess_documents
 from esg_retriever.rag import ModularRAG
-from esg_retriever.config import MISC_DATA_DIR, COMPANY_YEAR_PDF_MAPPING, COMPANIES
+from esg_retriever.utils import list_all_amkeys
+from esg_retriever.config import COMPANY_YEAR_PDF_MAPPING, COMPANIES
 
 
-SUBMISSION_TEMPLATE_PATH = MISC_DATA_DIR / Path("SampleSubmission.csv")
-"""Path to the sample submission template."""
+def retrieve_all_amkey_values(company: str, year: int) -> dict:
+    """
+    Return all AMKEY values for a company and year.
+
+    Parameters
+    ----------
+    company : str
+        The company name.
+
+    year : int
+        The year to retrieve the AMKEY values for.
+
+    Returns
+    -------
+    amkey_values : dict[int, float | None]
+        A dictionary with the AMKEY as the key and the value as the value.
+    """
+    amkey_values = {}
+    amkeys = list_all_amkeys()
+
+    docs = load_and_preprocess_documents(company, year, window_size=2, discard_text=True)
+    rag = ModularRAG(docs=docs, company=company)
+
+    for amkey in amkeys:
+        value = rag.query(amkey, year=year)
+
+        if value is None:
+            value = float(0)
+
+        amkey_values[amkey] = value
+
+    return amkey_values
 
 
 def make_submission():
     """Make a submission for the competition."""
-    submission_df = pd.read_csv(SUBMISSION_TEMPLATE_PATH)
-    models = {}
+    company_submission_dfs = []
 
-    # Load the ModularRAG model for each company
     for company in COMPANIES:
-        years = list(COMPANY_YEAR_PDF_MAPPING[company].keys())
-        submission_year = max(years)
-        docs = load_documents(company, submission_year)
-        docs = preprocess_documents(docs)
-        models[company] = ModularRAG(docs=docs, company=company)
+        all_years = list(COMPANY_YEAR_PDF_MAPPING[company].keys())
+        submission_year = max(all_years)
+        logger.info(f"Making submission for {company} {submission_year}")
+        company_amkey_values = retrieve_all_amkey_values(company, submission_year)
 
-    # TODO: Loop through the submission dataframe and make predictions
-    pass
+        if company in ["Oceana", "Uct"]:
+            company_str = company + "1&2"
+        else:
+            company_str = company
 
+        company_submission_df = pd.DataFrame(
+            {
+                "ID": [f"{amkey}_X_{company_str}" for amkey in company_amkey_values.keys()],
+                "2022_Value": list(company_amkey_values.values()),
+            }
+        )
 
-def _extract_amkey(amkey_company_id: str) -> str:
-    """
-    Return the AMKEY from the id.
+        company_submission_dfs.append(company_submission_df)
 
-    Parameters
-    ----------
-    amkey_company_id : str
-        An ID in the format <AMKEY>_X_<COMPANY>. For example, "100_X_Absa".
+    submission_df = pd.concat(company_submission_dfs, ignore_index=True)
 
-    Returns
-    -------
-    amkey : str
-        The AMKEY extracted from the id.
-    """
-    amkey = amkey_company_id.split("_")[0]
-    return amkey
-
-
-def _extract_company(amkey_company_id: str) -> str:
-    """
-    Return the company from the id.
-
-    Parameters
-    ----------
-    amkey_company_id : str
-        An ID in the format <AMKEY>_X_<COMPANY>. For example, "100_X_Absa".
-
-    Returns
-    -------
-    company : str
-        The company extracted from the id.
-    """
-    company = amkey_company_id.split("_")[-1]
-    return company
+    submission_df.to_csv(Path(__file__).parent / "submission.csv", index=False)
+    logger.info("Submission created")
 
 
 if __name__ == "__main__":

@@ -5,7 +5,7 @@ import pandas as pd
 from esg_retriever.config import MISC_DATA_DIR
 
 
-def retrieve_amkeys_list() -> list[int]:
+def list_all_amkeys() -> list[int]:
     """
     Return list of all Activity Metric Keys (AMKEYs).
     """
