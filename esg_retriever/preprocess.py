@@ -6,7 +6,7 @@ from haystack.nodes import PreProcessor
 
 
 def preprocess_documents(
-    docs: list[Document], window_size: int = 5, discard_text: bool = True
+    docs: list[Document], window_size: int = 2, discard_text: bool = True
 ) -> list[Document]:
     """
     Preprocess the documents.

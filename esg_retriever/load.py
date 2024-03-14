@@ -21,7 +21,7 @@ AZURE_CONVERTER_KEY = os.environ.get("AZURE_CONVERTER_KEY")
 def load_and_preprocess_documents(
     company: str,
     year: int,
-    window_size: int = 5,
+    window_size: int = 2,
     discard_text: bool = True,
 ) -> list[Document]:
     """
