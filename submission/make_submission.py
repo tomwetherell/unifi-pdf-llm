@@ -6,48 +6,12 @@ from pathlib import Path
 import pandas as pd
 from loguru import logger
 
-from esg_retriever.load import load_and_preprocess_documents
-from esg_retriever.rag import ModularRAG
-from esg_retriever.utils import list_all_amkeys
+from esg_retriever.query import create_amkey_df
 from esg_retriever.config import COMPANY_YEAR_PDF_MAPPING, COMPANIES
 
 
 SUBMISSION_LOG_FILE = Path(__file__).resolve().parent / "submission.log"
 """File to save the logs from making the submission."""
-
-
-def retrieve_all_amkey_values(company: str, year: int) -> dict:
-    """
-    Return all AMKEY values for a company and year.
-
-    Parameters
-    ----------
-    company : str
-        The company name.
-
-    year : int
-        The year to retrieve the AMKEY values for.
-
-    Returns
-    -------
-    amkey_values : dict[int, float | None]
-        A dictionary with the AMKEY as the key and the value as the value.
-    """
-    amkey_values = {}
-    amkeys = list_all_amkeys()
-
-    docs = load_and_preprocess_documents(company, year, window_size=2, discard_text=True)
-    rag = ModularRAG(docs=docs, company=company)
-
-    for amkey in amkeys[:2]:
-        value = rag.query(amkey, year=year)
-
-        if value is None:
-            value = float(0)
-
-        amkey_values[amkey] = value
-
-    return amkey_values
 
 
 def make_submission():
@@ -67,7 +31,8 @@ def make_submission():
         all_years = list(COMPANY_YEAR_PDF_MAPPING[company].keys())
         submission_year = max(all_years)
         logger.info(f"Making submission for {company} {submission_year}")
-        company_amkey_values = retrieve_all_amkey_values(company, submission_year)
+
+        company_df = create_amkey_df(company, submission_year, save_path=Path(__file__).parent)
 
         if company in ["Oceana", "Uct"]:
             company_str = company + "1&2"
@@ -76,10 +41,12 @@ def make_submission():
 
         company_submission_df = pd.DataFrame(
             {
-                "ID": [f"{amkey}_X_{company_str}" for amkey in company_amkey_values.keys()],
-                "2022_Value": list(company_amkey_values.values()),
+                "ID": company_df["AMKEY"].astype(str) + "_X_" + company_str,
+                "2022_Value": company_df["Value"],
             }
         )
+
+        company_submission_df["2022_Value"] = company_submission_df["2022_Value"].fillna(0.0)
 
         company_submission_dfs.append(company_submission_df)
 
