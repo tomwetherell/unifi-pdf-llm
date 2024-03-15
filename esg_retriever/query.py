@@ -1,5 +1,6 @@
 """Query AMKEY values for a company and year."""
 
+import argparse
 from pathlib import Path
 
 import pandas as pd
@@ -7,6 +8,30 @@ import pandas as pd
 from esg_retriever.load import load_and_preprocess_documents
 from esg_retriever.rag import ModularRAG
 from esg_retriever.utils import list_all_amkeys
+
+
+def parse_args():
+    parser = argparse.ArgumentParser(description="Query AMKEY values for a company and year.")
+    parser.add_argument(
+        "--company",
+        type=str,
+        required=True,
+        help="Company name.",
+    )
+    parser.add_argument(
+        "--year",
+        type=int,
+        required=True,
+        help="The year.",
+    )
+    parser.add_argument(
+        "--save_path",
+        type=str,
+        default=None,
+        help="Path to save the AMKEY values as a CSV file.",
+    )
+    args = parser.parse_args()
+    return args
 
 
 def retrieve_all_amkey_values(company: str, year: int) -> dict[int, float|None]:
@@ -76,3 +101,10 @@ def create_amkey_df(company: str, year: int, save_path: str|Path|None = None) ->
         amkey_df.to_csv(save_path / filename, index=False)
 
     return amkey_df
+
+if __name__ == "__main__":
+    args = parse_args()
+    company = args.company
+    year = args.year
+    save_path = args.save_path
+    create_amkey_df(company, year, save_path=save_path)
