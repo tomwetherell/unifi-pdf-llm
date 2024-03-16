@@ -1,4 +1,4 @@
-"""Query AMKEY values for a company and year."""
+"""Scipt to retrieve AMKEY values for a company and year."""
 
 import argparse
 from pathlib import Path
