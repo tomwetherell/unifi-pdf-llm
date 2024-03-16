@@ -41,6 +41,7 @@ COMPANY_YEAR_PDF_MAPPING = {
     },
     "Impala": {
         2023: ["ESG-spreads.pdf"],
+        2022: ["ESG-spreads.pdf"],
     },
     "Oceana": {
         2022: [
@@ -50,10 +51,12 @@ COMPANY_YEAR_PDF_MAPPING = {
     },
     "Picknpay": {
         2023: ["picknpay-esg-report-spreads-2023.pdf"],
+        2022: ["picknpay-esg-report-spreads-2023.pdf"],
         2021: ["picknpay-esg-report-spreads-2023.pdf"],
     },
     "Sasol": {
         2023: ["SASOL Sustainability Report 2023 20-09_0.pdf"],
+        2022: ["SASOL Sustainability Report 2023 20-09_0.pdf"],
         2021: ["SASOL Sustainability Report 2023 20-09_0.pdf"],
     },
     "Ssw": {

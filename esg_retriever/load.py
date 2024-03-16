@@ -95,7 +95,7 @@ def load_documents(company: str, year: int) -> list[Document]:
     try:
         file_name_list = COMPANY_YEAR_PDF_MAPPING[company][year]
     except KeyError:
-        raise ValueError(f"No documents found for {company} in {year}")
+        raise ValueError(f"No pdf specified for {company}, {year} in config.py.")
 
     for file_name in file_name_list:
         file_name = file_name.replace(".pdf", ".json")
