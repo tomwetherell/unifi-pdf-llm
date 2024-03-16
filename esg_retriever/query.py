@@ -13,7 +13,7 @@ from esg_retriever.utils import list_all_amkeys
 def parse_args():
     parser = argparse.ArgumentParser(
         description="Retrieve AMKEY values for a company and year, and save them to "
-                    " a .csv file.",
+        " a .csv file.",
     )
 
     parser.add_argument(
@@ -33,7 +33,7 @@ def parse_args():
         type=str,
         required=True,
         help="Path to save the AMKEY values as a .csv file. The name of the file will "
-             "be {company}_{year}_amkey_values.csv.",
+        "be {company}_{year}_amkey_values.csv.",
     )
 
     args = parser.parse_args()
@@ -41,7 +41,7 @@ def parse_args():
     return args
 
 
-def retrieve_all_amkey_values(company: str, year: int) -> dict[int, float|None]:
+def retrieve_all_amkey_values(company: str, year: int) -> dict[int, float | None]:
     """
     Return all AMKEY values for a company and year.
 
@@ -62,7 +62,9 @@ def retrieve_all_amkey_values(company: str, year: int) -> dict[int, float|None]:
     amkey_values = {}
     amkeys = list_all_amkeys()
 
-    docs = load_and_preprocess_documents(company, year, window_size=2, discard_text=True)
+    docs = load_and_preprocess_documents(
+        company, year, window_size=2, discard_text=True
+    )
     rag = ModularRAG(docs=docs, company=company)
 
     for amkey in amkeys:
@@ -72,7 +74,9 @@ def retrieve_all_amkey_values(company: str, year: int) -> dict[int, float|None]:
     return amkey_values
 
 
-def create_amkey_df(company: str, year: int, save_path: str|Path|None = None) -> pd.DataFrame:
+def create_amkey_df(
+    company: str, year: int, save_path: str | Path | None = None
+) -> pd.DataFrame:
     """
     Return DataFrame with retrieved AMKEY values for a company and year.
 
@@ -108,6 +112,7 @@ def create_amkey_df(company: str, year: int, save_path: str|Path|None = None) ->
         amkey_df.to_csv(save_path / filename, index=False)
 
     return amkey_df
+
 
 if __name__ == "__main__":
     args = parse_args()

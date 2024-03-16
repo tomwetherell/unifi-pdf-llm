@@ -103,8 +103,12 @@ class ModularRAG:
         # TODO: Consider using both a dense and a sparse retriever.
         context_documents = self.retriever.retrieve(metric)
         additional_instructions = self._retrieve_additional_appended_instructions(amkey)
-        question = f"What was the {metric} in the year {year}? {additional_instructions}"
-        relevant_context_documents = asyncio.run(self._filter_context_documents(context_documents, question))
+        question = (
+            f"What was the {metric} in the year {year}? {additional_instructions}"
+        )
+        relevant_context_documents = asyncio.run(
+            self._filter_context_documents(context_documents, question)
+        )
 
         if not relevant_context_documents:
             logger.info("No relevant context documents found. Returning None.")
@@ -231,9 +235,7 @@ class ModularRAG:
             The context documents that are relevant to the question.
         """
         # Initialse async OpenAI client
-        self.openai_async_client = AsyncOpenAI(
-            api_key=os.environ.get("OPENAI_API_KEY")
-        )
+        self.openai_async_client = AsyncOpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
 
         relevant_docs = []
 
@@ -272,7 +274,8 @@ class ModularRAG:
             'yes' or 'no'.
         """
         example_prompt = FILTER_CONTEXT_PROMPT_TEMPLATE.format(
-            question=FILTER_CONTEXT_EXAMPLE_QUESTION, context=FILTER_CONTEXT_EXAMPLE_CONTEXT
+            question=FILTER_CONTEXT_EXAMPLE_QUESTION,
+            context=FILTER_CONTEXT_EXAMPLE_CONTEXT,
         )
 
         prompt = FILTER_CONTEXT_PROMPT_TEMPLATE.format(
@@ -330,7 +333,7 @@ class ModularRAG:
                 conclusion = matches[-1].lower()
             else:
                 # Assume the conclusion is 'no' if it cannot be extracted
-                conclusion = 'no'
+                conclusion = "no"
 
         return conclusion
 
@@ -534,7 +537,9 @@ class ModularRAG:
         logger.info("Initialising document store")
         # Embedding dimension of the document store must match the dimension of the
         # retriever's embedding model.
-        self.document_store = InMemoryDocumentStore(embedding_dim=768, similarity="cosine")
+        self.document_store = InMemoryDocumentStore(
+            embedding_dim=768, similarity="cosine"
+        )
         self.document_store.delete_documents()
         self.document_store.write_documents(self.docs)
 

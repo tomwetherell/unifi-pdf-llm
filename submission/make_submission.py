@@ -32,7 +32,9 @@ def make_submission():
         submission_year = max(all_years)
         logger.info(f"Making submission for {company} {submission_year}")
 
-        company_df = create_amkey_df(company, submission_year, save_path=Path(__file__).parent)
+        company_df = create_amkey_df(
+            company, submission_year, save_path=Path(__file__).parent
+        )
 
         if company in ["Oceana", "Uct"]:
             company_str = company + "1&2"
@@ -46,7 +48,9 @@ def make_submission():
             }
         )
 
-        company_submission_df["2022_Value"] = company_submission_df["2022_Value"].fillna(0.0)
+        company_submission_df["2022_Value"] = company_submission_df[
+            "2022_Value"
+        ].fillna(0.0)
 
         company_submission_dfs.append(company_submission_df)
 

@@ -5,6 +5,7 @@ import sys
 import argparse
 import warnings
 from pathlib import Path
+
 warnings.filterwarnings("ignore", category=UserWarning, module="transformers")
 
 import pandas as pd
@@ -38,11 +39,13 @@ VALIDATION_YEAR = 2021
 
 
 def parse_args():
-    parser = argparse.ArgumentParser(description="Validate the performance of the end-to-end RAG system.")
+    parser = argparse.ArgumentParser(
+        description="Validate the performance of the end-to-end RAG system."
+    )
     parser.add_argument(
         "--companies",
         type=str,
-        nargs='+',
+        nargs="+",
         default=ALL_COMPANIES,
         help="The companies to validate. If 'all', validate all companies.",
     )
@@ -97,15 +100,13 @@ def run_validation(companies: list[str], num: int = 50):
         for validation_type in ["retrieval", "nan"]:
             logger.info(f"Validation type:  {validation_type}\n")
 
-            accuracy, results_df = (
-                validate_retrieval(
-                    company,
-                    VALIDATION_YEAR,
-                    type=validation_type,
-                    num=num,
-                    window_size=2,
-                    discard_text=True,
-                )
+            accuracy, results_df = validate_retrieval(
+                company,
+                VALIDATION_YEAR,
+                type=validation_type,
+                num=num,
+                window_size=2,
+                discard_text=True,
             )
 
             number_of_preds = len(results_df)
@@ -158,9 +159,9 @@ def run_validation(companies: list[str], num: int = 50):
             * validation_results[validation_results["Validation Type"] == "retrieval"][
                 "Num"
             ]
-        ).sum() / validation_results[validation_results["Validation Type"] == "retrieval"][
-            "Num"
-        ].sum()
+        ).sum() / validation_results[
+            validation_results["Validation Type"] == "retrieval"
+        ]["Num"].sum()
 
         nan_accuracy = (
             validation_results[validation_results["Validation Type"] == "nan"][
@@ -171,9 +172,7 @@ def run_validation(companies: list[str], num: int = 50):
             "Num"
         ].sum()
 
-        logger.info(
-            f"Average accuracy (retrieval): {retrieval_accuracy}"
-        )
+        logger.info(f"Average accuracy (retrieval): {retrieval_accuracy}")
         logger.info(f"Average accuracy (nan): {nan_accuracy}")
 
 
