@@ -11,7 +11,11 @@ from esg_retriever.utils import list_all_amkeys
 
 
 def parse_args():
-    parser = argparse.ArgumentParser(description="Query AMKEY values for a company and year.")
+    parser = argparse.ArgumentParser(
+        description="Retrieve AMKEY values for a company and year, and save them to "
+                    " a .csv file.",
+    )
+
     parser.add_argument(
         "--company",
         type=str,
@@ -22,15 +26,18 @@ def parse_args():
         "--year",
         type=int,
         required=True,
-        help="The year.",
+        help="Year.",
     )
     parser.add_argument(
         "--save_path",
         type=str,
-        default=None,
-        help="Path to save the AMKEY values as a CSV file.",
+        required=True,
+        help="Path to save the AMKEY values as a .csv file. The name of the file will "
+             "be {company}_{year}_amkey_values.csv.",
     )
+
     args = parser.parse_args()
+
     return args
 
 
