@@ -1,21 +1,13 @@
 """Module containing functions to load parsed pdfs."""
-# TODO: Create load_and_preprocess_documents function
 
-import os
 from pathlib import Path
 
 from haystack import Document
 from haystack.nodes import AzureConverter
-from dotenv import load_dotenv
 from loguru import logger
 
 from esg_retriever.preprocess import preprocess_documents
 from esg_retriever.config import JSON_REPORTS_DIR, COMPANY_YEAR_PDF_MAPPING
-
-
-load_dotenv()
-
-AZURE_CONVERTER_KEY = os.environ.get("AZURE_CONVERTER_KEY")
 
 
 def load_and_preprocess_documents(
@@ -88,7 +80,7 @@ def load_documents(company: str, year: int) -> list[Document]:
     company_docs = []
     converter = AzureConverter(
         endpoint="https://azureconverter.cognitiveservices.azure.com/",
-        credential_key=AZURE_CONVERTER_KEY,
+        credential_key='null',  # API key not needed to load documents
         model_id="prebuilt-layout",
     )
 
