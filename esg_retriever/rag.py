@@ -43,6 +43,7 @@ class ModularRAG:
         docs: list[Document],
         company: str,
         top_k: int = 3,
+        regex_filter: bool = True,
     ):
         """
         Initalise the components of the query pipeline.
@@ -57,9 +58,13 @@ class ModularRAG:
 
         top_k : int
             The number of documents to retrieve for each query.
+
+        regex_filter : bool
+            Whether to use regex to filter the context documents.
         """
         self.docs = docs
         self.company = company
+        self.regex_filter = regex_filter
 
         # Initalised in the methods below
         self.document_store = None
@@ -100,12 +105,27 @@ class ModularRAG:
         logger.info(f"Retrieving AMKEY: {amkey}")
         metric = self.retrieve_metric_description(amkey)
         logger.debug(f"Retrieving metric: {metric}")
-        # TODO: Consider using both a dense and a sparse retriever.
         context_documents = self.retriever.retrieve(metric)
+
+        # Forming the question
         additional_instructions = self._retrieve_additional_appended_instructions(amkey)
         question = (
             f"What was the {metric} in the year {year}? {additional_instructions}"
         )
+
+        # Filter using regex
+        if self.regex_filter:
+            context_documents = self._regex_filter_context_documents(
+                context_documents, year, metric
+            )
+
+        if not context_documents:
+            logger.info(
+                "No relevant context documents found after regex filter. Returning None."
+            )
+            return None
+
+        # Filter using LLM
         relevant_context_documents = asyncio.run(
             self._filter_context_documents(context_documents, question)
         )
@@ -213,13 +233,95 @@ class ModularRAG:
 
         return metric
 
+    def _regex_filter_context_documents(
+        self, context_documents: list[Document], year: int, metric: str
+    ) -> list[Document]:
+        """
+        Return the context documents that are relevant to the year and metric.
+
+        Filtering is done using regex.
+
+        Parameters
+        ----------
+        context_documents : list[Document]
+            The context documents to filter.
+
+        year : int
+            The year.
+
+        metric : str
+            The metric description.
+
+        Returns
+        -------
+        relevant_docs : list[Document]
+            The context documents that are relevant to the year and metric.
+        """
+        relevant_docs = []
+
+        for doc in context_documents:
+            if self._regex_filter_context_document(doc, year, metric):
+                relevant_docs.append(doc)
+
+        return relevant_docs
+
+    def _regex_filter_context_document(
+        self, doc: Document, year: int, metric: str
+    ) -> bool:
+        """
+        Return whether a context document is relevant to the year and metric.
+
+        Filtering is done using regex.
+
+        Parameters
+        ----------
+        doc : Document
+            The context document to filter.
+
+        year : int
+            The year.
+
+        metric : str
+            The metric description.
+
+        Returns
+        -------
+        relevant : bool
+            Whether all words in the metric and the year are present in the document.
+        """
+        relevant = True
+        table = doc.content
+
+        # Remove newline characters from the table
+        table = table.replace("\n", "")
+
+        # Remove punctuation from the table and the metric
+        table = re.sub(r"[^\w\s]", "", table)
+        metric = re.sub(r"[^\w\s]", "", metric)
+
+        # Split the metric into words
+        words = metric.split()
+
+        # Check if each word is in the table
+        for word in words:
+            if word not in table:
+                relevant = False
+                break
+
+        # Check if the year is in the table
+        if str(year) not in table:
+            relevant = False
+
+        return relevant
+
     async def _filter_context_documents(
         self, docs: list[Document], question: str
     ) -> list[Document]:
         """
         Return the documents that are relevant to the question.
 
-        The filtering is run asynchronously to speed up the process.
+        The filtering is run asynchronously to speed up the process. Uses LLM calls
+        to filter the documents.
 
         Parameters
         ----------
@@ -234,6 +336,8 @@ class ModularRAG:
         relevant_docs : list[Document]
             The context documents that are relevant to the question.
         """
+        logger.debug("Filtering context documents using LLM")
+
         # Initialse async OpenAI client
         self.openai_async_client = AsyncOpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
 
@@ -255,6 +359,8 @@ class ModularRAG:
     async def _filter_document(self, doc, question):
         """
         Return the document and a conclusion about its relevance to the question.
+
+        Uses LLM call to filter the document.
 
         Parameters
         ----------
