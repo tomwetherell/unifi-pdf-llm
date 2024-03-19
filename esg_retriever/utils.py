@@ -14,3 +14,9 @@ def list_all_amkeys() -> list[int]:
     amkeys_list = amkeys_df["AMKEY"].tolist()
 
     return amkeys_list
+
+
+class InvalidCompanyError(Exception):
+    """Raised when the company name is not found in the config file."""
+
+    pass

@@ -4,10 +4,12 @@ import argparse
 from pathlib import Path
 
 import pandas as pd
+from loguru import logger
 
 from esg_retriever.load import load_and_preprocess_documents
 from esg_retriever.rag import ModularRAG
-from esg_retriever.utils import list_all_amkeys
+from esg_retriever.utils import list_all_amkeys, InvalidCompanyError
+from esg_retriever.config import COMPANIES
 
 
 def parse_args():
@@ -59,12 +61,24 @@ def retrieve_all_amkey_values(company: str, year: int) -> dict[int, float | None
         A dictionary with the AMKEY as the key and the retrieved value as the value.
         If the value is not found, it is set to None.
     """
+    if company not in COMPANIES:
+        raise InvalidCompanyError(f"Company {company} not found in config.py.")
+
     amkey_values = {}
     amkeys = list_all_amkeys()
 
-    docs = load_and_preprocess_documents(
-        company, year, window_size=2, discard_text=True
-    )
+    try:
+        docs = load_and_preprocess_documents(
+            company, year, window_size=2, discard_text=True
+        )
+    except ValueError:
+        logger.warning(
+            f"No report for {company} for the year {year}. Setting all AMKEY values to None."
+        )
+        for amkey in amkeys:
+            amkey_values[amkey] = None
+        return amkey_values
+
     rag = ModularRAG(docs=docs, company=company)
 
     for amkey in amkeys:

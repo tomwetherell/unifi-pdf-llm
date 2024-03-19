@@ -140,7 +140,9 @@ class ModularRAG:
         try:
             value, unit = self._parse_answer(answer)
         except Exception as err:
-            logger.error(f"Exception raised when parsing answer: {err}")
+            logger.warning(
+                f"Exception raised when parsing answer: {err}. Returning None for value and unit."
+            )
             value, unit = None, None
 
         logger.debug(f"Parsed answer: {value}, {unit}")
