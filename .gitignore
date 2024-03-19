@@ -159,8 +159,6 @@ cython_debug/
 #.idea/
 
 # Repo specific
-esg_retriever/data/
 submission/*.csv
 submission/*.log
-*.json
 *.pdf
