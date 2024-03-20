@@ -449,9 +449,6 @@ class ModularRAG:
         """
         Return additional instructions to append to the query.
 
-        TODO: Remove this? I don't think it matters if the word 'Level' is in the
-        generated answer, as it is parsed and removed. Test and remove.
-
         Parameters
         ----------
         amkey : int
@@ -494,7 +491,6 @@ class ModularRAG:
 
         logger.debug(f"Retrieval prompt:\n{prompt}")
 
-        # TODO: Test using `top_p` parameter. Not recommended to set both `temperature` and `top_p`.
         answer = (
             self.openai_client.chat.completions.create(
                 model="gpt-3.5-turbo",
@@ -589,8 +585,6 @@ class ModularRAG:
         """
         Returns the value converted to the target unit.
 
-        TODO: Consider whether this could be replaced with a hard-coded approach.
-
         Parameters
         ----------
         value : float
@@ -641,7 +635,6 @@ class ModularRAG:
         return converted_value
 
     def _initialise_document_store(self):
-        # TODO: Try using other document stores (e.g. FAISS).
         logger.info("Initialising document store")
         # Embedding dimension of the document store must match the dimension of the
         # retriever's embedding model.
@@ -660,8 +653,6 @@ class ModularRAG:
         top_k : int
             The number of documents to retrieve for each query.
         """
-        # TODO: Look into other (non-OpenAI) embedding models that can be used with
-        # Haystack v1.
         logger.info("Initialising retriever (using all-mpnet-base-v2 model)")
         self.retriever = EmbeddingRetriever(
             embedding_model="sentence-transformers/all-mpnet-base-v2",

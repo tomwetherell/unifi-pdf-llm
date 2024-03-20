@@ -6,14 +6,14 @@ import argparse
 import warnings
 from pathlib import Path
 
-warnings.filterwarnings("ignore", category=UserWarning, module="transformers")
-
 import pandas as pd
 from loguru import logger
 
 from esg_retriever.load import load_and_preprocess_documents
 from esg_retriever.rag import ModularRAG
 from esg_retriever.config import MISC_DATA_DIR
+
+warnings.filterwarnings("ignore", category=UserWarning, module="transformers")
 
 
 VALIDATION_LOGS_PATH = Path(__file__).resolve().parent / "results"
@@ -32,7 +32,6 @@ ALL_COMPANIES = [
     "Uct",
 ]
 """List of companies to validate."""
-# TODO: This should be centralised.
 
 VALIDATION_YEAR = 2021
 """The year to use for validation."""
@@ -59,7 +58,6 @@ def parse_args():
     return args
 
 
-# TODO: Add a function to simplify the logging setup.
 def run_validation(companies: list[str], num: int = 50):
     """
     Validate the performance of the end-to-end RAG system.
@@ -249,7 +247,6 @@ def validate_retrieval(
     else:
         raise ValueError(f"Invalid validation type: {type}")
 
-    # TODO: Should this be a random (with set seed) sample?
     train_df = train_df.head(n=num)
 
     # Load and preprocess the documents
